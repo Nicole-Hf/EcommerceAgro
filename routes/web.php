@@ -52,7 +52,7 @@ Route::group(['prefix' => 'roles'], function () {
     ('/{role}', [App\Http\Controllers\RoleController::class, 'update'])
         ->name('roles.update');
     Route::delete
-    ('/create', [App\Http\Controllers\RoleController::class, 'destroy'])
+    ('/{role}', [App\Http\Controllers\RoleController::class, 'destroy'])
         ->name('roles.delete');
     Route::post
     ('/', [App\Http\Controllers\RoleController::class, 'store'])

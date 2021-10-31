@@ -11,6 +11,14 @@
                     </button>
                 </div>
             @endif
+            @if (Session::has('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ Session::get('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             {{--Boton--}}
             <div class="row">
                 <div class="col-12 text-left">
@@ -42,10 +50,6 @@
                                                 {{--Ver--}}
                                                 <a href="{{ route('roles.show',$rol->id) }}" class="btn btn-info">
                                                     <i class="material-icons">search</i>
-                                                </a>
-                                                {{--Sectores--}}
-                                                <a href="{{ route('roles.create',$rol->id) }}" class="btn btn-success">
-                                                    <i class="material-icons">layers</i>
                                                 </a>
                                                 {{--Editar--}}
                                                 <a href="{{ route('roles.edit',$rol->id) }}" class="btn btn-warning">
