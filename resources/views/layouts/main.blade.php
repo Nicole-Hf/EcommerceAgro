@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('Material Dashboard Laravel - Free Frontend Preset for Laravel') }}</title>
+    <title>{{ __('AgroShop') }}</title>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -28,10 +28,10 @@
 @if (auth()->check())
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
+            {{--<a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
-            </a>
-            <ul class="dropdown-menu">
+            </a>--}}
+            {{--<ul class="dropdown-menu">
                 <li class="header-title"> Sidebar Filters</li>
                 <li class="adjustments-line">
                     <a href="javascript:void(0)" class="switch-trigger active-color">
@@ -96,7 +96,7 @@
                     <br>
                     <br>
                 </li>
-            </ul>
+            </ul>--}}
         </div>
     </div>
 @endif
@@ -140,5 +140,5 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('js/material-dashboard.js?v=2.1.1') }}" type="text/javascript"></script>
 @stack('js')
-</body>
+</body> -->
 </html>
