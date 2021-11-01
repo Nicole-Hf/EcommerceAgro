@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserController extends Controller
 {
+    /*use WithPagination;
+    protected $paginationTheme = "bootstrap";
+    public $search;*/
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('Users.index');
+        /*$users = User::where('name', 'LIKE', '%'. $this->search . '%')
+            ->orWhere('email', 'LIKE', '%'. $this->search . '%')->paginate(10);*/
+        $users = User::all();
+        return view('Users.index', compact('users'));
     }
 
     /**

@@ -58,6 +58,7 @@
                                     </div>
                                 @endif
                             </div>
+                            {{--
                             <div class="form-check mr-auto ml-3 mt-3 has-success icheck-success">
                                 <label class="form-check-label has-success icheck-success">
                                     <input class="form-check-input has-success icheck-success" type="checkbox"
@@ -67,6 +68,7 @@
                                     </span>
                                 </label>
                             </div>
+                            --}}
                         </div>
                         <div class="card-footer justify-content-center">
                             <button type="submit" class="btn btn-primary btn-link btn-lg btn-success">{{ __('Ingresar') }}</button>

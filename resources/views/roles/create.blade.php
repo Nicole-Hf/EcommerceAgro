@@ -17,8 +17,8 @@
                                            value="{{ old('name') }}" autofocus>
                                     @if ($errors->has('name'))
                                         <span class="error text-danger" for="input-name">
-                    {{ $errors->first('name') }}
-                </span>
+                                        {{ $errors->first('name') }}
+                                        </span>
                                     @endif
                                 </div>
 
