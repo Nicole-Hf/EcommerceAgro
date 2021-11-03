@@ -30,8 +30,8 @@
         <div class="dropdown show-dropdown">
             {{--<a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
-            </a>--}}
-            {{--<ul class="dropdown-menu">
+            </a>
+            <ul class="dropdown-menu">
                 <li class="header-title"> Sidebar Filters</li>
                 <li class="adjustments-line">
                     <a href="javascript:void(0)" class="switch-trigger active-color">
@@ -142,3 +142,4 @@
 @stack('js')
 </body> -->
 </html>
+

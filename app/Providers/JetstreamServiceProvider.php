@@ -3,10 +3,8 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
-use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
-use Laravel\Fortify\Fortify;
 
 class JetstreamServiceProvider extends ServiceProvider
 {

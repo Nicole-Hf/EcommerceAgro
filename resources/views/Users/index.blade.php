@@ -20,29 +20,33 @@
                                     {{--Cabecera de Tabla--}}
                                     <thead class="text-primary text-success">
                                     <th>#</th>
-                                    {{--<th>CI</th>--}}
                                     <th>Nombre</th>
-                                    {{--<th>Teléfono</th>--}}
                                     <th>Correo electrónico</th>
                                     <th>Role</th>
                                     <th class="text-right">Acciones</th>
                                     </thead>
-                                    {{--Llamar a los usuarios--}}
                                     <tbody>
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            {{--<td>{{ $user->persona->carnet_identidad }}</td>
-                                            <td>{{ $user->persona->nombre }} {{ $user->persona->apellidos }}</td>
-                                            <td>{{ $user->persona->telefono }}</td>--}}
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->role_id }}</td>
                                             <td class="td-actions text-right">
                                                 {{--Editar Usuario--}}
                                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">
-                                                    <i class="material-icons">edit</i>
+                                                    <span class="material-icons">edit</span>
                                                 </a>
+                                                {{--Eliminar Usuario--}}
+                                                <form action="{{ route('users.delete',$user->id) }}" method="post"
+                                                      style="display: inline-block;"
+                                                      onsubmit="return confirm('¿Está seguro?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

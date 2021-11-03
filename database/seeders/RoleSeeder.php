@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
 
         //Dashboard
         Permission::create(['name' => 'home'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name' => 'catalogo'])->syncRoles([$role1,$role2,$role3]);
 
         //Roles
         Permission::create(['name' => 'roles.index'])->assignRole($role1);
@@ -79,9 +80,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'productos.update'])->assignRole($role1);
         Permission::create(['name' => 'productos.destroy'])->assignRole($role1);
 
-        Permission::create(['name' => 'Gestionar Bitácora'])->assignRole($role1);
-        Permission::create(['name' => 'Gestionar Envío'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'Forma de Pago'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'Catalogo de Productos'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name' => 'bitacora.index'])->assignRole($role1);
+
+        Permission::create(['name' => 'pedidos.index'])->syncRoles([$role1,$role2]);
+
+        Permission::create(['name' => 'pagos.index'])->syncRoles([$role1,$role2]);
     }
 }

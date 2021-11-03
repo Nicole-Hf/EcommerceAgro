@@ -1,5 +1,5 @@
-<div class="sidebar" data-color="orange" data-background-color="white"
-     data-image="{{ asset('img/sidebar-1.jpg') }}">
+<div class="sidebar" data-color="green" data-background-color="black"
+     data-image="{{ asset('img/sidebar-1.jpg') }}" aria-labelledby="minimizeSidebar">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -12,77 +12,110 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-                @can('home')
-                <a class="nav-link" href="{{ route('home') }}">
-                    <i class="material-icons">dashboard</i>
-                    <p>{{ __('Inicio') }}</p>
+            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+                @can('clientes.index')
+                <a class="nav-link" href="{{ route('clientes.index') }}">
+                    <i class="material-icons">groups</i>
+                    <p>{{ __('Clientes') }}</p>
                 </a>
                 @endcan
             </li>
-            {{--<li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-                    <i><img style="width:25px" src="{{ asset('img/laravel.svg') }}"></i>
-                    <p>{{ __('Laravel Examples') }}
+            <li class="nav-item {{ ($activePage == 'empresas' || $activePage == 'productos') ? ' active' : '' }}">
+                @can('empresas.index')
+                <a class="nav-link collapse" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
+                    <i class="material-icons">location_city</i>
+                    <p>{{ __('Gestionar Empresas') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="laravelExample">
+                @endcan
+                <div class="collapse" id="laravelExample">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
+                            @can('empresas.index')
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> UP </span>
-                                <span class="sidebar-normal">{{ __('User profile') }} </span>
+                                <i class="material-icons">store</i>
+                                <span class="sidebar-normal">{{ __('Empresas') }} </span>
                             </a>
+                            @endcan
                         </li>
-                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
+                            @can('productos.index')
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> UM </span>
-                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                                <i class="material-icons">style</i>
+                                <span class="sidebar-normal">{{ __('Productos') }} </span>
                             </a>
+                            @endcan
                         </li>
                     </ul>
                 </div>
-            </li>--}}
-            <li class="nav-item{{ $activePage == 'producto' ? ' active' : '' }}">
-                <a class="nav-link" href="#">
-                    <i class="material-icons">content_paste</i>
-                    <p>{{ __('Producto') }}</p>
-                </a>
             </li>
-            <li class="nav-item{{ $activePage == 'compra' ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
+                @can('categorias.index')
+                <a class="nav-link collapse" data-toggle="collapse" href="#categorias" aria-expanded="true">
+                    <i class="material-icons">category</i>
+                    <p>{{ __('Gestionar Categorías') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                @endcan
+                <div class="collapse" id="categorias">
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
+                            @can('categorias.index')
+                                <a class="nav-link" href="#">
+                                    <i class="material-icons">align_horizontal_left</i>
+                                    <span class="sidebar-normal">{{ __('Categorías') }} </span>
+                                </a>
+                            @endcan
+                        </li>
+                        <li class="nav-item{{ $activePage == 'subcategorias' ? ' active' : '' }}">
+                            @can('subcategorias.index')
+                            <a class="nav-link" href="#">
+                                <i class="material-icons">list</i>
+                                <span class="sidebar-normal">{{ __('Subcategorías') }} </span>
+                            </a>
+                            @endcan
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
+            <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="material-icons">library_books</i>
-                    <p>{{ __('Compra') }}</p>
+                    <i class="material-icons">shopping_cart</i>
+                    <p>{{ __('Pedidos') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
                 @can('users.index')
                 <a class="nav-link" href="{{ route('users.index') }}">
-                    <i class="material-icons">bubble_chart</i>
+                    <i class="material-icons">manage_accounts</i>
                     <p>{{ __('Usuarios') }}</p>
                 </a>
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 <a class="nav-link" href="#">
-                    <i class="material-icons">location_ons</i>
+                    <i class="material-icons">query_stats</i>
                     <p>{{ __('Reportes') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'roles' ? ' active' : '' }}">
                 @can('roles.index')
                 <a class="nav-link" href="{{ route('roles.index') }}">
-                    <i class="material-icons">notifications</i>
+                    <i class="material-icons">admin_panel_settings</i>
                     <p>{{ __('Roles') }}</p>
                 </a>
                 @endcan
             </li>
-            <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'bitacora' ? ' active' : '' }}">
+                @can('bitacora.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">language</i>
-                    <p>{{ __('Empresas') }}</p>
+                    <p>{{ __('Bitácora') }}</p>
                 </a>
+                @endcan
             </li>
         </ul>
     </div>

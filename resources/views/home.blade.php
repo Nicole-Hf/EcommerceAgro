@@ -1,6 +1,6 @@
-@extends('layouts.main', ['activePage' => 'dashboard', 'titlePage' => __('Tienda Gigants')])
-
+@extends('layouts.main', ['activePage'=>'', 'titlePage'=>'Usuarios'])
 @section('content')
-    Pantalla de Bienvenida
+    mostrar productos
+    vista del catalogo
 @endsection
 
