@@ -1,5 +1,5 @@
 <div class="sidebar" data-color="green" data-background-color="black"
-     data-image="{{ asset('img/sidebar-1.jpg') }}" aria-labelledby="minimizeSidebar">
+     data-image="{{ asset('img/sidebaragro2.jpg') }}" aria-labelledby="minimizeSidebar">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -33,7 +33,7 @@
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
                             @can('empresas.index')
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('empresas.index') }}">
                                 <i class="material-icons">store</i>
                                 <span class="sidebar-normal">{{ __('Empresas') }} </span>
                             </a>

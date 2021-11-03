@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        {{--Header--}}
+                        {{--Header
                         <div class="card-header card-header-rose">
                             <h4 class="card-title">Clientes</h4>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     {{--Cabecera de Tabla--}}
-                                    <thead class="text-primary text-rose">
+                                    <thead class="text-primary text-warning">
                                     <th>#</th>
                                     <th>Nombre Completo</th>
                                     <th>Teléfono</th>

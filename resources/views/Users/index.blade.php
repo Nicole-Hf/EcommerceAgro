@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        {{--Header--}}
+                        {{--Header
                         <div class="card-header card-header-success">
                             <h4 class="card-title">Listado de Usuarios</h4>
                         </div>
@@ -64,9 +64,4 @@
         </div>
     </div>
 @endsection
-<script>
-    import Input from "@/Jetstream/Input";
-    export default {
-        components: {Input}
-    }
-</script>
+
