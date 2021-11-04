@@ -43,9 +43,8 @@ class RoleController extends Controller
         ]);
 
         $role = Role::create($request->all());
-
         //$role->permissions()->sync($request->permissions);
-        $role->syncPermissions($request->input('permission_id'));
+        $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.index', $role)->with('info','El rol se creó con éxito');
     }
@@ -91,7 +90,8 @@ class RoleController extends Controller
         $datos = $request->all();
         $role->update($datos);
         //$role->update($request->all());
-        $role->permissions()->sync($request->permissions);
+        //$role->permissions()->sync($request->permissions);
+        $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.edit', $role)->with('info','El rol se actualizó con éxito');
     }
