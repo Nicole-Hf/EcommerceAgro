@@ -35,7 +35,7 @@
                                                    name = "permissions[]" id = "permissions"
                                                    value="{{ $permission->id }}"
                                                    @if ($role->hasPermissionTo($permission->name)) checked @endif>
-                                            {{ $permission->name }}
+                                            {{ $permission->description }}
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>

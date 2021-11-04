@@ -17,6 +17,14 @@
     <div class="sidebar-wrapper ps-container ps-active-y">
         <ul class="nav">
             <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+                @can('home')
+                    <a class="nav-link" href="{{ route('home') }}">
+                        <i class="material-icons">home</i>
+                        <p>{{ __('Inicio') }}</p>
+                    </a>
+                @endcan
+            </li>
+            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
                 @can('clientes.index')
                     <a class="nav-link" href="{{ route('clientes.index') }}">
                         <i class="material-icons">groups</i>
@@ -24,15 +32,14 @@
                     </a>
                 @endcan
             </li>
-            <li class="nav-item {{ ($activePage == 'empresas' || $activePage == 'productos') ? ' active' : '' }}">
-                @can('empresas.index')
+            <li class="nav-item {{ ($activePage == 'empresas' || $activePage == 'productos'
+                                                              || $activePage == 'reportes') ? ' active' : '' }}">
                     <a class="nav-link collapse" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
                         <i class="material-icons">location_city</i>
                         <p>{{ __('Gestionar Empresas') }}
                             <b class="caret"></b>
                         </p>
                     </a>
-                @endcan
                 <div class="collapse" id="laravelExample">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
@@ -86,10 +93,12 @@
             </li>
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
             <li class="nav-item">
+                @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
                     <p>{{ __('Pedidos') }}</p>
                 </a>
+                @endcan
             </li>
             <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
                 @can('users.index')
@@ -100,10 +109,12 @@
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
+                @can('reportes.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">query_stats</i>
                     <p>{{ __('Reportes') }}</p>
                 </a>
+                @endcan
             </li>
             <li class="nav-item{{ $activePage == 'roles' ? ' active' : '' }}">
                 @can('roles.index')

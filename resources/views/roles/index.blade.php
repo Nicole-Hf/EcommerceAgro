@@ -47,10 +47,6 @@
                                             <td>{{ $rol->id }}</td>
                                             <td>{{ $rol->name }}</td>
                                             <td class="td-actions">
-                                                {{--Ver--}}
-                                                <a href="{{ route('roles.show',$rol->id) }}" class="btn btn-info">
-                                                    <i class="material-icons">search</i>
-                                                </a>
                                                 {{--Editar--}}
                                                 <a href="{{ route('roles.edit',$rol->id) }}" class="btn btn-warning">
                                                     <i class="material-icons">edit</i>

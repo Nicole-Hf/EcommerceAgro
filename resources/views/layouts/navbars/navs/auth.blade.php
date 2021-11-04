@@ -37,12 +37,11 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="{{ route('home') }}">{{ __('Inicio') }}</a>
-                        @can('clientes.create')
-                        <a class="dropdown-item" href="{{ route('clientes.create') }}">{{ __('Editar Perfil') }}</a>
-                        @endcan
                         @can('empresas.create')
-                        <a class="dropdown-item" href="{{ route('empresas.create') }}">{{ __('Editar Perfil') }}</a>
+                        <a class="dropdown-item" href="{{ route('empresas.create') }}">{{ __('Registra tu empresa') }}</a>
+                        @endcan
+                        @can('users.edit')
+                        <a class="dropdown-item" href="{{ route('users.edit', auth()->user()->id) }}">{{ __('Editar Perfil') }}</a>
                         @endcan
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
