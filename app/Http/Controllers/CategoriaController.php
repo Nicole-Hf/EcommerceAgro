@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -13,7 +14,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+        return view('Categorias.index', compact('categorias'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Categorias.create');
     }
 
     /**
@@ -34,18 +36,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'nombre' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $categoria = Categoria::create($request->all());
+        return redirect()->route('categorias.index', $categoria);
     }
 
     /**
@@ -54,9 +50,9 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Categoria $categoria)
     {
-        //
+        return view('Categorias.edit', compact('categoria'));
     }
 
     /**
@@ -68,7 +64,15 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+        $datos = $request->all();
+        $categoria->update($datos);
+
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -77,8 +81,10 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+
+        return back()->with('mensaje', 'Eliminado correctamente');
     }
 }

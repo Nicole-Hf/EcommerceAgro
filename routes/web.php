@@ -111,16 +111,16 @@ Route::middleware(['auth'])->group(function () {
         ('/create', [App\Http\Controllers\CategoriaController::class, 'create'])
             ->name('categorias.create');
         Route::get
-        ('/{id}', [App\Http\Controllers\CategoriaController::class, 'show'])
+        ('/{categoria}', [App\Http\Controllers\CategoriaController::class, 'show'])
             ->name('categorias.show');
         Route::get
-        ('/{id}/edit', [App\Http\Controllers\CategoriaController::class, 'edit'])
+        ('/{categoria}/edit', [App\Http\Controllers\CategoriaController::class, 'edit'])
             ->name('categorias.edit');
         Route::put
-        ('/{id}', [App\Http\Controllers\CategoriaController::class, 'update'])
+        ('/{categoria}', [App\Http\Controllers\CategoriaController::class, 'update'])
             ->name('categorias.update');
         Route::delete
-        ('/{id}', [App\Http\Controllers\CategoriaController::class, 'destroy'])
+        ('/{categoria}', [App\Http\Controllers\CategoriaController::class, 'destroy'])
             ->name('categorias.delete');
         Route::post
         ('/', [App\Http\Controllers\CategoriaController::class, 'store'])

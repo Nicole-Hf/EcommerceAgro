@@ -74,7 +74,7 @@
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
                             @can('categorias.index')
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('categorias.index') }}">
                                     <i class="material-icons">align_horizontal_left</i>
                                     <span class="sidebar-normal">{{ __('Categorías') }} </span>
                                 </a>
