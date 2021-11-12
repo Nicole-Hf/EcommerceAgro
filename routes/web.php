@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -138,13 +139,13 @@ Route::middleware(['auth'])->group(function () {
             ('/{id}', [App\Http\Controllers\SubcategoriaController::class, 'show'])
                 ->name('subcategorias.show');
             Route::get
-            ('/{id}/edit', [App\Http\Controllers\SubcategoriaController::class, 'edit'])
+            ('/{subcategoria}/edit', [App\Http\Controllers\SubcategoriaController::class, 'edit'])
                 ->name('subcategorias.edit');
             Route::put
-            ('/{id}', [App\Http\Controllers\SubcategoriaController::class, 'update'])
+            ('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'update'])
                 ->name('subcategorias.update');
             Route::delete
-            ('/{id}', [App\Http\Controllers\SubcategoriaController::class, 'destroy'])
+            ('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'destroy'])
                 ->name('subcategorias.delete');
             Route::post
             ('/', [App\Http\Controllers\SubcategoriaController::class, 'store'])
@@ -175,5 +176,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post
         ('/', [App\Http\Controllers\EmpresaController::class, 'store'])
             ->name('empresas.store');
+    });
+
+    Route::group(['prefix'=>'productos'],function () {
+
+        Route::get('/index',[ProductoController::class, 'index'])->name('productos.index');
+        Route::get('/create',[ProductoController::class,'create'])->name('productos.create');
+        Route::post('/store',[ProductoController::class,'store'])->name('productos.store');
+        Route::get('/edit/{producto}',[ProductoController::class,'edit'])->name('productos.edit');
+        Route::post('/update/{producto}',[ProductoController::class,'update'])->name('productos.update');
+        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])->name('productos.delete');
+
     });
 });

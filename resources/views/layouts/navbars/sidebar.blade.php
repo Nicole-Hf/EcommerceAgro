@@ -52,7 +52,7 @@
                         </li>
                         <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
                             @can('productos.index')
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{route('productos.index')}}">
                                     <i class="material-icons">style</i>
                                     <span class="sidebar-normal">{{ __('Productos') }} </span>
                                 </a>
@@ -82,7 +82,7 @@
                         </li>
                         <li class="nav-item{{ $activePage == 'subcategorias' ? ' active' : '' }}">
                             @can('subcategorias.index')
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{route('subcategorias.index')}}">
                                     <i class="material-icons">list</i>
                                     <span class="sidebar-normal">{{ __('Subcategorías') }} </span>
                                 </a>
