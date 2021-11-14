@@ -15,7 +15,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-
     }
 
     /**
@@ -85,14 +84,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $datos = $request->only('name','email');
-        if (trim($request->password)=='')
-        {
-            $datos=$request->except('password');
-        }
-        else{
-            $datos=$request->all();
-            $datos['password']=bcrypt($request->password);
+        $datos = $request->only('name', 'email');
+        if (trim($request->password) == '') {
+            $datos = $request->except('password');
+        } else {
+            $datos = $request->all();
+            $datos['password'] = bcrypt($request->password);
         }
         $user->update($datos);
 
