@@ -25,11 +25,7 @@
     @include('layouts.page_templates.guest')
 @endguest
 @if (auth()->check())
-    <div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
             vista del main
-        </div>
-    </div>
 @endif
 <!--   Core JS Files   -->
 <script src="{{ asset('js/core/jquery.min.js') }}"></script>

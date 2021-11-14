@@ -17,23 +17,25 @@ use App\Http\Controllers\MailController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
 //PROBANDO GMAIL
 Route::get('/send-email', [MailController::class, 'sendEmail']);
-///
-
 
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-///para gmail
-//Route::get('/password.reset', function () {
-//  return view('auth.ResetPassword');
-//})->name('password.update');
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
 
-
-
+/*Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');*/
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
