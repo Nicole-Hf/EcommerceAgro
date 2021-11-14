@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Subcategoria;
+use App\Models\User;
 use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,5 +97,14 @@ class ProductoController extends Controller
 
         $producto->delete();
         return redirect()->route('productos.index');
+    }
+
+    public function show()
+    {
+        $productos = Producto::paginate();     
+        $empresa = Empresa::all();  
+        $user = User::all(); 
+        return view('Productos.show', compact('productos'), compact('user')) ;
+        
     }
 }

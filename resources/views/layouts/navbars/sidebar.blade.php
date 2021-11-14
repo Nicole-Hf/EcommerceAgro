@@ -51,12 +51,20 @@
                             @endcan
                         </li>
                         <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                            @can('productos.index')
-                                <a class="nav-link" href="{{route('productos.index')}}">
-                                    <i class="material-icons">style</i>
-                                    <span class="sidebar-normal">{{ __('Productos') }} </span>
-                                </a>
+                            
+                            @if (Auth()->id()=='1' or Auth()->id()=='3')                           
+                           <a class="nav-link" href="{{route('productos.show')}}"> 
+                            <i class="material-icons">style</i>                                   
+                            <span class="sidebar-normal">{{ __('Productos') }} </span>
+                           </a>
+                           @else
+                            @can('productos.index')                        
+                            <a class="nav-link" href="{{route('productos.index')}}">
+                                <i class="material-icons">style</i>                                   
+                            <span class="sidebar-normal">{{ __('Productos') }} </span>
+                            </a>                                
                             @endcan
+                            @endif                           
                         </li>
                     </ul>
                 </div>

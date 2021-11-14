@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Producto;
+use App\Models\Empresa;
 
 class ClienteController extends Controller
 {
@@ -57,7 +59,9 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $productos = Producto::paginate();     
+        $empresa = Empresa::all();   
+        return view('Productos.show', compact('productos'), compact('empresa')) ;
     }
 
     /**

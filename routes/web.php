@@ -186,6 +186,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{producto}',[ProductoController::class,'edit'])->name('productos.edit');
         Route::post('/update/{producto}',[ProductoController::class,'update'])->name('productos.update');
         Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])->name('productos.delete');
+        Route::get('/show', [ProductoController::class,'show'])->name('productos.show');
 
     });
 });
