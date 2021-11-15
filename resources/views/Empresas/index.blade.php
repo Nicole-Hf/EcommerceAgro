@@ -11,7 +11,6 @@
                     </button>
                 </div>
             @endif
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -19,8 +18,7 @@
                             {{--tabla--}}
                             <div class="table-responsive">
                                 <table class="table">
-                                    {{--Cabecera de Tabla--}}
-                                    <thead class="text-primary text-warning">
+                                    <thead class="text-success text-warning">
                                     <th>#</th>
                                     <th>Nombre Comercial</th>
                                     <th>Perfil</th>
@@ -29,7 +27,6 @@
                                     <th>Tipo de Negocio</th>
                                     <th class="text-right">Acciones</th>
                                     </thead>
-                                    {{--Llamar a los proveedores--}}
                                     <tbody>
                                     @foreach($empresas as $empresa)
                                         <tr>
@@ -40,16 +37,8 @@
                                             <td>{{ $empresa->users->email }}</td>
                                             <td>{{ $empresa->tipo_negocio }}</td>
                                             <td class="td-actions text-right">
-                                                {{--Ver--}}
-                                                <a href="{{ route('clientes.show', $empresa->id) }}" class="btn btn-info">
-                                                    <i class="material-icons">person</i>
-                                                </a>
-                                                {{--Editar Usuario--}}
-                                                <a href="{{ route('clientes.edit', $empresa->id) }}" class="btn btn-warning">
-                                                    <i class="material-icons">edit</i>
-                                                </a>
                                                 {{--Eliminar Usuario--}}
-                                                <form action="{{ route('clientes.delete',$empresa->id) }}" method="post"
+                                                <form action="#" method="post"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('¿Está seguro?')">
                                                     @csrf

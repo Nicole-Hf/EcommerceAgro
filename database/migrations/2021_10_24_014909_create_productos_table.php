@@ -21,18 +21,16 @@ class CreateProductosTable extends Migration
             $table->string('imagen',200);
             $table->unsignedBigInteger('stock');
             $table->unsignedBigInteger('empresa_id');
-            $table->unsignedBigInteger('marca_id');
+            //$table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('subcategoria_id');
             $table->timestamps();
 
             $table->softDeletes();
 
-            $table->foreign('empresa_id')->on('empresas')->references('id')
-                ->onDelete('cascade');
-            $table->foreign('marca_id')->on('marcas')->references('id')
-                ->onDelete('cascade');
-            $table->foreign('subcategoria_id')->on('subcategorias')->references('id')
-                ->onDelete('cascade');
+            $table->foreign('empresa_id')->on('empresas')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('marca_id')->on('marcas')->references('id')
+             //   ->onDelete('cascade');
+            $table->foreign('subcategoria_id')->on('subcategorias')->references('id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

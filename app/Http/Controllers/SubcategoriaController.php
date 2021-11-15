@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 
 class SubcategoriaController extends Controller
@@ -13,7 +15,8 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $subcategorias=Subcategoria::all();
+        return view('Categorias.Subcategorias.index',compact('subcategorias'));
     }
 
     /**
@@ -23,7 +26,8 @@ class SubcategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $categorias=Categoria::all();
+        return view('Categorias.subcategorias.create',compact('categorias'));
     }
 
     /**
@@ -34,18 +38,13 @@ class SubcategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+       $data=$request->validate([
+            'nombre' => 'required',
+            'categoria_id'=>'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $subcategoria=Subcategoria::create($data);
+        return redirect()->route('subcategorias.index');
     }
 
     /**
@@ -54,9 +53,10 @@ class SubcategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subcategoria $subcategoria)
     {
-        //
+        $categorias=Categoria::all();
+        return view('Categorias.subcategorias.edit',compact('subcategoria','categorias'));
     }
 
     /**
@@ -66,9 +66,15 @@ class SubcategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategoria $subcategoria)
     {
-        //
+        $data=$request->validate([
+            'nombre' => 'required',
+            'categoria_id'=>'required',
+        ]);
+
+        $subcategoria->update($data);
+        return redirect()->route('subcategorias.index');
     }
 
     /**
@@ -77,8 +83,9 @@ class SubcategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subcategoria $subcategoria)
     {
-        //
+        $subcategoria->delete();
+        return redirect()->route('subcategorias.index');
     }
 }
