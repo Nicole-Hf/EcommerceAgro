@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +13,9 @@ use App\Http\Controllers\MailController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-//PROBANDO GMAIL
-Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -48,11 +43,11 @@ Route::middleware(['auth'])->group(function () {
             ->name('users.create');
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show'])
             ->name('users.show');
-        Route::get('/{role}/edit', [App\Http\Controllers\UserController::class, 'edit'])
+        Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])
             ->name('users.edit');
-        Route::put('/{role}', [App\Http\Controllers\UserController::class, 'update'])
+        Route::put('/{user}', [App\Http\Controllers\UserController::class, 'update'])
             ->name('users.update');
-        Route::delete('/{role}', [App\Http\Controllers\UserController::class, 'destroy'])
+        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
             ->name('users.delete');
         Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
             ->name('users.store');
@@ -98,8 +93,6 @@ Route::middleware(['auth'])->group(function () {
             ->name('categorias.index');
         Route::get('/create', [App\Http\Controllers\CategoriaController::class, 'create'])
             ->name('categorias.create');
-        Route::get('/{categoria}', [App\Http\Controllers\CategoriaController::class, 'show'])
-            ->name('categorias.show');
         Route::get('/{categoria}/edit', [App\Http\Controllers\CategoriaController::class, 'edit'])
             ->name('categorias.edit');
         Route::put('/{categoria}', [App\Http\Controllers\CategoriaController::class, 'update'])
@@ -115,16 +108,11 @@ Route::middleware(['auth'])->group(function () {
                 ->name('subcategorias.index');
             Route::get('/create', [App\Http\Controllers\SubcategoriaController::class, 'create'])
                 ->name('subcategorias.create');
-            Route::get('/{id}', [App\Http\Controllers\SubcategoriaController::class, 'show'])
-                ->name('subcategorias.show');
-            Route::get
-            ('/{subcategoria}/edit', [App\Http\Controllers\SubcategoriaController::class, 'edit'])
+            Route::get('/{subcategoria}/edit', [App\Http\Controllers\SubcategoriaController::class, 'edit'])
                 ->name('subcategorias.edit');
-            Route::put
-            ('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'update'])
+            Route::put('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'update'])
                 ->name('subcategorias.update');
-            Route::delete
-            ('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'destroy'])
+            Route::delete('/{subcategoria}', [App\Http\Controllers\SubcategoriaController::class, 'destroy'])
                 ->name('subcategorias.delete');
             Route::post('/', [App\Http\Controllers\SubcategoriaController::class, 'store'])
                 ->name('subcategorias.store');
@@ -137,27 +125,25 @@ Route::middleware(['auth'])->group(function () {
             ->name('empresas.index');
         Route::get('/create', [App\Http\Controllers\EmpresaController::class, 'create'])
             ->name('empresas.create');
-        Route::get('/{id}', [App\Http\Controllers\EmpresaController::class, 'show'])
-            ->name('empresas.show');
-        Route::get('/{id}/edit', [App\Http\Controllers\EmpresaController::class, 'edit'])
-            ->name('empresas.edit');
-        Route::put('/{id}', [App\Http\Controllers\EmpresaController::class, 'update'])
-            ->name('empresas.update');
-        Route::delete('/{id}', [App\Http\Controllers\EmpresaController::class, 'destroy'])
-            ->name('empresas.delete');
         Route::post('/', [App\Http\Controllers\EmpresaController::class, 'store'])
             ->name('empresas.store');
     });
 
     Route::group(['prefix'=>'productos'],function () {
 
-        Route::get('/index',[ProductoController::class, 'index'])->name('productos.index');
-        Route::get('/create',[ProductoController::class,'create'])->name('productos.create');
-        Route::post('/store',[ProductoController::class,'store'])->name('productos.store');
-        Route::get('/edit/{producto}',[ProductoController::class,'edit'])->name('productos.edit');
-        Route::post('/update/{producto}',[ProductoController::class,'update'])->name('productos.update');
-        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])->name('productos.delete');
-        Route::get('/show', [ProductoController::class,'show'])->name('productos.show');
-
+        Route::get('/index',[ProductoController::class, 'index'])
+            ->name('productos.index');
+        Route::get('/create',[ProductoController::class,'create'])
+            ->name('productos.create');
+        Route::post('/store',[ProductoController::class,'store'])
+            ->name('productos.store');
+        Route::get('/edit/{producto}',[ProductoController::class,'edit'])
+            ->name('productos.edit');
+        Route::post('/update/{producto}',[ProductoController::class,'update'])
+            ->name('productos.update');
+        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
+            ->name('productos.delete');
+        Route::get('/show', [ProductoController::class,'show'])
+            ->name('productos.show');
     });
 });

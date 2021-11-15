@@ -44,6 +44,8 @@ class RoleSeeder extends Seeder
             'description' => 'Listado de Usuarios'])->assignRole($role1);
         Permission::create(['name' => 'users.edit',
             'description' => 'Editar Perfil de Usuario'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name' => 'users.delete',
+            'description' => 'Eliminar Usuario'])->syncRoles($role1);
 
         //Clientes
         Permission::create(['name' => 'clientes.index',
@@ -65,15 +67,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'empresas.index',
             'description' => 'Listado de Empresas'])->assignRole($role1);
         Permission::create(['name' => 'empresas.create',
-            'description' => 'Crear Empresa'])->assignRole([$role1,$role3]);
-        Permission::create(['name' => 'empresas.edit',
-            'description' => 'Editar Empresa'])->assignRole([$role1,$role3]);
-        Permission::create(['name' => 'empresas.show',
-            'description' => 'Mostrar Empresa'])->assignRole([$role1,$role3]);
+            'description' => 'Crear Empresa'])->assignRole($role3);
         Permission::create(['name' => 'empresas.store',
-            'description' => 'Guardar Empresa'])->assignRole([$role1,$role3]);
-        Permission::create(['name' => 'empresas.update',
-            'description' => 'Actualizar Empresa'])->assignRole([$role1,$role3]);
+            'description' => 'Guardar Empresa'])->assignRole($role3);
         Permission::create(['name' => 'empresas.destroy',
             'description' => 'Eliminar Empresa'])->assignRole($role1);
 
@@ -84,8 +80,6 @@ class RoleSeeder extends Seeder
             'description' => 'Crear Categoría'])->assignRole($role1);
         Permission::create(['name' => 'categorias.edit',
             'description' => 'Editar Categoría'])->assignRole($role1);
-        Permission::create(['name' => 'categorias.show',
-            'description' => 'Mostrar Categoría'])->assignRole($role1);
         Permission::create(['name' => 'categorias.store',
             'description' => 'Guardar Categoría'])->assignRole($role1);
         Permission::create(['name' => 'categorias.update',
@@ -100,8 +94,6 @@ class RoleSeeder extends Seeder
             'description' => 'Crear Subcategoría'])->assignRole($role1);
         Permission::create(['name' => 'subcategorias.edit',
             'description' => 'Editar Subcategoría'])->assignRole($role1);
-        Permission::create(['name' => 'subcategorias.show',
-            'description' => 'Mostrar Subcategoría'])->assignRole($role1);
         Permission::create(['name' => 'subcategorias.store',
             'description' => 'Guardar Subcategoría'])->assignRole($role1);
         Permission::create(['name' => 'subcategorias.update',
@@ -129,10 +121,10 @@ class RoleSeeder extends Seeder
             'description' => 'Listado de Bitácoras'])->assignRole($role1);
 
         Permission::create(['name' => 'pedidos.index',
-            'description' => 'Listado de Pedidos'])->syncRoles([$role1,$role2]);
+            'description' => 'Listado de Pedidos'])->syncRoles($role2);
 
         Permission::create(['name' => 'pagos.index',
-            'description' => 'Listado de Pagos'])->syncRoles([$role1,$role2]);
+            'description' => 'Listado de Pagos'])->syncRoles($role2);
 
         Permission::create(['name' => 'reportes.index',
             'description' => 'Reportes de Ventas'])->syncRoles([$role1,$role3]);

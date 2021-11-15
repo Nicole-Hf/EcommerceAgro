@@ -24,50 +24,20 @@
                     </a>
                 @endcan
             </li>
-            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
-                @can('clientes.index')
-                    <a class="nav-link" href="{{ route('clientes.index') }}">
-                        <i class="material-icons">groups</i>
-                        <p>{{ __('Clientes') }}</p>
+            <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
+                @if (Auth()->id()=='1' or Auth()->id()=='3')
+                    <a class="nav-link" href="{{route('productos.show')}}">
+                        <i class="material-icons">style</i>
+                        <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @endcan
-            </li>
-            <li class="nav-item {{ ($activePage == 'empresas' || $activePage == 'productos'
-                                                              || $activePage == 'reportes') ? ' active' : '' }}">
-                    <a class="nav-link collapse" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
-                        <i class="material-icons">location_city</i>
-                        <p>{{ __('Gestionar Empresas') }}
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                <div class="collapse" id="laravelExample">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
-                            @can('empresas.index')
-                                <a class="nav-link" href="{{ route('empresas.index') }}">
-                                    <i class="material-icons">store</i>
-                                    <span class="sidebar-normal">{{ __('Empresas') }} </span>
-                                </a>
-                            @endcan
-                        </li>
-                        <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                            
-                            @if (Auth()->id()=='1' or Auth()->id()=='3')                           
-                           <a class="nav-link" href="{{route('productos.show')}}"> 
-                            <i class="material-icons">style</i>                                   
+                @else
+                    @can('productos.index')
+                        <a class="nav-link" href="{{route('productos.index')}}">
+                            <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
-                           </a>
-                           @else
-                            @can('productos.index')                        
-                            <a class="nav-link" href="{{route('productos.index')}}">
-                                <i class="material-icons">style</i>                                   
-                            <span class="sidebar-normal">{{ __('Productos') }} </span>
-                            </a>                                
-                            @endcan
-                            @endif                           
-                        </li>
-                    </ul>
-                </div>
+                        </a>
+                    @endcan
+                @endif
             </li>
             <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
                 @can('categorias.index')
@@ -100,7 +70,6 @@
                 </div>
             </li>
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
-            <li class="nav-item">
                 @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
@@ -108,14 +77,7 @@
                 </a>
                 @endcan
             </li>
-            <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
-                @can('users.index')
-                    <a class="nav-link" href="{{ route('users.index') }}">
-                        <i class="material-icons">manage_accounts</i>
-                        <p>{{ __('Usuarios') }}</p>
-                    </a>
-                @endcan
-            </li>
+
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
                 <a class="nav-link" href="#">
@@ -123,6 +85,45 @@
                     <p>{{ __('Reportes') }}</p>
                 </a>
                 @endcan
+            </li>
+            <li class="nav-item {{ ($activePage == 'usuarios' || $activePage == 'clientes'
+                                    || $activePage == 'empresas') ? ' active' : '' }}">
+                @can('users.index')
+                    <a class="nav-link collapse" data-toggle="collapse" href="#usuarios" aria-expanded="true">
+                        <i class="material-icons">category</i>
+                        <p>{{ __('Gestionar Usuarios') }}
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                @endcan
+                <div class="collapse" id="usuarios">
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
+                            @can('users.index')
+                                <a class="nav-link" href="{{ route('users.index') }}">
+                                    <i class="material-icons">manage_accounts</i>
+                                    <p>{{ __('Usuarios') }}</p>
+                                </a>
+                            @endcan
+                        </li>
+                        <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+                            @can('clientes.index')
+                                <a class="nav-link" href="{{ route('clientes.index') }}">
+                                    <i class="material-icons">groups</i>
+                                    <p>{{ __('Clientes') }}</p>
+                                </a>
+                            @endcan
+                        </li>
+                        <li class="nav-item{{ $activePage == 'empresas' ? ' active' : '' }}">
+                            @can('empresas.index')
+                                <a class="nav-link" href="{{ route('empresas.index') }}">
+                                    <i class="material-icons">store</i>
+                                    <span class="sidebar-normal">{{ __('Empresas') }} </span>
+                                </a>
+                            @endcan
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item{{ $activePage == 'roles' ? ' active' : '' }}">
                 @can('roles.index')
