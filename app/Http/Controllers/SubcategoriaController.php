@@ -14,7 +14,7 @@ class SubcategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $subcategorias=Subcategoria::all();
         return view('Categorias.Subcategorias.index',compact('subcategorias'));
     }
@@ -48,17 +48,6 @@ class SubcategoriaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -84,7 +73,7 @@ class SubcategoriaController extends Controller
             'categoria_id'=>'required',
         ]);
 
-        $subcategoria->update($data);    
+        $subcategoria->update($data);
         return redirect()->route('subcategorias.index');
     }
 
