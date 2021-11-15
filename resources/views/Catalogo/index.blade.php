@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="section">
-
-
-
-
     <div class="container">
         <div class="row catalogo">
             <div class="col-lg-9">
@@ -112,7 +108,7 @@
                 <div class="product_color_switch">
                  <span data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
                 <span data-color="#5FB7D4" style="background-color: rgb(95, 183, 212);"></span>
-              </div>  
+              </div>
         </div> -->
                                 <div class="list_product_action_box">
                                     <ul class="list_none pr_action_btn">
