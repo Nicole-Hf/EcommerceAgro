@@ -23,6 +23,10 @@ class ProductoController extends Controller
         ->where('empresa_id', '=', $id_empresa->id)
         ->get();
 
+        //$productos->load('subcategoria');
+
+        $productos = Producto::all();
+
         return view('Productos.index',compact('productos'));
     }
 
@@ -42,7 +46,7 @@ class ProductoController extends Controller
 
         $id_user=Auth::user()->id;
         $id_empresa=Empresa::where('user_id',$id_user)->first();
-    
+
         $data['empresa_id']=$id_empresa->id;
 
         if(is_null($request->imagen)){
@@ -81,7 +85,7 @@ class ProductoController extends Controller
             if (!is_null($producto->imagen)) {
                 Storage::disk('public')->delete($producto->imagen);
             }
-    
+
             $data['imagen'] = Storage::disk('public')->put('imagenes', $request->imagen);
         }
 
@@ -101,10 +105,10 @@ class ProductoController extends Controller
 
     public function show()
     {
-        $productos = Producto::paginate();     
-        $empresa = Empresa::all();  
-        $user = User::all(); 
+        $productos = Producto::paginate();
+        $empresa = Empresa::all();
+        $user = User::all();
         return view('Productos.show', compact('productos'), compact('user')) ;
-        
+
     }
 }

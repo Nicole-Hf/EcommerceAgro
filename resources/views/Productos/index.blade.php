@@ -49,11 +49,11 @@
                                             <td>{{ $producto->descripcion }}</td>
                                             <td>{{ $producto->precio }}</td>
                                             <td>
-                                                <img style="width: 50%" src="{{ asset('/storage/' . $producto->imagen) }}"
+                                                <img style="width: 50%" src="{{ asset('/img/' . $producto->imagen) }}"
                                                 alt="...">
                                             </td>
                                             <td>{{ $producto->stock }}</td>
-                                            <td>{{ $producto->subcategoria_id }}</td>
+                                            <td>{{ $producto->subcategoria()->pluck('nombre')->first() }}</td>
                                             <td class="td-actions">
                                                 {{--Editar Marca--}}
                                                 <a href="{{route('productos.edit',$producto->id)}}" class="btn btn-warning">
