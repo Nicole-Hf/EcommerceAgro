@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="content">
-        catalogo de productos
+  
     </div>
 @endsection

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome');*/
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -24,6 +24,12 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
+Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
+Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])->name('carrito.estado');
+Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])->name('carrito.eliminar');
+Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])->name('carrito.updateItem');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
