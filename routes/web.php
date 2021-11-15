@@ -14,11 +14,12 @@ use App\Http\Controllers\MailController;
 */
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome'); */
 //PROBANDO GMAIL
 Route::get('/send-email', [MailController::class, 'sendEmail']);
+
 ///
 
 
@@ -32,6 +33,12 @@ Route::get('/register', function () {
 //})->name('password.update');
 
 
+
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
+Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
+Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])->name('carrito.estado');
+Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])->name('carrito.eliminar');
+Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])->name('carrito.updateItem');
 
 
 
