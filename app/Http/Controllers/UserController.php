@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Livewire\Component;
-use Livewire\WithPagination;
 
 class UserController extends Controller
 {
     /*use WithPagination;
     protected $paginationTheme = "bootstrap";
     public $search;*/
-
-    public function __construct()
-    {
-    }
 
     /**
      * Display a listing of the resource.
