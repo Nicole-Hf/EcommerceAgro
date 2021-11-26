@@ -1,5 +1,6 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+<nav class="navbar navbar-expand-lg bg-dark fixed-top text-white">
+{{--<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">--}}
     <div class="container">
         <div class="navbar-wrapper">
             {{--<a class="navbar-brand" href="{{ route('welcome') }}">{{ $title }}</a>--}}
@@ -14,7 +15,7 @@
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">
+                    <a href="{{ route('catalogo') }}" class="nav-link">
                         <i class="material-icons">dashboard</i> {{ __('Nuestros Productos') }}
                     </a>
                 </li>
@@ -35,12 +36,12 @@
                         <!--   <li><a href="https://shopwise.botble.com/wishlist" class="nav-link btn-wishlist"><i
                                             class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li> -->
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger btn-shopping-cart" href="#" data-toggle="dropdown"><i
-                                    class="linearicons-cart"></i><span class="cart_count">
+                            <a class="nav-link cart_trigger btn-shopping-cart" href="#" data-toggle="dropdown">
+                                <i class="linearicons-cart"></i><span class="cart_count">
                                     {{  \Cart::getTotalQuantity();}}
                                 </span></a>
                             <div class="cart_box dropdown-menu dropdown-menu-right">
-                                <p class="text-center">Your cart is empty!</p>
+                                <p class="text-center">Tu carrito está vacío!</p>
 
                                 <?php $items = \Cart::getContent();?>
                                 <ul class="cart_list">
@@ -57,8 +58,6 @@
                                     </li>
                                     @endforeach
                                 </ul>
-
-
                                 <div class="cart_footer">
                                     <p class="cart_total sub_total"><strong>Sub Total:</strong> <span
                                             class="cart_price">{{\Cart::getSubTotal()}}</span></p>

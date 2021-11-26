@@ -1,4 +1,4 @@
-@extends('layouts.main', ['activePage'=>'roles', 'titlePage'=>'Editar Rol'])
+@extends('layouts.main', ['activePage'=>'empresas', 'titlePage'=>'Registrar Empresa'])
 @section('content')
     <div class="content">
         @can("empresas.create")
@@ -53,6 +53,11 @@
                                                 </span>
                                                 </label>
                                             </div>
+                                            @if ($errors->has('perfil'))
+                                                <span class="error text-danger" for="input-perfil">
+                                                {{ $errors->first('perfil') }}
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row">
@@ -132,6 +137,11 @@
                                                 </span>
                                                 </label>
                                             </div>
+                                            @if ($errors->has('tipo_negocio'))
+                                                <span class="error text-danger" for="input-tipo_negocio">
+                                                {{ $errors->first('tipo_negocio') }}
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

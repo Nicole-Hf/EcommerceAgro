@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');*/
-
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -25,11 +21,16 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
-Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
-Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])->name('carrito.estado');
-Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])->name('carrito.eliminar');
-Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])->name('carrito.updateItem');
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
+    ->name('catalogo');
+Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
+    ->name('carrito.add');
+Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])
+    ->name('carrito.estado');
+Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])
+    ->name('carrito.eliminar');
+Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])
+    ->name('carrito.updateItem');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -136,9 +137,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix'=>'productos'],function () {
-
         Route::get('/index',[ProductoController::class, 'index'])
             ->name('productos.index');
+        Route::get('/admin-index',[ProductoController::class, 'indexAdmin'])
+            ->name('productos.indexAdmin');
         Route::get('/create',[ProductoController::class,'create'])
             ->name('productos.create');
         Route::post('/store',[ProductoController::class,'store'])
@@ -149,7 +151,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.update');
         Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
             ->name('productos.delete');
-        Route::get('/show', [ProductoController::class,'show'])
+        Route::get('/{producto}', [ProductoController::class,'show'])
             ->name('productos.show');
     });
 });
