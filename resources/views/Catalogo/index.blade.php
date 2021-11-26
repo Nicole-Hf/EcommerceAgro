@@ -52,8 +52,8 @@
                                 <div class="product">
                                     <div class="product_img">
                                         <a href="#">
-                                            <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$productoD->imagen ) }} "
-                                                 alt="">
+                                            <img src="{{ asset($productoD->imagen) }} "
+                                                 alt="...">
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
@@ -66,14 +66,13 @@
                                                                name="nombre">
                                                         <input type="hidden" value="{{ $productoD->precio }}"
                                                                name="precio">
-                                                        <input type="hidden" value="{{ $productoD->imagen }}"
+                                                        <input type="hidden" src="{{ asset($productoD->imagen) }}"
                                                                name="imagen">
                                                         <input type="hidden" value="1" name="quantity">
                                                         <button class="add-to-cart-button">
                                                             <i class="icon-basket-loaded"></i> Add To Cart
                                                         </button>
                                                     </form>
-
                                                 </li>
                                                 <!--  <li><a href="#" class="js-add-to-compare-button"
                                                         data-url="https://shopwise.botble.com/compare/1"><i
@@ -87,11 +86,13 @@
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="#">
+                                        <h4 class="product_title">
+                                            <a href="#">
                                                 {{$productoD->nombre}}
-                                            </a></h6>
+                                            </a>
+                                        </h4>
                                         <div class="product_price">
-                                            <span class="price">{{$productoD->precio}}</span>
+                                            <span class="price">Bs.- {{$productoD->precio}}</span>
                                         </div>
                                         <!-- <div class="rating_wrap">
                      <div class="rating">
@@ -110,11 +111,17 @@
                 </div> -->
                                         <div class="list_product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a class="add-to-cart-button" data-id="1"
-                                                                           href="#"
-                                                                           data-url="#"><i
-                                                            class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                <li><a href="#" class="js-add-to-compare-button" data-url="#"><i
+                                                <li class="add-to-cart">
+                                                    <a class="add-to-cart-button" data-id="1"
+                                                       href="#"
+                                                       data-url="#">
+                                                        <i class="icon-basket-loaded"></i>
+                                                        Add To Cart
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="js-add-to-compare-button" data-url="#">
+                                                        <i
                                                             class="icon-shuffle"></i></a></li>
                                                 <li><a href="#" class="popup-ajax" rel="nofollow"><i
                                                             class="icon-magnifier-add"></i></a></li>

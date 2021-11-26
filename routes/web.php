@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,6 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
-    ->name('catalogo');
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
     ->name('carrito.add');
 Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])
@@ -41,7 +40,6 @@ Route::get('/reset-password/{token}', function ($token) {
 })->middleware('guest')->name('password.reset');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //usuarios
     Route::group(['prefix' => 'users'], function () {
         Route::get('/index', [App\Http\Controllers\UserController::class, 'index'])
@@ -155,3 +153,13 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.show');
     });
 });
+
+Auth::routes();
+
+Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexEmp'])
+    ->name('home');
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
+    ->name('catalogo');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
+    ->name('home.admin');
+

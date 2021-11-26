@@ -21,9 +21,7 @@ class RoleSeeder extends Seeder
 
         //Dashboard
         Permission::create(['name' => 'home',
-            'description' => 'Dashboard'])->syncRoles([$role1,$role2,$role3]);
-        Permission::create(['name' => 'catalogo',
-            'description' => 'Catálogo de Productos'])->syncRoles([$role1,$role2,$role3]);
+            'description' => 'Dashboard'])->syncRoles([$role1,$role3]);
 
         //Roles
         Permission::create(['name' => 'roles.index',
@@ -117,6 +115,21 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'productos.destroy',
             'description' => 'Eliminar Producto'])->syncRoles([$role1,$role3]);
 
+        //CARRITO
+        Permission::create(['name' => 'carrito.add',
+            'description' => 'Añadir productos al carrito'])->assignRole($role2);
+        Permission::create(['name' => 'carrito.estado',
+            'description' => 'Ver el estado del carrito'])->assignRole($role2);
+        Permission::create(['name' => 'carrito.eliminar',
+            'description' => 'Eliminar productos del carrito'])->assignRole($role2);
+        Permission::create(['name' => 'carrito.updateItem',
+            'description' => 'Actualizar cantidad del carrito'])->assignRole($role2);
+
+        //CATALOGO
+        Permission::create(['name' => 'catalogo',
+            'description' => 'Ver el catálogo de productos'])->assignRole($role2);
+
+        //OTROS
         Permission::create(['name' => 'bitacora.index',
             'description' => 'Listado de Bitácoras'])->assignRole($role1);
 

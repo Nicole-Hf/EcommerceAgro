@@ -16,17 +16,17 @@
     </div>
     <div class="sidebar-wrapper ps-container ps-active-y">
         <ul class="nav">
-            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'home' ? ' active' : '' }}">
                 @can('home')
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="material-icons">home</i>
-                        <p>{{ __('Inicio') }}</p>
+                        <span>{{ __('Inicio') }}</span>
                     </a>
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
                 @if (Auth()->id()=='1' or Auth()->id()=='3')
-                    <a class="nav-link" href="{{route('productos.show')}}">
+                    <a class="nav-link" href="{{route('productos.indexAdmin')}}">
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
@@ -73,16 +73,15 @@
                 @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
-                    <p>{{ __('Pedidos') }}</p>
+                    <span>{{ __('Pedidos') }}</span>
                 </a>
                 @endcan
             </li>
-
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">query_stats</i>
-                    <p>{{ __('Reportes') }}</p>
+                    <span>{{ __('Reportes') }}</span>
                 </a>
                 @endcan
             </li>

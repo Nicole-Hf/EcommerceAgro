@@ -18,7 +18,7 @@ class ProductoSeeder extends Seeder
             'nombre'=>'super macollo',
             'descripcion'=>'abono para la hoja',
             'precio'=>'45',
-            'imagen'=>'supermacollo.jpg',
+            'imagen'=>'/storage/imagenes/vABS8hrtJvsupermacollo.jpg',
             'stock'=>'10',
             'empresa_id'=>'1',
             'subcategoria_id'=>'1'
@@ -28,7 +28,7 @@ class ProductoSeeder extends Seeder
             'nombre'=>'mamba',
             'descripcion'=>'insecticida',
             'precio'=>'90',
-            'imagen'=>'mamba.jpg',
+            'imagen'=>'/storage/imagenes/EiRq8Fvw2Gmamba.jpg',
             'stock'=>'20',
             'empresa_id'=>'2',
             'subcategoria_id'=>'2'
@@ -38,7 +38,7 @@ class ProductoSeeder extends Seeder
             'nombre'=>'super foliar',
             'descripcion'=>'abono para la hoja en polvo',
             'precio'=>'45',
-            'imagen'=>'superfoliar.jpg',
+            'imagen'=>'/storage/imagenes/l3bB5PNRBbsuperfoliar.jpg',
             'stock'=>'40',
             'empresa_id'=>'1',
             'subcategoria_id'=>'3'
@@ -48,7 +48,7 @@ class ProductoSeeder extends Seeder
             'nombre'=>'clorpirifos',
             'descripcion'=>'insecticida para la hoja',
             'precio'=>'65',
-            'imagen'=>'clorpirifos.jpg',
+            'imagen'=>'/storage/imagenes/ZSGdNjBMRGclorpirifos.jpg',
             'stock'=>'25',
             'empresa_id'=>'1',
             'subcategoria_id'=>'1'
@@ -58,7 +58,7 @@ class ProductoSeeder extends Seeder
             'nombre'=>'cipermetrina',
             'descripcion'=>'insecticida para el gusano',
             'precio'=>'45',
-            'imagen'=>'cipermetrina.jpg',
+            'imagen'=>'/storage/imagenes/Wrby6u2MtScipermetrina.jpg',
             'stock'=>'30',
             'empresa_id'=>'1',
             'subcategoria_id'=>'4'

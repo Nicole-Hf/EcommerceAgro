@@ -51,6 +51,7 @@
                             <tr>
                                 <td class="product-thumbnail">
                                     <a href="#">
+                                        {{--<img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">--}}
                                         <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
                                     </a>
                                 </td>
