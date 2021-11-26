@@ -19,6 +19,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
+
         $clientes = Cliente::all();
         return view('Clientes.index', compact('clientes'));
     }
@@ -59,9 +60,9 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        $productos = Producto::paginate();     
-        $empresa = Empresa::all();   
-        return view('Productos.show', compact('productos'), compact('empresa')) ;
+        $productos = Producto::paginate();
+        $empresa = Empresa::all();
+        return view('Productos.show', compact('productos'), compact('empresa'));
     }
 
     /**

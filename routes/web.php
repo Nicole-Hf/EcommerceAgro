@@ -4,6 +4,8 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,10 +22,30 @@ use Illuminate\Http\Request;
 })->name('welcome');*/
 
 
+
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+////////////////////////////////////////////////////////
+/*Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('home'); ///si la ruta del perfil es dashboard entonces redireto ->route(home)
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/', function () {
+    return view('/email/verification');
+})->middleware(['auth', 'verified']);
+*/ //////////////
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -43,23 +65,24 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
-Route::middleware(['auth','verified'])->group(function () {
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //usuarios
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/index', [App\Http\Controllers\UserController::class, 'index'])
+        Route::get('/index', [App\Http\Controllers\UserController::class, 'index'])->middleware('verified')
             ->name('users.index');
-        Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])
+        Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->middleware('verified')
             ->name('users.create');
-        Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show'])
+        Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show'])->middleware('verified')
             ->name('users.show');
-        Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])
+        Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->middleware('verified')
             ->name('users.edit');
-        Route::put('/{user}', [App\Http\Controllers\UserController::class, 'update'])
+        Route::put('/{user}', [App\Http\Controllers\UserController::class, 'update'])->middleware('verified')
             ->name('users.update');
-        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->middleware('verified')
             ->name('users.delete');
-        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
+        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])->middleware('verified')
             ->name('users.store');
     });
 
@@ -157,19 +180,3 @@ Route::middleware(['auth','verified'])->group(function () {
             ->name('productos.show');
     });
 });
-
-////
-
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/home');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
