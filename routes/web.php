@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//AUTHENTICATION
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -22,6 +23,15 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+//CARRITO
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
     ->name('carrito.add');
 Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])
@@ -30,14 +40,6 @@ Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'r
     ->name('carrito.eliminar');
 Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])
     ->name('carrito.updateItem');
-
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->name('password.request');
-
-Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
 
 Route::middleware(['auth'])->group(function () {
     //usuarios
@@ -156,6 +158,7 @@ Route::middleware(['auth'])->group(function () {
 
 Auth::routes();
 
+//LOGIN ROUTES
 Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexEmp'])
     ->name('home');
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
