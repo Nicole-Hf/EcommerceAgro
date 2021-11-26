@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 })->name('welcome');*/
 
+
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -24,6 +27,7 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
 
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
@@ -39,7 +43,7 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //usuarios
     Route::group(['prefix' => 'users'], function () {
@@ -135,21 +139,37 @@ Route::middleware(['auth'])->group(function () {
             ->name('empresas.store');
     });
 
-    Route::group(['prefix'=>'productos'],function () {
+    Route::group(['prefix' => 'productos'], function () {
 
-        Route::get('/index',[ProductoController::class, 'index'])
+        Route::get('/index', [ProductoController::class, 'index'])
             ->name('productos.index');
-        Route::get('/create',[ProductoController::class,'create'])
+        Route::get('/create', [ProductoController::class, 'create'])
             ->name('productos.create');
-        Route::post('/store',[ProductoController::class,'store'])
+        Route::post('/store', [ProductoController::class, 'store'])
             ->name('productos.store');
-        Route::get('/edit/{producto}',[ProductoController::class,'edit'])
+        Route::get('/edit/{producto}', [ProductoController::class, 'edit'])
             ->name('productos.edit');
-        Route::post('/update/{producto}',[ProductoController::class,'update'])
+        Route::post('/update/{producto}', [ProductoController::class, 'update'])
             ->name('productos.update');
-        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
+        Route::delete('/delete/{producto}', [ProductoController::class, 'destroy'])
             ->name('productos.delete');
-        Route::get('/show', [ProductoController::class,'show'])
+        Route::get('/show', [ProductoController::class, 'show'])
             ->name('productos.show');
     });
 });
+
+////
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
