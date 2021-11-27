@@ -17,7 +17,7 @@
                         <label for="stock" class="col-form-label">Cantidad Disponible: </label>
                         {{ $producto->stock }} <br>
                         <label for="subcategoria_id" class="col-form-label">Categoría: </label>
-                        {{ $producto->subcategoria->nombre }} <br>
+                        {{ $producto->subcategoria->categoria->nombre }} - {{ $producto->subcategoria->nombre }}<br>
                     </div>
                     <div class="card-footer justify-content-center">
                         <a href="{{ route('productos.index') }}" class="btn btn-success btn-round">Volver</a>

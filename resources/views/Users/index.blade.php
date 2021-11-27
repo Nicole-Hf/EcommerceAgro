@@ -5,7 +5,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        {{--Header
                         <div class="card-header card-header-success">
                             <h4 class="card-title">Listado de Usuarios</h4>
                         </div>
@@ -31,9 +30,9 @@
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->role_id }}</td>
+                                            <td>{{ $user->getRoleNames() }}</td>
                                             <td class="td-actions text-right">
-                                                {{--Editar Usuario--}}
+                                                {{--Editar Usuario
                                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">
                                                     <span class="material-icons">edit</span>
                                                 </a>

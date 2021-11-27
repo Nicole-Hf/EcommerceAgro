@@ -120,6 +120,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
         $producto->load('subcategoria');
+        $producto->subcategoria->load('categoria');
 
         return view('Productos.show', ['producto'=>$producto]);
     }

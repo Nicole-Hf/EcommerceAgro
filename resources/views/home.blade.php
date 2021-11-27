@@ -1,5 +1,9 @@
 @extends('layouts.main', ['activePage'=>'home', 'titlePage'=>'Dashboard'])
 @section('content')
-    Dashboard de la empresa
+    Primero registrar a tu empresa
+    <br>
+    <br>
+    <br>
+    Dashboard de la Empresa
 @endsection
 

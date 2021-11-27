@@ -40,6 +40,7 @@ class EmpresaController extends Controller
         $empresa->tipo_negocio = $request->input('tipo_negocio');
         $empresa->user_id = Auth::user()->id;
         $empresa->save();
+
         return redirect()->route('home');
     }
 }
