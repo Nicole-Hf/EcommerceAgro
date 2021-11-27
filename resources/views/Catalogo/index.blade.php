@@ -53,7 +53,7 @@
                         <div class="product">
                             <div class="product_img">
                                 <a href="#">
-                                    <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$productoD->imagen ) }} " alt="">
+                                    <img style="width:50%" src="{{ asset('/storage/' .$productoD->imagen) }}" alt="...">
                                 </a>
 
                                 <div class="product_action_box">

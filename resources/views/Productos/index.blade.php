@@ -1,4 +1,4 @@
-@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
+-@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -49,7 +49,7 @@
                                             <td>{{ $producto->descripcion }}</td>
                                             <td>{{ $producto->precio }}</td>
                                             <td>
-                                                <img style="width: 50%" src="{{ asset('/img/' . $producto->imagen) }}"
+                                                <img style="width: 10%" src="{{ asset('/img/' . $producto->imagen) }}"
                                                 alt="...">
                                             </td>
                                             <td>{{ $producto->stock }}</td>

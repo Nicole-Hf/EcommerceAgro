@@ -151,5 +151,6 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.delete');
         Route::get('/show', [ProductoController::class,'show'])
             ->name('productos.show');
+            Route::get('/product/{id}', 'App\Http\Controllers\ProductoController@ver')->name('ver');
     });
 });
