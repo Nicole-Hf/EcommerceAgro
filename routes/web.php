@@ -27,14 +27,13 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-////////////////////////////////////////////////////////
-/*Route::get('/email/verify', function () {
+Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect('home'); ///si la ruta del perfil es dashboard entonces redireto ->route(home)
+    return redirect()->route('/home'); ///si la ruta del perfil es dashboard entonces redireto ->route(home)
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
@@ -42,16 +41,14 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('/', function () {
-    return view('/email/verification');
-})->middleware(['auth', 'verified']);
-*/ //////////////
+
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
 
-Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
+Route::get('/dashboard', [App\Http\Controllers\ShopController::class, 'index'])->name('catalogo');
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
 Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])->name('carrito.estado');
 Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])->name('carrito.eliminar');
@@ -67,7 +64,7 @@ Route::get('/reset-password/{token}', function ($token) {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
     //usuarios
     Route::group(['prefix' => 'users'], function () {
         Route::get('/index', [App\Http\Controllers\UserController::class, 'index'])->middleware('verified')
