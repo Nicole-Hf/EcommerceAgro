@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('Material Dashboard')])
 
 @section('content')
 <div class="container">
