@@ -16,8 +16,7 @@
                             <img src="{{ asset($pro->imagen) }}"
                                  class="card-img-top mx-auto"
                                  style="height: 150px; width: 200px;display: block;"
-                                 alt="{{ $pro->imagen }}"
-                            >
+                                 alt="{{ $pro->imagen }}">
                             <div class="card-body" >
                                 <a href=""><h6 class="card-title" >{{ $pro->nombre }}</h6></a>
                                 <p style="height:2px" >Bs {{ $pro->precio }}</p>
@@ -27,6 +26,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

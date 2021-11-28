@@ -6,7 +6,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-        <a href="#" class="simple-text logo-normal">
+    <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
             {{ __('AgroShop') }}
         </a>
         {{--<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
