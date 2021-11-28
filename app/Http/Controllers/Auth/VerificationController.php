@@ -26,7 +26,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -38,5 +38,16 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    public function redirectPath()
+    {
+        if (auth()->user()->role_id == '2') {
+            return '/';
+        } elseif (auth()->user()->role_id == '3') {
+            return '/empresa/home';
+        }
+
+        return '/admin/home';
     }
 }

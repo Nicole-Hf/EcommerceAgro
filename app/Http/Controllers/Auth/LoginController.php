@@ -39,7 +39,9 @@ class LoginController extends Controller
     }
 
     public function redirectPath()
-    {
+    {   ////Eliminar al usuario si no se hizo el verify   
+        ///se deberia igual no dejar al navegador ir atras
+
         if (auth()->user()->role_id == '2') {
             return '/';
         } elseif (auth()->user()->role_id == '3') {

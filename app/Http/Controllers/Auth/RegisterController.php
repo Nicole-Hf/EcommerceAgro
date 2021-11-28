@@ -43,13 +43,14 @@ class RegisterController extends Controller
 
     public function redirectPath()
     {
+
         if (auth()->user()->role_id == '2') {
-            return '/';
+            return '/verify/email';
         } elseif (auth()->user()->role_id == '3') {
-            return '/empresa/home';
+            return '/verify/email';
         }
 
-        return '/admin/home';
+        return '/verify/email';
     }
 
     /**
@@ -90,7 +91,7 @@ class RegisterController extends Controller
 
         if ($user->role_id == 2) {
             $user->assignRole('Cliente');
-        }else {
+        } else {
             $user->assignRole('Empresa');
         }
 

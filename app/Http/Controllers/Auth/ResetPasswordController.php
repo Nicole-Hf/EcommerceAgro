@@ -26,5 +26,16 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
+
+    public function redirectPath()
+    {
+        if (auth()->user()->role_id == '2') {
+            return '/';
+        } elseif (auth()->user()->role_id == '3') {
+            return '/empresa/home';
+        }
+
+        return '/admin/home';
+    }
 }

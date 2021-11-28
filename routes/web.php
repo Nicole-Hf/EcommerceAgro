@@ -134,27 +134,27 @@ Route::middleware(['auth'])->group(function () {
             ->name('empresas.store');
     });
 
-    Route::group(['prefix'=>'productos'],function () {
-        Route::get('/index',[ProductoController::class, 'index'])
+    Route::group(['prefix' => 'productos'], function () {
+        Route::get('/index', [ProductoController::class, 'index'])
             ->name('productos.index');
-        Route::get('/admin-index',[ProductoController::class, 'indexAdmin'])
+        Route::get('/admin-index', [ProductoController::class, 'indexAdmin'])
             ->name('productos.indexAdmin');
-        Route::get('/create',[ProductoController::class,'create'])
+        Route::get('/create', [ProductoController::class, 'create'])
             ->name('productos.create');
-        Route::post('/store',[ProductoController::class,'store'])
+        Route::post('/store', [ProductoController::class, 'store'])
             ->name('productos.store');
-        Route::get('/edit/{producto}',[ProductoController::class,'edit'])
+        Route::get('/edit/{producto}', [ProductoController::class, 'edit'])
             ->name('productos.edit');
-        Route::post('/update/{producto}',[ProductoController::class,'update'])
+        Route::post('/update/{producto}', [ProductoController::class, 'update'])
             ->name('productos.update');
-        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
+        Route::delete('/delete/{producto}', [ProductoController::class, 'destroy'])
             ->name('productos.delete');
-        Route::get('/show', [ProductoController::class,'show'])
+        Route::get('/show', [ProductoController::class, 'show'])
             ->name('productos.show');
     });
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //LOGIN ROUTES
 Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexEmp'])
@@ -164,4 +164,7 @@ Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
 
-
+//Register vista
+Route::get('/verify/email', function () {
+    return view('auth.verify');
+})->name('verify');

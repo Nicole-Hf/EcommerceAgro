@@ -19,7 +19,7 @@
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit"
-                                    class="btn btn-link p-0 m-0 align-baseline">{{ __('haga click aquí para solicitar otro') }}</button>
+                                class="btn btn-link p-0 m-0 align-baseline">{{ __('haga click aquí para solicitar otro') }}</button>
                             .
                         </form>
                     </div>

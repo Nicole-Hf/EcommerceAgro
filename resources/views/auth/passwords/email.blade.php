@@ -1,4 +1,4 @@
-@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('Material Dashboard')])
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <p class="card-description text-center">
                             {{ __('Ingresa tu email y si tienes una cuenta,
-                                   recibirás un link para generar tu contraseña.') }}
+                                                                                           recibirás un link para generar tu contraseña.') }}
                         </p>
 
                         @if (session('status'))
@@ -26,12 +26,11 @@
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
                             <div class="form-group row">
-                                <input id="email" type="email"
-                                       class="form-control @error('email') is-invalid @enderror" name="email"
-                                       value="{{ old('email') }}" required autocomplete="email"
-                                       placeholder="Ingresa tu email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email"
+                                    placeholder="Ingresa tu email" autofocus>
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
