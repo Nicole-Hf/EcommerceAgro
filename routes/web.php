@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('clientes.index');
         Route::get('/create', [App\Http\Controllers\ClienteController::class, 'create'])
             ->name('clientes.create');
-        Route::get('/{id}', [App\Http\Controllers\ClienteController::class, 'show'])
+        Route::get('/show', [App\Http\Controllers\ClienteController::class, 'show'])
             ->name('clientes.show');
         Route::get('/{id}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])
             ->name('clientes.edit');
@@ -149,7 +149,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.update');
         Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
             ->name('productos.delete');
-        Route::get('/{producto}', [ProductoController::class,'show'])
+        Route::get('/show', [ProductoController::class,'show'])
             ->name('productos.show');
     });
 });

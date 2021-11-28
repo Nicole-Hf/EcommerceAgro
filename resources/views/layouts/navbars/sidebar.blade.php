@@ -25,19 +25,25 @@
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                @if (Auth()->id()=='1' or Auth()->id()=='3')
+                @if (Auth()->id()=='1')
                     <a class="nav-link" href="{{route('productos.indexAdmin')}}">
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @else
+                @elseif(Auth()->id()=='3') 
+                <a class="nav-link" href="{{route('clientes.show')}}">
+                    <i class="material-icons">style</i>
+                    <span class="sidebar-normal">{{ __('Productos') }} </span>
+                </a>  
+                    @else
                     @can('productos.index')
                         <a class="nav-link" href="{{route('productos.index')}}">
                             <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
                         </a>
                     @endcan
-                @endif
+                @endif                
+
             </li>
             <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
                 @can('categorias.index')

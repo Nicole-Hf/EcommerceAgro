@@ -57,7 +57,8 @@
                                             {{--<td>{{ $producto->descripcion }}</td>--}}
                                             <td>{{ $producto->precio }}</td>
                                             <td>{{ $producto->stock }}</td>
-                                            <td>{{ $producto->subcategoria()->pluck('nombre')->first() }}</td>
+                                            <td>{{ $producto->subcategoria_id }}</td>
+<<<<<<< Updated upstream
                                             <td class="td-actions text-right">
                                                 {{--Ver--}}
                                                 <a href="{{ route('productos.show',$producto->id) }}"
@@ -67,6 +68,11 @@
                                                 {{--Editar--}}
                                                 <a href="{{route('productos.edit',$producto->id)}}"
                                                    class="btn btn-warning">
+=======
+                                            <td class="td-actions">
+                                                {{--Editar Marca--}}
+                                                <a href="{{route('productos.edit',$producto->id)}}" class="btn btn-warning">
+>>>>>>> Stashed changes
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                                 {{--Eliminar--}}

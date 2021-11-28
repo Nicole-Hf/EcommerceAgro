@@ -23,7 +23,7 @@
                                 <p style="height:2px" >Bs {{ $pro->precio }}</p>
                                 <p style="height:2px;">Stock: {{$pro->stock}}</p>
                                 <p style="height:2px;">Empresa: {{$pro->empresa()->pluck('nombre')->first()}}</p>
-                                <p style="height:4px;">Subcategoria: {{$pro->subcategoria()->pluck('nombre')->first()}}</p>
+                                <p style="height:2px;">Subcategoria: <p style="height:2px;">{{$pro->subcategoria()->pluck('nombre')->first()}}</p></p>
                             </div>
                         </div>
                     </div>
