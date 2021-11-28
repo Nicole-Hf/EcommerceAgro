@@ -48,16 +48,14 @@ Route::middleware(['auth'])->group(function () {
             ->name('users.index');
         Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])
             ->name('users.create');
-        Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show'])
-            ->name('users.show');
+        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
+            ->name('users.store');
+        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+            ->name('users.delete');
         Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])
             ->name('users.edit');
         Route::put('/{user}', [App\Http\Controllers\UserController::class, 'update'])
             ->name('users.update');
-        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
-            ->name('users.delete');
-        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
-            ->name('users.store');
     });
 
     //roles
@@ -82,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('clientes.index');
         Route::get('/create', [App\Http\Controllers\ClienteController::class, 'create'])
             ->name('clientes.create');
-        Route::get('/{id}', [App\Http\Controllers\ClienteController::class, 'show'])
+        Route::get('/show', [App\Http\Controllers\ClienteController::class, 'show'])
             ->name('clientes.show');
         Route::get('/{id}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])
             ->name('clientes.edit');
@@ -151,7 +149,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.update');
         Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
             ->name('productos.delete');
-        Route::get('/{producto}', [ProductoController::class,'show'])
+        Route::get('/show', [ProductoController::class,'show'])
             ->name('productos.show');
     });
 });
@@ -165,4 +163,5 @@ Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
     ->name('catalogo');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
+
 

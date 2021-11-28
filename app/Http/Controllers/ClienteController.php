@@ -57,11 +57,11 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         $productos = Producto::paginate();     
         $empresa = Empresa::all();   
-        return view('Productos.show', compact('productos'), compact('empresa')) ;
+        return view('Clientes.show', compact('productos'), compact('empresa')) ;
     }
 
     /**

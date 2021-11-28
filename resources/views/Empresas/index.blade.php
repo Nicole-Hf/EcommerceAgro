@@ -14,6 +14,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header card-header-success">
+                            <h4 class="card-title">Listado de Empresas</h4>
+                        </div>
                         <div class="card-body">
                             {{--tabla--}}
                             <div class="table-responsive">
@@ -25,7 +28,7 @@
                                     <th>CI/NIT</th>
                                     <th>Correo electrónico</th>
                                     <th>Tipo de Negocio</th>
-                                    <th class="text-right">Acciones</th>
+                                    {{--<th class="text-right">Acciones</th>--}}
                                     </thead>
                                     <tbody>
                                     @foreach($empresas as $empresa)
@@ -36,8 +39,7 @@
                                             <td>{{ $empresa->nit }}</td>
                                             <td>{{ $empresa->users->email }}</td>
                                             <td>{{ $empresa->tipo_negocio }}</td>
-                                            <td class="td-actions text-right">
-                                                {{--Eliminar Usuario--}}
+                                            {{--<td class="td-actions text-right">
                                                 <form action="#" method="post"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('¿Está seguro?')">
@@ -47,7 +49,7 @@
                                                         <i class="material-icons">close</i>
                                                     </button>
                                                 </form>
-                                            </td>
+                                            </td>--}}
                                         </tr>
                                     @endforeach
                                     </tbody>

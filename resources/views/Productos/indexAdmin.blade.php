@@ -11,18 +11,19 @@
             <hr>
             <div class="row">
                 @foreach($productos as $pro)
-                <div class="col-lg-3">
-                    <div class="card" style="margin-bottom: 20px; height: auto;">
-                        <img src="{{ $pro->imagen }}" class="card-img-top mx-auto"
-                            style="height: 150px; width: 200px;display: block;" alt="{{ $pro->imagen }}">
-                        <div class="card-body">
-                            <a href="">
-                                <h6 class="card-title">{{ $pro->nombre }}</h6>
-                            </a>
-                            <p style="height:2px">Bs {{ $pro->precio }}</p>
-                            <p style="height:2px;">Stock: {{$pro->stock}}</p>
-                            <p style="height:2px;">Empresa: {{$pro->empresa()->pluck('nombre')->first()}}</p>
-                            <p style="height:4px;">Subcategoria: {{$pro->subcategoria()->pluck('nombre')->first()}}</p>
+                    <div class="col-lg-3">
+                        <div class="card" style="margin-bottom: 20px; height: auto;">
+                            <img src="{{ asset($pro->imagen) }}"
+                                 class="card-img-top mx-auto"
+                                 style="height: 150px; width: 200px;display: block;"
+                                 alt="{{ $pro->imagen }}">
+                            <div class="card-body" >
+                                <a href=""><h6 class="card-title" >{{ $pro->nombre }}</h6></a>
+                                <p style="height:2px" >Bs {{ $pro->precio }}</p>
+                                <p style="height:2px;">Stock: {{$pro->stock}}</p>
+                                <p style="height:2px;">Empresa: {{$pro->empresa()->pluck('nombre')->first()}}</p>
+                                <p style="height:2px;">Subcategoria: <p style="height:2px;">{{$pro->subcategoria()->pluck('nombre')->first()}}</p></p>
+                            </div>
                         </div>
                     </div>
                 </div>

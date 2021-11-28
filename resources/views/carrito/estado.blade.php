@@ -23,7 +23,6 @@
                                     <figure class="itemside align-items-center">
                                         <div class="aside"><img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}" class="img-sm"></div>
                                         <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{$item->name}}</a>
-            
                                         </figcaption>
                                     </figure>
                                 </td>

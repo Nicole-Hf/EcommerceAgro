@@ -25,27 +25,33 @@
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                @if (Auth()->id()=='1' or Auth()->id()=='3')
+                @if (Auth()->id()=='1')
                     <a class="nav-link" href="{{route('productos.indexAdmin')}}">
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @else
+                @elseif(Auth()->id()=='3') 
+                <a class="nav-link" href="{{route('clientes.show')}}">
+                    <i class="material-icons">style</i>
+                    <span class="sidebar-normal">{{ __('Productos') }} </span>
+                </a>  
+                    @else
                     @can('productos.index')
                         <a class="nav-link" href="{{route('productos.index')}}">
                             <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
                         </a>
                     @endcan
-                @endif
+                @endif                
+
             </li>
             <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
                 @can('categorias.index')
                     <a class="nav-link collapse" data-toggle="collapse" href="#categorias" aria-expanded="true">
                         <i class="material-icons">category</i>
-                        <p>{{ __('Gestionar Categorías') }}
+                        <span>{{ __('Gestionar Categorías') }}
                             <b class="caret"></b>
-                        </p>
+                        </span>
                     </a>
                 @endcan
                 <div class="collapse" id="categorias">
@@ -90,9 +96,9 @@
                 @can('users.index')
                     <a class="nav-link collapse" data-toggle="collapse" href="#usuarios" aria-expanded="true">
                         <i class="material-icons">category</i>
-                        <p>{{ __('Gestionar Usuarios') }}
+                        <span>{{ __('Gestionar Usuarios') }}
                             <b class="caret"></b>
-                        </p>
+                        </span>
                     </a>
                 @endcan
                 <div class="collapse" id="usuarios">
@@ -101,7 +107,7 @@
                             @can('users.index')
                                 <a class="nav-link" href="{{ route('users.index') }}">
                                     <i class="material-icons">manage_accounts</i>
-                                    <p>{{ __('Usuarios') }}</p>
+                                    <span>{{ __('Usuarios') }}</span>
                                 </a>
                             @endcan
                         </li>
@@ -109,7 +115,7 @@
                             @can('clientes.index')
                                 <a class="nav-link" href="{{ route('clientes.index') }}">
                                     <i class="material-icons">groups</i>
-                                    <p>{{ __('Clientes') }}</p>
+                                    <span>{{ __('Clientes') }}</span>
                                 </a>
                             @endcan
                         </li>
@@ -128,7 +134,7 @@
                 @can('roles.index')
                     <a class="nav-link" href="{{ route('roles.index') }}">
                         <i class="material-icons">admin_panel_settings</i>
-                        <p>{{ __('Roles') }}</p>
+                        <span>{{ __('Roles') }}</span>
                     </a>
                 @endcan
             </li>
@@ -136,7 +142,7 @@
                 @can('bitacora.index')
                     <a class="nav-link" href="#">
                         <i class="material-icons">language</i>
-                        <p>{{ __('Bitácora') }}</p>
+                        <span>{{ __('Bitácora') }}</span>
                     </a>
                 @endcan
             </li>

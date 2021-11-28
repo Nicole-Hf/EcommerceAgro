@@ -21,12 +21,14 @@ class ProductoController extends Controller
         $id_empresa = Empresa::where('user_id', $id)->first();
 
         $productos = DB::table('productos')
+
             ->where('empresa_id', '=', $id_empresa->id)
             ->get();
 
-        $productos = Producto::all();
+        
 
         return view('Productos.index', compact('productos'));
+
     }
 
     public function create()
@@ -116,14 +118,13 @@ class ProductoController extends Controller
         return redirect()->route('productos.index');
     }
 
-    public function show($id)
+    public function show()
     {
-        $producto = Producto::findOrFail($id);
-        $producto->load('subcategoria');
-
-        return view('Productos.show', ['producto'=>$producto]);
+        $productos = Producto::paginate();     
+        $empresa = Empresa::all();   
+        $user = User::all();
+        return view('Productos.show', compact('productos')) ;
     }
-
     public function indexAdmin()
     {
         $productos = Producto::paginate();
