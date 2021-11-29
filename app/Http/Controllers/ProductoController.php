@@ -134,10 +134,5 @@ class ProductoController extends Controller
         return view('Productos.indexAdmin', compact('productos'), compact('user'));
 
     }
-    public function ver($id)
-    {
-        $product = Producto::where('id',$id)->first();
-        //dd($product);
-        return view('Productos.detalle', compact('product'));
-    }
+   
 }
