@@ -9,18 +9,11 @@
 
                     <div class="card card-login card-hidden mb-3">
                         <div class="card-header card-header-success text-center">
-                            <h4 class="card-title text-center"><strong>{{ __('Inicia sesión') }}</strong></h4>
-                            {{--<div class="social-line">
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>--}}
+                            <h4 class="card-title text-center">
+                                <strong>
+                                    {{ __('Inicia sesión') }}
+                                </strong>
+                            </h4>
                         </div>
                         <div class="card-body">
                             <p class="card-description text-center">{{ __('Accede a tu cuenta ') }}</p>
@@ -58,17 +51,6 @@
                                     </div>
                                 @endif
                             </div>
-                            {{--
-                            <div class="form-check mr-auto ml-3 mt-3 has-success icheck-success">
-                                <label class="form-check-label has-success icheck-success">
-                                    <input class="form-check-input has-success icheck-success" type="checkbox"
-                                           name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuérdame') }}
-                                    <span class="form-check-sign has-success icheck-success">
-                                        <span class="check has-success icheck-success"></span>
-                                    </span>
-                                </label>
-                            </div>
-                            --}}
                         </div>
                         <div class="card-footer justify-content-center">
                             <button type="submit" class="btn btn-primary btn-link btn-lg btn-success">{{ __('Ingresar') }}</button>

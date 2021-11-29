@@ -30,7 +30,7 @@
                                             @endif
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="row">
                                         <label for="nombre" class="col-sm-2 col-form-label">Perfil</label>
                                         <div class="col-sm-7">
@@ -60,6 +60,7 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <label for="nit" class="col-sm-2 col-form-label">CI/NIT</label>
                                         <div class="col-sm-7">
@@ -74,6 +75,7 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Tipo de Negocio</label>
                                         <div class="col-sm-7">

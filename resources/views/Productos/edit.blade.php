@@ -28,7 +28,7 @@
                                         @endif
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Descripcion</label>
                                     <div class="col-sm-7">
@@ -37,12 +37,21 @@
                                               rows="5">{{ old('descripcion', $producto->descripcion) }}</textarea>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Precio</label>
-                                    <input type="text" name="precio" class="form-control"
-                                           id="exampleInputEmail"
-                                           placeholder="Precio" value="{{ old('precio', $producto->precio) }}">
+                                    <div class="col-sm-7">
+                                        <input type="text" name="precio" class="form-control"
+                                               id="exampleInputEmail"
+                                               placeholder="Precio" value="{{ old('precio', $producto->precio) }}">
+                                        @if ($errors->has('precio'))
+                                            <span class="error text-danger" for="input-precio">
+                                                {{ $errors->first('precio') }}
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Imagen</label>
                                     <div class="col-sm-7">
@@ -50,8 +59,14 @@
                                                id="exampleInputEmail" placeholder="Seleccione la imagen..."
                                                accept=".jpg, .jpeg, .png"
                                                value="{{ old('imagen', $producto->imagen) }}">
+                                        @if ($errors->has('imagen'))
+                                            <span class="error text-danger" for="input-imagen">
+                                                {{ $errors->first('imagen') }}
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Stock</label>
                                     <div class="col-sm-7">
@@ -60,6 +75,7 @@
                                                value="{{ old('stock', $producto->stock) }}">
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label"> SubCategoría </label>
                                     <div class="coll-sm-7">
@@ -72,6 +88,11 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @if ($errors->has('subcategoria_id'))
+                                        <span class="error text-danger" for="input-subcategoria_id">
+                                            {{ $errors->first('subcategoria_id') }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             {{--Botones/Footer--}}

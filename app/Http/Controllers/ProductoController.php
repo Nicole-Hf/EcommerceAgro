@@ -25,7 +25,7 @@ class ProductoController extends Controller
             ->where('empresa_id', '=', $id_empresa->id)
             ->get();
 
-        
+
 
         return view('Productos.index', compact('productos'));
 
@@ -109,7 +109,6 @@ class ProductoController extends Controller
 
     public function destroy(Producto $producto)
     {
-
         if (!is_null($producto->imagen)) {
             Storage::disk('public')->delete($producto->imagen);
         }
@@ -118,13 +117,15 @@ class ProductoController extends Controller
         return redirect()->route('productos.index');
     }
 
-    public function show()
+    public function show($id)
     {
-        $productos = Producto::paginate();     
-        $empresa = Empresa::all();   
-        $user = User::all();
-        return view('Productos.show', compact('productos')) ;
+        $producto = Producto::findOrFail($id);
+        $producto->load('subcategoria');
+        $producto->subcategoria->load('categoria');
+
+        return view('productos.show', ['producto'=>$producto]);
     }
+
     public function indexAdmin()
     {
         $productos = Producto::paginate();

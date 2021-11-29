@@ -149,9 +149,10 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.update');
         Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
             ->name('productos.delete');
-        Route::get('/show', [ProductoController::class,'show'])
+        Route::get('/{producto}', [ProductoController::class,'show'])
             ->name('productos.show');
-            Route::get('/product/{id}', 'App\Http\Controllers\ProductoController@ver')->name('ver');
+        Route::get('/product/{id}', 'App\Http\Controllers\ProductoController@ver')
+            ->name('ver');
     });
 });
 

@@ -6,7 +6,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-    <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
+        <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
             {{ __('AgroShop') }}
         </a>
         {{--<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
@@ -17,12 +17,22 @@
     <div class="sidebar-wrapper ps-container ps-active-y">
         <ul class="nav">
             <li class="nav-item{{ $activePage == 'home' ? ' active' : '' }}">
-                @can('home')
+                @if (auth()->user()->role_id == '1')
+                    <a class="nav-link" href="{{ route('home.admin') }}">
+                        <i class="material-icons">home</i>
+                        <span>{{ __('Inicio') }}</span>
+                    </a>
+                @elseif(auth()->user()->role_id == '2')
+                    <a class="nav-link" href="{{ route('catalogo') }}">
+                        <i class="material-icons">home</i>
+                        <span>{{ __('Inicio') }}</span>
+                    </a>
+                @else
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="material-icons">home</i>
                         <span>{{ __('Inicio') }}</span>
                     </a>
-                @endcan
+                @endif
             </li>
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
                 @if (Auth()->id()=='1')
@@ -30,20 +40,19 @@
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @elseif(Auth()->id()=='3') 
-                <a class="nav-link" href="{{route('clientes.show')}}">
-                    <i class="material-icons">style</i>
-                    <span class="sidebar-normal">{{ __('Productos') }} </span>
-                </a>  
-                    @else
+                @elseif(Auth()->id()=='3')
+                    <a class="nav-link" href="{{route('clientes.show')}}">
+                        <i class="material-icons">style</i>
+                        <span class="sidebar-normal">{{ __('Productos') }} </span>
+                    </a>
+                @else
                     @can('productos.index')
                         <a class="nav-link" href="{{route('productos.index')}}">
                             <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
                         </a>
                     @endcan
-                @endif                
-
+                @endif
             </li>
             <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
                 @can('categorias.index')
@@ -77,18 +86,18 @@
             </li>
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
                 @can('pedidos.index')
-                <a class="nav-link" href="#">
-                    <i class="material-icons">shopping_cart</i>
-                    <span>{{ __('Pedidos') }}</span>
-                </a>
+                    <a class="nav-link" href="#">
+                        <i class="material-icons">shopping_cart</i>
+                        <span>{{ __('Pedidos') }}</span>
+                    </a>
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
-                <a class="nav-link" href="#">
-                    <i class="material-icons">query_stats</i>
-                    <span>{{ __('Reportes') }}</span>
-                </a>
+                    <a class="nav-link" href="#">
+                        <i class="material-icons">query_stats</i>
+                        <span>{{ __('Reportes') }}</span>
+                    </a>
                 @endcan
             </li>
             <li class="nav-item {{ ($activePage == 'usuarios' || $activePage == 'clientes'

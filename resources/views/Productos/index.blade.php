@@ -1,4 +1,5 @@
--@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
+@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
+
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -14,8 +15,9 @@
             {{--Botón agregar--}}
             <div class="row">
                 <div class="col-12 text-left">
-                    <a href="{{route('productos.create')}}" class="btn btn-outline-success btn-success"> Agregar
-                        Producto </a>
+                    <a href="{{route('productos.create')}}" class="btn btn-outline-success btn-success">
+                        Agregar Producto
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -35,13 +37,11 @@
                                     <th>Imagen</th>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    {{--<th>Descripcion</th>--}}
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Subcategoria</th>
-                                    <th class="text-right">Acciones</th>
+                                    <th>Acciones</th>
                                     </thead>
-                                    {{--Llamar a las marcas--}}
                                     <tbody>
                                     @foreach($productos as $producto)
                                         <tr>
@@ -54,15 +54,10 @@
                                             </td>
                                             <td>{{ $producto->id }}</td>
                                             <td>{{ $producto->nombre }}</td>
-                                            {{--<td>{{ $producto->descripcion }}</td>--}}
                                             <td>{{ $producto->precio }}</td>
-                                            <td>
-                                                <img style="width: 10%" src="{{ asset('/img/' . $producto->imagen) }}"
-                                                alt="...">
-                                            </td>
                                             <td>{{ $producto->stock }}</td>
                                             <td>{{ $producto->subcategoria_id }}</td>
-                                            <td class="td-actions text-right">
+                                            <td class="td-actions">
                                                 {{--Ver--}}
                                                 <a href="{{ route('productos.show',$producto->id) }}"
                                                    class="btn btn-info text-center">

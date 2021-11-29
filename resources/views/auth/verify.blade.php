@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => 'email', 'title' => __('AgroShop')])
 
 @section('content')
     <div class="container">
@@ -13,14 +13,13 @@
                                 {{ __('Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.') }}
                             </div>
                         @endif
-
                         {{ __('Antes de continuar, verifique su correo electrónico para ver si hay un enlace de verificación.') }}
                         {{ __('Si no recibió el correo electrónico') }},
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit"
-                                    class="btn btn-link p-0 m-0 align-baseline">{{ __('haga click aquí para solicitar otro') }}</button>
-                            .
+                                    class="btn btn-link p-0 m-0 align-baseline">{{ __('haga click aquí para solicitar otro') }}
+                            </button>
                         </form>
                     </div>
                 </div>

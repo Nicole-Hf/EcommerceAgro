@@ -51,4 +51,12 @@ class RegisterController extends BaseController
         }
     }
 
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = ["message" => "You have successfully logout"];
+
+        return response($response, 200);
+    }
 }

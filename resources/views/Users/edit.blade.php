@@ -29,6 +29,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     {{--Correo de Usuario--}}
                                     <label for="email" class="col-sm-2 col-form-label">Correo electrónico</label>
@@ -44,6 +45,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                <br>
                                 {{--Contraseña de Usuario--}}
                                 <div class="row">
                                     <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
@@ -59,6 +61,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                <br>
                             </div>
                             {{--Botones/Footer--}}
                             <div class="card-footer ml-auto mr-auto">

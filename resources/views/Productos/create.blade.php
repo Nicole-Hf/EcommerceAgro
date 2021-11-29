@@ -28,25 +28,31 @@
                                         @endif
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Descripcion</label>
                                     <div class="col-sm-7">
                                     <textarea class="form-control"
                                               name="descripcion"
-                                              id="exampleFormControlTextarea1" rows="5">{{ old('descripcion') }}</textarea>
+                                              id="exampleFormControlTextarea1"
+                                              rows="5">{{ old('descripcion') }}</textarea>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Precio</label>
-                                    <input type="text" name="precio" class="form-control"
-                                           id="exampleInputEmail" placeholder="Precio"
-                                           value="{{ old('precio') }}">
-                                    @if ($errors->has('precio'))
-                                        <span class="error text-danger" for="input-precio">
+                                    <div class="col-sm-7">
+                                        <input type="text" name="precio" class="form-control"
+                                               id="exampleInputEmail" placeholder="Precio"
+                                               value="{{ old('precio') }}">
+                                        @if ($errors->has('precio'))
+                                            <span class="error text-danger" for="input-precio">
                                                 {{ $errors->first('precio') }}
-                                        </span>
-                                    @endif
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Imagen</label>
                                     <div class="col-sm-7">
@@ -56,10 +62,11 @@
                                     </div>
                                     @if ($errors->has('imagen'))
                                         <span class="error text-danger" for="input-imagen">
-                                                {{ $errors->first('imagen') }}
-                                            </span>
+                                            {{ $errors->first('imagen') }}
+                                        </span>
                                     @endif
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Stock</label>
                                     <div class="col-sm-7">
@@ -68,9 +75,10 @@
                                                value="{{ old('stock') }}">
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label"> SubCategoría </label>
-                                    <div class="coll-sm-7">
+                                    <div class="col-sm-7">
                                         <select class="form-control" name="subcategoria_id"
                                                 aria-label="Default select example">
                                             {{-- <option selected>Selecciona la apunte del apunte</option> --}}
@@ -82,7 +90,7 @@
                                     </div>
                                     @if ($errors->has('subcategoria_id'))
                                         <span class="error text-danger" for="input-subcategoria_id">
-                                                {{ $errors->first('subcategoria_id') }}
+                                            {{ $errors->first('subcategoria_id') }}
                                         </span>
                                     @endif
                                 </div>
