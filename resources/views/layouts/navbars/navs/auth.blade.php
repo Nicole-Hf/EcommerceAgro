@@ -37,10 +37,6 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="navbarDropdownProfile">
-                        {{--@can('empresas.create')
-                            <a class="dropdown-item"
-                               href="{{ route('empresas.create') }}">{{ __('Registra tu empresa') }}</a>
-                        @endcan--}}
                         @can('users.edit')
                             <a class="dropdown-item"
                                href="{{ route('users.edit', auth()->user()->id) }}">{{ __('Editar Perfil') }}</a>
