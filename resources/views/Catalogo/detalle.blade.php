@@ -2,13 +2,15 @@
 
 @section('content')
 <div class="container text-center">
-    <h1><i class="fa fa-shopping-cart"></i>Detalle del Producto</h1>
-
+    <h1>
+        <i class="fa fa-shopping-cart"></i>
+               Detalle del Producto
+    </h1>
     <div class="row">
         <div class="cold-md-6">
             <div class="product-block">
                 <br>
-                <img style="height: 500px; width: 350px;" src="{{ asset( $product->imagen) }} ">
+                <img style="height: 350px; width: 200px;" src="{{ asset( $product->imagen) }} ">
             </div>
         </div>
         <div class="col-md-6">
