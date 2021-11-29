@@ -1,8 +1,9 @@
 @extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('AgroShop')])
 
 @section('content')
+
     <div class="container mt-5 ctl-bg ctl">
-        <div class="row">
+               <div class="row">
             @foreach ($productos as $productoD)
                 <div class="col-md-3">
                     <div class="card">
@@ -56,8 +57,8 @@
                                                 <li class="add-to-cart">--}}
                                                     <div class="product-detail-container p-2">
                                                         <div class="justify-content-between align-items-center">
-                                                            <h5 class="dress-name text-center">
-                                                                <a href="#">
+                                                            <h5 class="dress-name">
+                                                                <a href="{{ route('ver', $productoD->id) }}">
                                                                     {{$productoD->nombre}}
                                                                 </a>
                                                             </h5>
