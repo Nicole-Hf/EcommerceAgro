@@ -50,9 +50,7 @@
                                     <li>
                                         <a href="#" class="item_remove remove-cart-button"><i class="ion-close"></i></a>
                                         <a href="#">
-                                           {{-- <img src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">--}}
-                                            <img style="width: 50%" src="{{ asset('/img/' .$item->attributes->image) }}"
-                                                alt="...">
+                                           <img src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
                                             {{$item->name}}
                                         </a>
                                         <span class=" cart_quantity"> {{$item->quantity}} x <span class="cart_amount">

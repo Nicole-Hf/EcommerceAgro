@@ -14,7 +14,7 @@
                                     </span>
                                 </div>
                             </div>
-                            {{--<img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image">--}}
+                            <img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image">
                             <div class="product_action_box">
                                 <ul class="list_none pr_action_btn">
                                     <li class="add-to-cart">
@@ -35,9 +35,9 @@
                             </div>
                         </div>
 
-                        <div class="row shop_container grid">
+                        {{--<div class="row shop_container grid">
                             {{--@foreach ($productos as $productoD)--}}
-                            <div class="col-md-4 col-6">
+                            {{--<div class="col-md-4 col-6">
                                 <div class="product">
                                     <div class="product_img">
                                         <a href="#">
@@ -47,7 +47,7 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart">
+                                                <li class="add-to-cart">--}}
                                                     <div class="product-detail-container p-2">
                                                         <div class="justify-content-between align-items-center">
                                                             <h5 class="dress-name">
@@ -62,7 +62,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                {{--</li>
                                             </ul>
                                         </div>
                                     </div>

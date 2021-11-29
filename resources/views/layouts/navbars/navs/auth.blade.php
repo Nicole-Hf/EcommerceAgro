@@ -71,8 +71,7 @@
                                     <li>
                                         <a href="#" class="item_remove remove-cart-button"><i class="ion-close"></i></a>
                                         <a href="#">
-                                          {{--<img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">--}}
-                                            <img src="{{ asset('/img/' .$item->attributes->image) }}"
+                                          <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
                                                 alt="...">
                                             {{$item->name}}
                                         </a>
