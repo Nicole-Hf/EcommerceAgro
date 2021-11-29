@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5 ctl-bg ctl">
        
         <div class="row">
             @foreach ($productos as $productoD)
@@ -55,7 +55,7 @@
                                                     <div class="product-detail-container p-2">
                                                         <div class="justify-content-between align-items-center">
                                                             <h5 class="dress-name">
-                                                                <a href="#">
+                                                                <a href="{{ route('ver', $productoD->id) }}">
                                                                     {{$productoD->nombre}}
                                                                 </a>
                                                             </h5>
@@ -75,8 +75,7 @@
                             </div>
                         </div>
                         {{--@endforeach--}}
-                        <a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
-                            <i class=".fa fa-chevron-circle-right"></i><b> LEER MAS</b></a>
+                       
                         
                     </div>
                    
