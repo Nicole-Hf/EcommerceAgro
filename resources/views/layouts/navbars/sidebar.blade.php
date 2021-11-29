@@ -2,9 +2,11 @@
      data-image="{{ asset('img/sidebaragro2.jpg') }}" aria-labelledby="minimizeSidebar">
 
     <div class="logo">
-        <a href="#" class="simple-text logo-normal">
-            {{ __('AgroShop') }}
-        </a>
+        @can('productos.index')
+            <a href="#" class="simple-text logo-normal">
+                {{ __('AgroShop') }}
+            </a>
+        @endcan
         @can('catalogo')
             <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
                 {{ __('AgroShop') }}

@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="container mt-5 ctl-bg ctl">
-       
-        <div class="row">
+               <div class="row">
             @foreach ($productos as $productoD)
                 <div class="col-md-3">
                     <div class="card">
@@ -15,8 +14,14 @@
                                         <i class="fa fa-heart-o"></i>
                                     </span>
                                 </div>
+                                <a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
+                                    <i class="fa fa-chevron-circle-right"></i>
+                                    <b class="bg-gradient-warning"> LEER MAS</b>
+                                </a>
                             </div>
-                            <img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image">
+                            <img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image"
+                                 style="height: 200px; width: 200px;display: block;"
+                                 alt="{{ $productoD->imagen }}">
                             <div class="product_action_box">
                                 <ul class="list_none pr_action_btn">
                                     <li class="add-to-cart">
@@ -34,11 +39,9 @@
                                         </form>
                                     </li>
                                 </ul>
-                                
                             </div>
-                            
                         </div>
-                        
+
                         {{--<div class="row shop_container grid">
                             {{--@foreach ($productos as $productoD)--}}
                             {{--<div class="col-md-4 col-6">
@@ -60,12 +63,11 @@
                                                                 </a>
                                                             </h5>
                                                             <div class="d-flex flex-column mb-2">
-                                                                    <span
-                                                                        class="new-price">BS.- {{$productoD->precio}}
-                                                                    </span>
+                                                                <span class="new-price text-center">
+                                                                    BS.- {{$productoD->precio}}
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        
                                                     </div>
                                                 {{--</li>
                                             </ul>
@@ -75,14 +77,9 @@
                             </div>
                         </div>
                         {{--@endforeach--}}
-                       
-                        
                     </div>
-                   
                 </div>
             @endforeach
-            
-                
         </div>
     </div>
 @endsection
