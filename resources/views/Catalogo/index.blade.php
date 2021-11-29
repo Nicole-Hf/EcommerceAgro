@@ -14,10 +14,10 @@
                                         <i class="fa fa-heart-o"></i>
                                     </span>
                                 </div>
-                                <a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
+                                {{--<a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
                                     <i class="fa fa-chevron-circle-right"></i>
                                     <b class="bg-gradient-warning"> LEER MAS</b>
-                                </a>
+                                </a>--}}
                             </div>
                             <img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image"
                                  style="height: 200px; width: 200px;display: block;"
