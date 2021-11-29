@@ -6,6 +6,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
+        {{--Arreglar--}}
         <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
             {{ __('AgroShop') }}
         </a>

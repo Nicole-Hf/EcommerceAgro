@@ -60,6 +60,7 @@ class UserController extends Controller
         }
         $user->update($datos);
 
+        //arreglar
         return view('home');
     }
 

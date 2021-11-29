@@ -72,7 +72,6 @@
                                         <a href="#" class="item_remove remove-cart-button"><i class="ion-close"></i></a>
                                         <a href="#">
                                           <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
-                                                alt="...">
                                             {{$item->name}}
                                         </a>
                                         <span class=" cart_quantity"> {{$item->quantity}} x <span class="cart_amount">
