@@ -6,7 +6,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-        <a href="#" class="simple-text logo-normal">
+    <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
             {{ __('AgroShop') }}
         </a>
         {{--<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
@@ -16,36 +16,42 @@
     </div>
     <div class="sidebar-wrapper ps-container ps-active-y">
         <ul class="nav">
-            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'home' ? ' active' : '' }}">
                 @can('home')
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="material-icons">home</i>
-                        <p>{{ __('Inicio') }}</p>
+                        <span>{{ __('Inicio') }}</span>
                     </a>
                 @endcan
             </li>
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                @if (Auth()->id()=='1' or Auth()->id()=='3')
-                    <a class="nav-link" href="{{route('productos.show')}}">
+                @if (Auth()->id()=='1')
+                    <a class="nav-link" href="{{route('productos.indexAdmin')}}">
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @else
+                @elseif(Auth()->id()=='3') 
+                <a class="nav-link" href="{{route('clientes.show')}}">
+                    <i class="material-icons">style</i>
+                    <span class="sidebar-normal">{{ __('Productos') }} </span>
+                </a>  
+                    @else
                     @can('productos.index')
                         <a class="nav-link" href="{{route('productos.index')}}">
                             <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
                         </a>
                     @endcan
-                @endif
+                @endif                
+
             </li>
             <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
                 @can('categorias.index')
                     <a class="nav-link collapse" data-toggle="collapse" href="#categorias" aria-expanded="true">
                         <i class="material-icons">category</i>
-                        <p>{{ __('Gestionar Categorías') }}
+                        <span>{{ __('Gestionar Categorías') }}
                             <b class="caret"></b>
-                        </p>
+                        </span>
                     </a>
                 @endcan
                 <div class="collapse" id="categorias">
@@ -73,16 +79,15 @@
                 @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
-                    <p>{{ __('Pedidos') }}</p>
+                    <span>{{ __('Pedidos') }}</span>
                 </a>
                 @endcan
             </li>
-
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">query_stats</i>
-                    <p>{{ __('Reportes') }}</p>
+                    <span>{{ __('Reportes') }}</span>
                 </a>
                 @endcan
             </li>
@@ -91,9 +96,9 @@
                 @can('users.index')
                     <a class="nav-link collapse" data-toggle="collapse" href="#usuarios" aria-expanded="true">
                         <i class="material-icons">category</i>
-                        <p>{{ __('Gestionar Usuarios') }}
+                        <span>{{ __('Gestionar Usuarios') }}
                             <b class="caret"></b>
-                        </p>
+                        </span>
                     </a>
                 @endcan
                 <div class="collapse" id="usuarios">
@@ -102,7 +107,7 @@
                             @can('users.index')
                                 <a class="nav-link" href="{{ route('users.index') }}">
                                     <i class="material-icons">manage_accounts</i>
-                                    <p>{{ __('Usuarios') }}</p>
+                                    <span>{{ __('Usuarios') }}</span>
                                 </a>
                             @endcan
                         </li>
@@ -110,7 +115,7 @@
                             @can('clientes.index')
                                 <a class="nav-link" href="{{ route('clientes.index') }}">
                                     <i class="material-icons">groups</i>
-                                    <p>{{ __('Clientes') }}</p>
+                                    <span>{{ __('Clientes') }}</span>
                                 </a>
                             @endcan
                         </li>
@@ -129,7 +134,7 @@
                 @can('roles.index')
                     <a class="nav-link" href="{{ route('roles.index') }}">
                         <i class="material-icons">admin_panel_settings</i>
-                        <p>{{ __('Roles') }}</p>
+                        <span>{{ __('Roles') }}</span>
                     </a>
                 @endcan
             </li>
@@ -137,7 +142,7 @@
                 @can('bitacora.index')
                     <a class="nav-link" href="#">
                         <i class="material-icons">language</i>
-                        <p>{{ __('Bitácora') }}</p>
+                        <span>{{ __('Bitácora') }}</span>
                     </a>
                 @endcan
             </li>

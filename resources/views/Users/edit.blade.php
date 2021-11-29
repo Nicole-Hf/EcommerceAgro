@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('users.update', [$user->id]) }}" method="post" class="form-horizontal"> {{--[$persona->id]--}}
+                    <form action="{{ route('users.update', [$user->id]) }}" method="post" class="form-horizontal">
                         @csrf
                         @method('PUT')
                         <div class="card">
@@ -21,7 +21,7 @@
                                         <input  type="text"
                                                 class="form-control"
                                                 name="name"
-                                                value="{{ old('name',$user->name) }}"> {{--$persona->user->name--}}
+                                                value="{{ old('name',$user->name) }}">
                                         @if ($errors->has('name'))
                                             <span class="error text-danger" for="input-name">
                                                 {{ $errors->first('name') }}

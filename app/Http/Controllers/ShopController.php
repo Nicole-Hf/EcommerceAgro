@@ -16,13 +16,11 @@ class ShopController extends Controller
      */
     public function index()
     {
-     
         $productos = Producto::all();
      //   dd($productos)
         return view('Catalogo.index', ['productos' => $productos] );
-
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -89,5 +87,5 @@ class ShopController extends Controller
         //
     }
 
-  
+
 }

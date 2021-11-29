@@ -14,11 +14,12 @@
             {{--Botón agregar--}}
             <div class="row">
                 <div class="col-12 text-left">
-                    <a href="{{route('productos.create')}}" class="btn btn-outline-success btn-success"> Agregar Producto </a>
+                    <a href="{{route('productos.create')}}" class="btn btn-outline-success btn-success"> Agregar
+                        Producto </a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="card">
                         {{--Header--}}
                         <div class="card-header card-header-success">
@@ -31,35 +32,48 @@
                                 <table class="table">
                                     {{--Cabecera de Tabla--}}
                                     <thead class="text-primary text-success">
+                                    <th>Imagen</th>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
+                                    {{--<th>Descripcion</th>--}}
                                     <th>Precio</th>
-                                    <th>Imagen</th>
                                     <th>Stock</th>
                                     <th>Subcategoria</th>
-                                    <th>Acciones</th>
+                                    <th class="text-right">Acciones</th>
                                     </thead>
                                     {{--Llamar a las marcas--}}
                                     <tbody>
                                     @foreach($productos as $producto)
                                         <tr>
+                                            <td>
+                                                <div class="img-container">
+                                                    <img {{--style="width: 20%"--}}
+                                                         src="{{ asset($producto->imagen) }}"
+                                                         alt="...">
+                                                </div>
+                                            </td>
                                             <td>{{ $producto->id }}</td>
                                             <td>{{ $producto->nombre }}</td>
-                                            <td>{{ $producto->descripcion }}</td>
+                                            {{--<td>{{ $producto->descripcion }}</td>--}}
                                             <td>{{ $producto->precio }}</td>
                                             <td>
                                                 <img style="width: 10%" src="{{ asset('/img/' . $producto->imagen) }}"
                                                 alt="...">
                                             </td>
                                             <td>{{ $producto->stock }}</td>
-                                            <td>{{ $producto->subcategoria()->pluck('nombre')->first() }}</td>
-                                            <td class="td-actions">
-                                                {{--Editar Marca--}}
-                                                <a href="{{route('productos.edit',$producto->id)}}" class="btn btn-warning">
+                                            <td>{{ $producto->subcategoria_id }}</td>
+                                            <td class="td-actions text-right">
+                                                {{--Ver--}}
+                                                <a href="{{ route('productos.show',$producto->id) }}"
+                                                   class="btn btn-info text-center">
+                                                    <i class="material-icons">search</i>
+                                                </a>
+                                                {{--Editar--}}
+                                                <a href="{{route('productos.edit',$producto->id)}}"
+                                                   class="btn btn-warning">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                {{--Eliminar Marca--}}
+                                                {{--Eliminar--}}
                                                 <form action="{{route('productos.delete',$producto->id)}}" method="POST"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('¿Está seguro?')">

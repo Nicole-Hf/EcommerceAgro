@@ -23,7 +23,7 @@
         integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"/>
     
     <!-- CSS Files -->
-    <!-- <link href="{{ asset('css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" /> -->
+    <!--     <link href="{{ asset('css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" /> -->
     <link href="{{ asset('css/shop.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/linearicons.css') }}" rel="stylesheet" />

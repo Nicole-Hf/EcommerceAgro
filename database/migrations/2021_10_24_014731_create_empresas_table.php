@@ -18,7 +18,7 @@ class CreateEmpresasTable extends Migration
             $table->string('nombre',100);
             $table->string('perfil',20);
             $table->string('nit',30);
-            $table->string('tipo_negocio',30);
+            $table->string('tipo_negocio',100);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

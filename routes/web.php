@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');*/
-
+//AUTHENTICATION
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -24,12 +22,6 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
-Route::get('/', [App\Http\Controllers\ShopController::class, 'index']);
-Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])->name('carrito.add');
-Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])->name('carrito.estado');
-Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])->name('carrito.eliminar');
-Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])->name('carrito.updateItem');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -39,24 +31,31 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
+//CARRITO
+Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
+    ->name('carrito.add');
+Route::get('/carrito/estado', [App\Http\Controllers\CartController::class, 'index'])
+    ->name('carrito.estado');
+Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'remove'])
+    ->name('carrito.eliminar');
+Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])
+    ->name('carrito.updateItem');
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //usuarios
     Route::group(['prefix' => 'users'], function () {
         Route::get('/index', [App\Http\Controllers\UserController::class, 'index'])
             ->name('users.index');
         Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])
             ->name('users.create');
-        Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show'])
-            ->name('users.show');
+        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
+            ->name('users.store');
+        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+            ->name('users.delete');
         Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])
             ->name('users.edit');
         Route::put('/{user}', [App\Http\Controllers\UserController::class, 'update'])
             ->name('users.update');
-        Route::delete('/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
-            ->name('users.delete');
-        Route::post('/', [App\Http\Controllers\UserController::class, 'store'])
-            ->name('users.store');
     });
 
     //roles
@@ -81,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('clientes.index');
         Route::get('/create', [App\Http\Controllers\ClienteController::class, 'create'])
             ->name('clientes.create');
-        Route::get('/{id}', [App\Http\Controllers\ClienteController::class, 'show'])
+        Route::get('/show', [App\Http\Controllers\ClienteController::class, 'show'])
             ->name('clientes.show');
         Route::get('/{id}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])
             ->name('clientes.edit');
@@ -136,9 +135,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix'=>'productos'],function () {
-
         Route::get('/index',[ProductoController::class, 'index'])
             ->name('productos.index');
+        Route::get('/admin-index',[ProductoController::class, 'indexAdmin'])
+            ->name('productos.indexAdmin');
         Route::get('/create',[ProductoController::class,'create'])
             ->name('productos.create');
         Route::post('/store',[ProductoController::class,'store'])
@@ -154,3 +154,15 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/product/{id}', 'App\Http\Controllers\ProductoController@ver')->name('ver');
     });
 });
+
+Auth::routes();
+
+//LOGIN ROUTES
+Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexEmp'])
+    ->name('home');
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
+    ->name('catalogo');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
+    ->name('home.admin');
+
+

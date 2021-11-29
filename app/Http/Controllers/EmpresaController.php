@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpresaRequest;
 use App\Models\Empresa;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,8 +19,6 @@ class EmpresaController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -35,7 +31,7 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
         $empresa = new Empresa();
         $empresa->nombre = $request->input('nombre');
@@ -44,6 +40,7 @@ class EmpresaController extends Controller
         $empresa->tipo_negocio = $request->input('tipo_negocio');
         $empresa->user_id = Auth::user()->id;
         $empresa->save();
+
         return redirect()->route('home');
     }
 }

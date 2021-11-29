@@ -15,28 +15,83 @@ class SubCategoriaSeeder extends Seeder
     public function run()
     {
         Subcategoria::create([
-            'nombre'=>'Insecticidas 1',
+            'nombre'=>'Suplemento Mineral',
             'categoria_id' => '1'
         ]);
 
         Subcategoria::create([
-            'nombre'=>'Insecticidas 2',
+            'nombre'=>'Suplemento Estratégico',
             'categoria_id' => '1'
         ]);
 
         Subcategoria::create([
-            'nombre'=>'Insecticidas 3',
+            'nombre'=>'Alimento Balanceado',
             'categoria_id' => '1'
         ]);
 
         Subcategoria::create([
-            'nombre'=>'Fertilizante 1',
+            'nombre'=>'Núcleo Balanceado',
+            'categoria_id' => '1'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Suplemento Mineral Potencializado',
+            'categoria_id' => '1'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Semilla de Sorgo',
             'categoria_id' => '2'
         ]);
 
         Subcategoria::create([
-            'nombre'=>'Insecticidas 2',
-            'categoria_id' => '2'
+            'nombre'=>'Ectoparasiticidas',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Endectocidas',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Terapéuticos',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Biológicos',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Reproducción',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Fortificante',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Vacuna Reproductiva',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Vacuna Clostridio',
+            'categoria_id' => '3'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Brachiaria',
+            'categoria_id' => '4'
+        ]);
+
+        Subcategoria::create([
+            'nombre'=>'Panicum',
+            'categoria_id' => '4'
         ]);
     }
 }

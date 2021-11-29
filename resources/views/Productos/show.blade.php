@@ -1,6 +1,6 @@
 @extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Listado de Productos'])
 @section('content')
-<div class="container" style="margin-top: 80px">    
+<div class="container" style="margin-top: 80px">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="row">
@@ -10,8 +10,7 @@
             </div>
             <hr>
             <div class="row">
-                @foreach($productos as $product)    
-                          
+                @foreach($productos as $product)                
                     <div class="col-lg-3">
                         <div class="card" style="margin-bottom: 20px; height: auto;">
                             <img src="{{ asset('/storage/' .$product->imagen )}}"
@@ -36,6 +35,6 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
 {{$productos->links()}}
 @endsection

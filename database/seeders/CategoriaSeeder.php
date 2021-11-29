@@ -15,11 +15,23 @@ class CategoriaSeeder extends Seeder
     public function run()
     {
         Categoria::create([
-            'nombre'=>'Fertilizantes'
+            'nombre'=>'Nutrición Animal'
         ]);
 
         Categoria::create([
-            'nombre'=>'Insecticidas'
+            'nombre'=>'Semillas de Sorgo'
+        ]);
+
+        Categoria::create([
+            'nombre'=>'Sanidad Animal'
+        ]);
+
+        Categoria::create([
+            'nombre'=>'Semillas de Pasto'
+        ]);
+
+        Categoria::create([
+            'nombre'=>'Semillas de Maíz'
         ]);
     }
 }

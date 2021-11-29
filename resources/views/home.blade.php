@@ -1,6 +1,9 @@
-@extends('layouts.main', ['activePage'=>'', 'titlePage'=>'Usuarios'])
+@extends('layouts.main', ['activePage'=>'home', 'titlePage'=>'Dashboard'])
 @section('content')
-    mostrar productos
-    vista del catalogo
+    Primero registrar a tu empresa
+    <br>
+    <br>
+    <br>
+    Dashboard de la Empresa
 @endsection
 
