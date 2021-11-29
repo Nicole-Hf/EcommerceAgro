@@ -45,12 +45,19 @@
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
                 @elseif(auth()->user()->role_id =='3')
-                    @can('productos.index')
-                        <a class="nav-link" href="{{route('productos.index')}}">
+                    @if(auth()->user()->id == auth()->user()->empresa()->pluck('user_id')->first())
+                        @can('productos.index')
+                            <a class="nav-link" href="{{route('productos.index')}}">
+                                <i class="material-icons">style</i>
+                                <span class="sidebar-normal">{{ __('Productos') }} </span>
+                            </a>
+                        @endcan
+                    @else
+                        <a class="nav-link" href="{{route('empresas.create')}}">
                             <i class="material-icons">style</i>
                             <span class="sidebar-normal">{{ __('Productos') }} </span>
                         </a>
-                    @endcan
+                    @endif
                 @endif
             </li>
 
