@@ -6,7 +6,6 @@
             <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
                 <form class="form" method="POST" action="{{ route('password.update') }}">
                     @csrf
-
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="card card-login card-hidden mb-3">
                         {{--<div class="card-header card-header-primary text-center">
@@ -20,7 +19,8 @@
                                             <i class="material-icons">email</i>
                                         </span>
                                     </div>
-                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email') }}" required>
+                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}"
+                                           value="{{ old('email') }}" required>
                                 </div>
                                 @if ($errors->has('email'))
                                     <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -60,8 +61,15 @@ class UserController extends Controller
         }
         $user->update($datos);
 
-        //arreglar
-        return view('home');
+        $productos = Producto::all();
+
+        if (auth()->user()->role_id == '2') {
+            return view('Catalogo.index', ['productos' => $productos] );
+        } elseif (auth()->user()->role_id == '3') {
+            return view('home');
+        }
+
+        return view('homeAdmin');
     }
 
     /**

@@ -17,7 +17,7 @@
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
                             <div class="form-group row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ $email ?? old('email') }}"
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password" placeholder="{{ __('Password...') }}">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required autocomplete="new-password"
                                            placeholder="{{ __('Confirm Password') }}">
