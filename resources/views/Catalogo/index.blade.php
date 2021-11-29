@@ -1,7 +1,9 @@
 @extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('AgroShop')])
 
 @section('content')
-    <div class="container mt-5 ctl-bg ctl">
+
+    <div class="container">
+       
         <div class="row">
             @foreach ($productos as $productoD)
                 <div class="col-md-3">
@@ -32,9 +34,11 @@
                                         </form>
                                     </li>
                                 </ul>
+                                
                             </div>
+                            
                         </div>
-
+                        
                         {{--<div class="row shop_container grid">
                             {{--@foreach ($productos as $productoD)--}}
                             {{--<div class="col-md-4 col-6">
@@ -61,6 +65,7 @@
                                                                     </span>
                                                             </div>
                                                         </div>
+                                                        
                                                     </div>
                                                 {{--</li>
                                             </ul>
@@ -70,9 +75,15 @@
                             </div>
                         </div>
                         {{--@endforeach--}}
+                        <a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
+                            <i class=".fa fa-chevron-circle-right"></i><b> LEER MAS</b></a>
+                        
                     </div>
+                   
                 </div>
             @endforeach
+            
+                
         </div>
     </div>
 @endsection

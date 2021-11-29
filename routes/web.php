@@ -151,8 +151,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.delete');
         Route::get('/{producto}', [ProductoController::class,'show'])
             ->name('productos.show');
-        Route::get('/product/{id}', 'App\Http\Controllers\ProductoController@ver')
-            ->name('ver');
+       
     });
 });
 
@@ -166,4 +165,5 @@ Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
 
-
+    Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
+    ->name('ver');

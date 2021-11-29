@@ -86,6 +86,11 @@ class ShopController extends Controller
     {
         //
     }
-
+    public function ver($id)
+    {
+        $product = Producto::where('id',$id)->first();
+        //dd($product);
+        return view('Catalogo.detalle', compact('product'));
+    }
 
 }

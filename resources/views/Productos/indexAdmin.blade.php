@@ -23,12 +23,14 @@
                                         <h6 class="card-title">{{ $product->nombre }}</h6>
                                     </a>
                                     <p style="height:2px">Bs {{ $product->precio }}</p>
+                                    <button type="button" class="btn btn-warning">Warning</button>
                                     <p style="height:2px;">Stock: {{$product->stock}}</p>
                                     <p style="height:2px;">
                                         Empresa: {{$product->empresa()->pluck('nombre')->first()}}</p>
                                     <p style="height:4px;">
                                         Subcategoria: {{$product->subcategoria()->pluck('nombre')->first()}}</p>
                                     <br>
+                                    
                                     <a class="btn btn-warning" href="{{ route('ver', $product->id) }}">
                                         <i class="fa fa-chevron-circle-right"></i>LEER MAS</a>
                                 </div>
