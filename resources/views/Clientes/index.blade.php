@@ -31,7 +31,7 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     {{--Cabecera de Tabla--}}
-                                    <thead class="text-primary text-warning">
+                                    <thead class="text-success">
                                     <th>#</th>
                                     <th>Nombre Completo</th>
                                     <th>Teléfono</th>

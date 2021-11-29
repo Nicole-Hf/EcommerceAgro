@@ -21,7 +21,7 @@
                             {{--tabla--}}
                             <div class="table-responsive">
                                 <table class="table">
-                                    <thead class="text-success text-warning">
+                                    <thead class="text-success">
                                     <th>#</th>
                                     <th>Nombre Comercial</th>
                                     <th>Perfil</th>

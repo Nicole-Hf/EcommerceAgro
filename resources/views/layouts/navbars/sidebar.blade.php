@@ -1,22 +1,24 @@
 <div class="sidebar" data-color="green" data-background-color="black"
      data-image="{{ asset('img/sidebaragro2.jpg') }}" aria-labelledby="minimizeSidebar">
-    <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-        Tip 2: you can also add an image using data-image tag
-    -->
     <div class="logo">
-        {{--Arreglar--}}
-        <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
+        <a href="#" class="simple-text logo-normal">
             {{ __('AgroShop') }}
         </a>
+        @can('catalogo')
+            <a href="{{ route('catalogo') }}" class="simple-text logo-normal">
+                {{ __('AgroShop') }}
+            </a>
+        @endcan
         {{--<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
             <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
             <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
         </button>--}}
     </div>
+
     <div class="sidebar-wrapper ps-container ps-active-y">
         <ul class="nav">
+            {{--INICIO--}}
             <li class="nav-item{{ $activePage == 'home' ? ' active' : '' }}">
                 @if (auth()->user()->role_id == '1')
                     <a class="nav-link" href="{{ route('home.admin') }}">
@@ -35,18 +37,14 @@
                     </a>
                 @endif
             </li>
+            {{--PRODUCTOS--}}
             <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
-                @if (Auth()->id()=='1')
+                @if (auth()->user()->role_id == '1')
                     <a class="nav-link" href="{{route('productos.indexAdmin')}}">
                         <i class="material-icons">style</i>
                         <span class="sidebar-normal">{{ __('Productos') }} </span>
                     </a>
-                @elseif(Auth()->id()=='3')
-                    <a class="nav-link" href="{{route('clientes.show')}}">
-                        <i class="material-icons">style</i>
-                        <span class="sidebar-normal">{{ __('Productos') }} </span>
-                    </a>
-                @else
+                @elseif(auth()->user()->role_id =='3')
                     @can('productos.index')
                         <a class="nav-link" href="{{route('productos.index')}}">
                             <i class="material-icons">style</i>
@@ -55,18 +53,21 @@
                     @endcan
                 @endif
             </li>
-            <li class="nav-item {{ ($activePage == 'categorias' || $activePage == 'subcategorias') ? ' active' : '' }}">
+
+            {{--CATEGORIAS--}}
+            <li class="nav-item{{ ($activePage == 'categoria' || $activePage == 'subcategoria') ? ' active' : '' }}">
                 @can('categorias.index')
-                    <a class="nav-link collapse" data-toggle="collapse" href="#categorias" aria-expanded="true">
+                    <a class="nav-link nav-collapse-hide-child" data-toggle="collapse" href="#categoria"
+                       aria-expanded="true">
                         <i class="material-icons">category</i>
-                        <span>{{ __('Gestionar Categorías') }}
+                        <span>{{ __('Categoría') }}
                             <b class="caret"></b>
                         </span>
                     </a>
                 @endcan
-                <div class="collapse" id="categorias">
+                <div class="collapse" id="categoria">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'categoria' ? ' active' : '' }}">
                             @can('categorias.index')
                                 <a class="nav-link" href="{{ route('categorias.index') }}">
                                     <i class="material-icons">align_horizontal_left</i>
@@ -74,8 +75,8 @@
                                 </a>
                             @endcan
                         </li>
-                        <li class="nav-item{{ $activePage == 'subcategorias' ? ' active' : '' }}">
-                            @can('subcategorias.index')
+                        <li class="nav-item{{ $activePage == 'subcategoria' ? ' active' : '' }}">
+                            @can('categorias.index')
                                 <a class="nav-link" href="{{route('subcategorias.index')}}">
                                     <i class="material-icons">list</i>
                                     <span class="sidebar-normal">{{ __('Subcategorías') }} </span>
@@ -85,6 +86,8 @@
                     </ul>
                 </div>
             </li>
+
+            {{--PEDIDOS--}}
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
                 @can('pedidos.index')
                     <a class="nav-link" href="#">
@@ -93,6 +96,8 @@
                     </a>
                 @endcan
             </li>
+
+            {{--REPORTES--}}
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
                     <a class="nav-link" href="#">
@@ -101,17 +106,20 @@
                     </a>
                 @endcan
             </li>
-            <li class="nav-item {{ ($activePage == 'usuarios' || $activePage == 'clientes'
-                                    || $activePage == 'empresas') ? ' active' : '' }}">
+
+            {{--USUARIO--}}
+            <li class="nav-item{{ ($activePage == 'usuario' || $activePage == 'clientes'
+                                                            || $activePage == 'empresas') ? ' active' : '' }}">
                 @can('users.index')
-                    <a class="nav-link collapse" data-toggle="collapse" href="#usuarios" aria-expanded="true">
-                        <i class="material-icons">category</i>
-                        <span>{{ __('Gestionar Usuarios') }}
+                    <a class="nav-link nav-collapse-hide-child" data-toggle="collapse" href="#usuario"
+                       aria-expanded="true">
+                        <i class="material-icons">supervised_user_circle</i>
+                        <span>{{ __('Usuarios') }}
                             <b class="caret"></b>
                         </span>
                     </a>
                 @endcan
-                <div class="collapse" id="usuarios">
+                <div class="collapse" id="usuario">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
                             @can('users.index')
@@ -140,6 +148,8 @@
                     </ul>
                 </div>
             </li>
+
+            {{--ROLES--}}
             <li class="nav-item{{ $activePage == 'roles' ? ' active' : '' }}">
                 @can('roles.index')
                     <a class="nav-link" href="{{ route('roles.index') }}">
@@ -148,6 +158,8 @@
                     </a>
                 @endcan
             </li>
+
+            {{--BITACORA--}}
             <li class="nav-item{{ $activePage == 'bitacora' ? ' active' : '' }}">
                 @can('bitacora.index')
                     <a class="nav-link" href="#">
@@ -156,6 +168,7 @@
                     </a>
                 @endcan
             </li>
+
         </ul>
     </div>
 </div>
