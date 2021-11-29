@@ -47,18 +47,15 @@
                                 <?php $items = \Cart::getContent();?>
                                 <ul class="cart_list">
                                     @foreach ($items as $item)
-                                        <li>
-                                            <a href="#" class="item_remove remove-cart-button"><i class="ion-close"></i></a>
-                                            {{--<a href="#">
-                                                <img src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
-                                                {{$item->name}}
-                                            </a>--}}
-                                            <a href="#">
-                                                <img src="{{asset($item->attributes->imagen) }}">
-                                                {{$item->name}}
-                                            </a>
-                                            <span class=" cart_quantity"> {{$item->quantity}} x <span
-                                                    class="cart_amount">
+                                    <li>
+                                        <a href="#" class="item_remove remove-cart-button"><i class="ion-close"></i></a>
+                                        <a href="#">
+                                           {{-- <img src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">--}}
+                                            <img style="width: 50%" src="{{ asset('/img/' .$item->attributes->image) }}"
+                                                alt="...">
+                                            {{$item->name}}
+                                        </a>
+                                        <span class=" cart_quantity"> {{$item->quantity}} x <span class="cart_amount">
                                                 {{$item->price}} </span>
                                         </span>
                                         </li>

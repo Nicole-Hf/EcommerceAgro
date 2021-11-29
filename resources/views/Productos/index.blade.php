@@ -1,4 +1,4 @@
-@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
+-@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -56,9 +56,12 @@
                                             <td>{{ $producto->nombre }}</td>
                                             {{--<td>{{ $producto->descripcion }}</td>--}}
                                             <td>{{ $producto->precio }}</td>
+                                            <td>
+                                                <img style="width: 10%" src="{{ asset('/img/' . $producto->imagen) }}"
+                                                alt="...">
+                                            </td>
                                             <td>{{ $producto->stock }}</td>
                                             <td>{{ $producto->subcategoria_id }}</td>
-<<<<<<< Updated upstream
                                             <td class="td-actions text-right">
                                                 {{--Ver--}}
                                                 <a href="{{ route('productos.show',$producto->id) }}"
@@ -68,11 +71,6 @@
                                                 {{--Editar--}}
                                                 <a href="{{route('productos.edit',$producto->id)}}"
                                                    class="btn btn-warning">
-=======
-                                            <td class="td-actions">
-                                                {{--Editar Marca--}}
-                                                <a href="{{route('productos.edit',$producto->id)}}" class="btn btn-warning">
->>>>>>> Stashed changes
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                                 {{--Eliminar--}}

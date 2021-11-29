@@ -32,19 +32,27 @@
                         </ul>
                     </div>
                 </div>
-
+                <div class="row shop_container grid">
+                    @foreach ($productos as $productoD)
+                    <div class="col-md-4 col-6">
+                        <div class="product">
+                            <div class="product_img">
+                                <a href="#">
+                                    <img style="width:50%" src="{{ asset('/storage/' .$productoD->imagen) }}" alt="...">
+                                </a>
+                                <div class="product_action_box">
+                                    <ul class="list_none pr_action_btn">
+                                        <li class="add-to-cart">
                 <div class="product-detail-container p-2">
                     <div class="justify-content-between align-items-center">
                         <h5 class="dress-name"> <a href="#">
                                 {{$productoD->nombre}}
                             </a></h5>
                         <div class="d-flex flex-column mb-2"> <span class="new-price">BS.- {{$productoD->precio}}</span>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         @endforeach
     </div>
