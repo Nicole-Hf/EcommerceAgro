@@ -4,7 +4,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('subcategorias.update', $subcategoria->id) }}" method="post" class="form-horizontal">
+                    <form action="{{ route('subcategorias.update', $subcategoria->id) }}" method="post"
+                          class="form-horizontal">
                         @csrf
                         @method('PUT')
                         <div class="card">
@@ -15,30 +16,32 @@
                             {{--Body--}}
                             <div class="card-body">
                                 <div class="row">
-                                    <label for="nombre" class="col-sm-2 col-form-label"> Categoría </label>
+                                    <label for="nombre" class="col-sm-2 col-form-label"> Nombre: </label>
                                     <div class="col-sm-7">
-                                        <input  type="text"
-                                                class="form-control"
-                                                name="nombre"
-                                                value="{{ old('nombre',$subcategoria->nombre) }}" autofocus>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="nombre"
+                                               value="{{ old('nombre',$subcategoria->nombre) }}" autofocus>
                                         @if ($errors->has('nombre'))
                                             <span class="error text-danger" for="input-nombre">
                                                 {{ $errors->first('nombre') }}
                                             </span>
                                         @endif
                                     </div>
-                                </div>  
-                                    <div class="row">
-                                        <label for="nombre" class="col-sm-2 col-form-label"> Categoría </label>
-                                        <div class="coll-sm-7">
-                                            <select class="form-control" name="categoria_id" aria-label="Default select example">
-                                                {{-- <option selected>Selecciona la apunte del apunte</option> --}}
-                                                @foreach ($categorias as $categoria)
-                                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                                @endforeach
-                                            </select>
-                                         </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <label for="nombre" class="col-sm-2 col-form-label"> Categoría: </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="categoria_id"
+                                                aria-label="Default select example">
+                                            <option disabled selected>Seleccione una categoría</option>
+                                            @foreach ($categorias as $categoria)
+                                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                </div>
                             </div>
                             {{--Botones/Footer--}}
                             <div class="card-footer ml-auto mr-auto">

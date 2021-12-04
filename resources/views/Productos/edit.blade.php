@@ -78,10 +78,10 @@
                                 <br>
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label"> SubCategoría </label>
-                                    <div class="coll-sm-7">
+                                    <div class="col-sm-7">
                                         <select class="form-control" name="subcategoria_id"
                                                 aria-label="Default select example">
-                                            {{-- <option selected>Selecciona la apunte del apunte</option> --}}
+                                            <option disabled selected>Seleccione una categoría</option>
                                             @foreach ($subcategorias as $subcategoria)
                                                 <option
                                                     value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>

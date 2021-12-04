@@ -7,11 +7,6 @@
                     <form action="{{ route('subcategorias.store') }}" method="post" class="form-horizontal">
                         @csrf
                         <div class="card">
-                            {{--Header
-                            <div class="card-header card-header-rose">
-                                <h4 class="card-title">Formulario de Creación</h4>
-                            </div>
-                            {{--Body--}}
                             <div class="card-body">
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label"> Nombre </label>
@@ -27,15 +22,22 @@
                                         @endif
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
-                                    <label for="nombre" class="col-sm-2 col-form-label"> Categoría </label>
-                                    <div class="coll-sm-7">
-                                        <select class="form-control" name="categoria_id" aria-label="Default select example">
-                                            {{-- <option selected>Selecciona la apunte del apunte</option> --}}
+                                    <label for="nombre" class="col-sm-2 col-form-label"> Categoría: </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" name="categoria_id"
+                                                aria-label="Default select example">
+                                            <option disabled selected>
+                                                Seleccione una categoría
+                                            </option>
                                             @foreach ($categorias as $categoria)
-                                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                                <option value="{{ $categoria->id }}">
+                                                    {{ $categoria->nombre }}
+                                                </option>
                                             @endforeach
                                         </select>
+                                        <i></i>
                                      </div>
                                 </div>
                             </div>
