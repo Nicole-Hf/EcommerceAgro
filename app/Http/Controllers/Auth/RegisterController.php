@@ -95,6 +95,7 @@ class RegisterController extends Controller
             $carrito = new Carrito();
             $carrito->cliente_id = $cliente->id;
             $carrito->save();
+
         }else {
             $user->assignRole('Empresa');
         }
