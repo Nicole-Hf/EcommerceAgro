@@ -30,7 +30,7 @@ class RegisterController extends BaseController
         $user = User::create($input);
         if ($user->role_id == 2) {
             $user->assignRole('Cliente');
-        }else{
+        } else {
             $user->assignRole('Empresa');
         }
         $success['token'] = $user->createToken('MyApp')->accessToken;
