@@ -31,4 +31,8 @@ class Categoria extends Model
 
         return $subcategoria;
     }
+
+    public function getSomeCategories() {
+        return $this->orderBy('id', 'DESC')->orderBy('id', 'DESC')->limit(4)->get();
+    }
 }

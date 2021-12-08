@@ -24,4 +24,8 @@ class CarritoProducto extends Model
     public function producto() {
         return $this->belongsTo(Producto::class,'producto_id');
     }
+
+    public function getCarritoUser($carrito) {
+        return $this->where(['carrito_id' => $carrito])->get();
+    }
 }
