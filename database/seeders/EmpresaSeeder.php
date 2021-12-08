@@ -26,7 +26,7 @@ class EmpresaSeeder extends Seeder
             'perfil'=>'Fungicidas',
             'nit'=>'254784135',
             'tipo_negocio'=>'Comercial',
-            'user_id'=>'4'
+            'user_id'=>'3'
         ]);
     }
 }

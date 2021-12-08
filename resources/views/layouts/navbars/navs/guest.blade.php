@@ -52,8 +52,8 @@
                                                 <i class="ion-close"></i>
                                             </a>
                                             <a href="#">
-                                                <img
-                                                    src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">
+                                                {{--<img
+                                                    src="{{asset($_ENV['IMAGEN_PROD_AGRO'].$item->attributes->image ) }}">--}}
                                                 {{$item->name}}
                                             </a>
                                             <span class=" cart_quantity"> {{$item->quantity}} x

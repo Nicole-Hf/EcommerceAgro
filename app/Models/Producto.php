@@ -39,17 +39,13 @@ class Producto extends Model
 
     public function getAllArticles() {
         return $this->orderBy('id', 'DESC')->get();
-        //return $this->where(['subcategoria_id'=>3])->orderBy('id', 'DESC')->limit(3)->get();
     }
 
     public function getSomeArticles() {
         return $this->orderBy('id', 'DESC')->limit(4)->get();
     }
 
-    public function clasificarProductos($value) {
-        $subcategorias = new Subcategoria();
-        $subcategorias = $subcategorias->getSomeSub($value);
-
-        return $this->where('subcategoria_id->categoria_id', $value)->get();
+    public function orderByCategory($value) {
+        return $this->where(['categoria' => $value])->orderBy('id', 'DESC')->limit(3)->get();
     }
 }

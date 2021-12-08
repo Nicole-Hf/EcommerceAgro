@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carrito;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -75,12 +77,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /*return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);*/
-
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -90,6 +86,16 @@ class RegisterController extends Controller
 
         if ($user->role_id == 2) {
             $user->assignRole('Cliente');
+
+            $cliente = new Cliente();
+            $cliente->nombre = $data['name'];
+            $cliente->user_id = $user->id;
+            $cliente->save();
+
+            $carrito = new Carrito();
+            $carrito->cliente_id = $cliente->id;
+            $carrito->save();
+
         }else {
             $user->assignRole('Empresa');
         }

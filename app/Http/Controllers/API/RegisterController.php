@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Carrito;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
@@ -18,7 +20,6 @@ class RegisterController extends BaseController
             'email' => 'required|email',
             'password' => 'required',
             'role_id' => 'required',
-            //'c_password' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -32,7 +33,19 @@ class RegisterController extends BaseController
             $user->assignRole('Cliente');
         } else {
             $user->assignRole('Empresa');
+=======
+
+            $cliente = new Cliente();
+            $cliente->nombre = $input['name'];
+            $cliente->user_id = $user->id;
+            $cliente->save();
+
+            $carrito = new Carrito();
+            $carrito->cliente_id = $cliente->id;
+            $carrito->save();
+
         }
+
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['name'] = $user->name;
 
@@ -59,4 +72,13 @@ class RegisterController extends BaseController
 
         return response($response, 200);
     }
+
 }
+=======
+
+    public function userInfo() {
+        $user = auth('api')->user();
+        return $user;
+    }
+}
+
