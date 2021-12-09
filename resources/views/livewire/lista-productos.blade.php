@@ -26,7 +26,7 @@
                     <div class="product_action_box">
                         <ul class="list_none pr_action_btn">
                             <li class="add-to-cart">
-                                <form action="{{ route('carrito.add') }}" method="POST" enctype="multipart/form-data">
+                                <!--  <form action="{{ route('carrito.add') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" value="{{ $productoD->id }}" name="id">
                                     <input type="hidden" value="{{ $productoD->nombre }}" name="nombre">
@@ -36,7 +36,24 @@
                                     <button class="add-to-cart-button wishlist">
                                         <i class="icon-basket-loaded"></i>
                                     </button>
-                                </form>
+                                </form> -->
+                                <?php
+                                $data = array(
+                                    "id" => $productoD->id,
+                                    "nombre" =>  $productoD->nombre,
+                                    "precio" => $productoD->precio,
+                                    "imagen" =>  $productoD->imagen,
+                                    "quantity" => "1"
+                                );
+                                ?>
+
+
+                                <button
+                                    wire:click="$emitTo('carrito', 'addTocart','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
+                                    class=" add-to-cart-button wishlist">
+                                    <i class="icon-basket-loaded"></i>
+                                </button>
+
                             </li>
                         </ul>
                     </div>
@@ -83,5 +100,6 @@
 
         </div>
         <div class="row justify-content-center">
-            {{ $productos->links() }} </div>
+            {{ $productos->links() }}
+        </div>
     </div>
