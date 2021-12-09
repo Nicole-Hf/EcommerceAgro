@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//AUTHENTICATION
+//AUTH
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -23,6 +23,7 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+//RESETEAR PASSWORD
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->name('password.request');
@@ -151,7 +152,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.delete');
         Route::get('/{producto}', [ProductoController::class,'show'])
             ->name('productos.show');
-       
+        Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
     });
 });
 
@@ -162,8 +163,7 @@ Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexE
     ->name('home');
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
     ->name('catalogo');
+Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
+    ->name('ver');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
-
-    Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
-    ->name('ver');

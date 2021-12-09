@@ -23,8 +23,16 @@
                     <p>Empresa: {{$product->empresa()->pluck('nombre')->first()}}</p>
                     <p>Subcategoria: {{$product->subcategoria()->pluck('nombre')->first()}}</p>
                     <p class="btn btn-success">Bs {{ $product->precio }}</p>
+                    @can('catalogo')
                     <a class="btn btn-secondary" href="{{ route('catalogo') }}">
-                        <b> Volver</b></a>
+                        <b> Volver</b>
+                    </a>
+                    @endcan
+                    @can('productos.index')
+                        <a class="btn btn-secondary" href="{{ route('home.admin') }}">
+                            <b> Volver</b>
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>

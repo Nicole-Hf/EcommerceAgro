@@ -29,13 +29,6 @@ class UserSeeder extends Seeder
         ])->assignRole('Empresa');
 
         User::create([
-            'name' => 'Tata',
-            'email' => 'tata@gmail.com',
-            'password' => bcrypt('0987654321'),
-            'role_id' => '2'
-        ])->assignRole('Cliente');
-
-        User::create([
             'name' => 'TecnoAgro',
             'email' => 'tecnoagro@gmail.com',
             'password' => bcrypt('0987654321'),

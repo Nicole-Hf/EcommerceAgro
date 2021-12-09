@@ -14,7 +14,8 @@
             {{--Botón agregar--}}
             <div class="row">
                 <div class="col-12 text-left">
-                    <a href="{{ route('subcategorias.create')}}" class="btn btn-outline-success btn-success"> Agregar Subcategoría </a>
+                    <a href="{{ route('subcategorias.create')}}"
+                       class="btn btn-outline-success btn-success"> Agregar Subcategoría </a>
                 </div>
             </div>
             <div class="row">
@@ -42,13 +43,11 @@
                                         <tr>
                                             <td>{{ $subcategoria->id }}</td>
                                             <td>{{ $subcategoria->nombre }}</td>
-                                            <td>{{$subcategoria->categoria_id}}</td>
+                                            <td>{{ $subcategoria->categoria->nombre}}</td>
                                             <td class="td-actions">
-                                                {{--Editar Marca--}}
                                                 <a href="{{ route('subcategorias.edit',$subcategoria->id) }}" class="btn btn-warning">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                {{--Eliminar Marca--}}
                                                 <form action="{{ route('subcategorias.delete',$subcategoria->id) }}" method="post"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('¿Está seguro?')">

@@ -17,8 +17,8 @@ class Producto extends Model
         'imagen',
         'stock',
         'empresa_id',
-        //'marca_id',
-        'subcategoria_id'
+        'subcategoria_id',
+        'categoria'
     ];
 
     public function empresa() {
@@ -35,5 +35,17 @@ class Producto extends Model
 
     public function carritoProducto() {
         return $this->hasMany(CarritoProducto::class,'producto_id');
+    }
+
+    public function getAllArticles() {
+        return $this->orderBy('id', 'DESC')->get();
+    }
+
+    public function getSomeArticles() {
+        return $this->orderBy('id', 'DESC')->limit(4)->get();
+    }
+
+    public function orderByCategory($value) {
+        return $this->where(['categoria' => $value])->orderBy('id', 'DESC')->limit(3)->get();
     }
 }

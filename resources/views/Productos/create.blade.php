@@ -77,22 +77,51 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <label for="nombre" class="col-sm-2 col-form-label"> SubCategoría </label>
+                                    <label for="nombre" class="col-sm-2 col-form-label"> Categoría: </label>
                                     <div class="col-sm-7">
-                                        <select class="form-control" name="subcategoria_id"
+                                        {{--<select class="form-control" name="subcategoria_id"
                                                 aria-label="Default select example">
-                                            {{-- <option selected>Selecciona la apunte del apunte</option> --}}
+                                            <option selected>Seleccione una categoria</option>
                                             @foreach ($subcategorias as $subcategoria)
                                                 <option
                                                     value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
                                             @endforeach
+                                        </select>--}}
+                                        <select class="form-control" name="texto" id="_categoria">
+                                            <option disabled selected>Seleccione una categoria</option>
+                                            @foreach($categorias as $categoria)
+                                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                            @endforeach
                                         </select>
+                                        <br>
+                                        <select class="form-control" name="subcategoria" id="_subcategoria"></select>
                                     </div>
                                     @if ($errors->has('subcategoria_id'))
                                         <span class="error text-danger" for="input-subcategoria_id">
                                             {{ $errors->first('subcategoria_id') }}
                                         </span>
                                     @endif
+                                    <script>
+                                        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+                                        document.getElementById('_categoria').addEventListener('change',(e)=>{
+                                            fetch('subcategorias',{
+                                                method : 'POST',
+                                                body: JSON.stringify({texto : e.target.value}),
+                                                headers:{
+                                                    'Content-Type': 'application/json',
+                                                    "X-CSRF-Token": csrfToken
+                                                }
+                                            }).then(response =>{
+                                                return response.json()
+                                            }).then( data =>{
+                                                var opciones ="<option disabled selected value=''>Elegir Subcategoría</option>";
+                                                for (let i in data.lista) {
+                                                    opciones+= '<option value="'+data.lista[i].id+'">'+data.lista[i].nombre+'</option>';
+                                                }
+                                                document.getElementById("_subcategoria").innerHTML = opciones;
+                                            }).catch(error =>console.error(error));
+                                        })
+                                    </script>
                                 </div>
                             </div>
                             {{--Botones/Footer--}}

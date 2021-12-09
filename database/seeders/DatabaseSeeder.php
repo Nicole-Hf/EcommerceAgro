@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCategoriaSeeder::class);
         $this->call(EmpresaSeeder::class);
         $this->call(ProductoSeeder::class);
-
+        $this->call(OauthClienteSeeder::class);
     }
 }

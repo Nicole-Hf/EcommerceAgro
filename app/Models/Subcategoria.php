@@ -22,4 +22,14 @@ class Subcategoria extends Model
     public function productos() {
         return $this->hasMany(Producto::class,'subcategoria_id');
     }
+
+    public function getSomeSub($value) {
+        return $this->where(['categoria_id'=>$value])->orderBy('id', 'DESC')->get();
+    }
+
+    public function getAllSub() {
+        return $this->orderBy('id', 'DESC')->get();
+    }
+
+
 }

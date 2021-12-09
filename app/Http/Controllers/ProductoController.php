@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Subcategoria;
@@ -21,20 +22,18 @@ class ProductoController extends Controller
         $id_empresa = Empresa::where('user_id', $id)->first();
 
         $productos = DB::table('productos')
-
             ->where('empresa_id', '=', $id_empresa->id)
             ->get();
 
-
-
         return view('Productos.index', compact('productos'));
-
     }
 
     public function create()
     {
-        $subcategorias = Subcategoria::all();
-        return view('Productos.create', compact('subcategorias'));
+        //$subcategorias = Subcategoria::all();
+        $categorias = Categoria::all();
+
+        return view('Productos.create', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -44,12 +43,16 @@ class ProductoController extends Controller
             'descripcion' => 'required',
             'precio' => 'required',
             'stock' => 'required',
-            'subcategoria_id' => 'required',
+            //'subcategoria_id' => 'required',
+            //'categoria' => 'nullable|integer',
         ]);
 
         $id_user = Auth::user()->id;
         $id_empresa = Empresa::where('user_id', $id_user)->first();
         $data['empresa_id'] = $id_empresa->id;
+
+        $data['categoria'] = $request->input('texto');
+        $data['subcategoria_id'] = $request->input('subcategoria');
 
         if (is_null($request->imagen)) {
             return back()->withErrors(['error' => 'Introduce una imagen']);
@@ -83,12 +86,17 @@ class ProductoController extends Controller
             'descripcion' => 'required',
             'precio' => 'required',
             'stock' => 'required',
-            'subcategoria_id' => 'required'
+            'subcategoria_id' => 'required',
+            'categoria' => 'nullable|integer'
         ]);
 
         $id_user = Auth::user()->id;
         $id_empresa = Empresa::where('user_id', $id_user)->first();
         $data['empresa_id'] = $id_empresa->id;
+
+        $subcategoria_id = $request->input('subcategoria_id');
+        $categoria = Subcategoria::where('id', $subcategoria_id)->first();
+        $data['categoria'] = $categoria->categoria_id;
 
         if ($request->hasFile('imagen')) {
             if (!is_null($producto->imagen)) {
@@ -123,7 +131,7 @@ class ProductoController extends Controller
         $producto->load('subcategoria');
         $producto->subcategoria->load('categoria');
 
-        return view('productos.show', ['producto'=>$producto]);
+        return view('productos.show', ['producto' => $producto]);
     }
 
     public function indexAdmin()
@@ -134,5 +142,23 @@ class ProductoController extends Controller
         return view('Productos.indexAdmin', compact('productos'), compact('user'));
 
     }
-   
+
+    public function subcategorias(Request $request) {
+        if (isset($request->texto)) {
+            $subcategorias = Subcategoria::where('categoria_id', $request->texto)->get();
+            return response()->json(
+                [
+                    'lista' => $subcategorias,
+                    'success' => true
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false
+                ]
+            );
+        }
+    }
+
 }
