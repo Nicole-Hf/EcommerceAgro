@@ -42,19 +42,41 @@ class RegisterController extends BaseController
             $carrito->save();
         }
 
-        $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name'] = $user->name;
+        //$success['token'] = $user->createToken('MyApp')->accessToken;
+        //$success['name'] = $user->name;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        $response = [
+            'success' => true,
+            'token' => $user->createToken('MyApp')->accessToken,
+            'id' => $user->id,
+            'name' => $user->name,
+            'cliente' => $cliente->id,
+            'carrito' => $carrito->id,
+        ];
+
+        //return $this->sendResponse($success, 'User register successfully.');
+
+        return response()->json($response, 200);
     }
 
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->accessToken;
-            $success['name'] = $user->name;
-            return $this->sendResponse($success, 'User login successfully.');
+            //$success['token'] = $user->createToken('MyApp')->accessToken;
+            //return $this->sendResponse($success, 'User login successfully.');
+            $user->load('cliente');
+            $user->cliente->load('carrito');
+            $response = [
+                'success' => true,
+                'token' => $user->createToken('MyApp')->accessToken,
+                'id' => $user->id,
+                'name' => $user->name,
+                'cliente' => $user->cliente->id,
+                'carrito' => $user->cliente->carrito->id,
+            ];
+
+            return response()->json($response, 200);
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
         }

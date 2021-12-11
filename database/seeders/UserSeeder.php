@@ -34,5 +34,19 @@ class UserSeeder extends Seeder
             'password' => bcrypt('0987654321'),
             'role_id' => '3'
         ])->assignRole('Empresa');
+
+        User::create([
+            'name' => 'Beatriz Pinzon',
+            'email' => 'bettylafea@gmail.com',
+            'password' => bcrypt('123456789'),
+            'role_id' => '2'
+        ])->assignRole('Cliente');
+
+        User::create([
+            'name' => 'Bugra Gulsoy',
+            'email' => 'bugragulsoy@gmail.com',
+            'password' => bcrypt('123456789'),
+            'role_id' => '2'
+        ])->assignRole('Cliente');
     }
 }

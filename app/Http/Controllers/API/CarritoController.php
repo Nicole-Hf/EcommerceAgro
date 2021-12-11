@@ -27,10 +27,16 @@ class CarritoController extends Controller
     }
 
     public function getCarritoCompra($carrito) {
-        $carrito = new CarritoProducto();
-        $carrito = $carrito->getCarritoUser($carrito);
+        $list = new CarritoProducto();
+        $list = $list->getCarritoUser($carrito);
+        //$list->load('producto');
 
-        return response()->json($carrito);
+        foreach ($list as $item) {
+            $item['cantidad'] = strip_tags($item['cantidad']);
+            $item['cantidad'] = $Content = preg_replace("/&#?[a-z0-9]+;/i"," ",$item['cantidad']);
+        }
+
+        return response()->json($list);
     }
 
 }

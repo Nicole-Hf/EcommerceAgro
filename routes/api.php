@@ -35,4 +35,5 @@ Route::get('/allsubcateg/', [App\Http\Controllers\API\CategoriaController::class
 //CARRITO
 Route::get('/cliente/', [App\Http\Controllers\API\CarritoController::class, 'getclienteAuth']);
 Route::get('/carritoclient/{cliente}', [App\Http\Controllers\API\CarritoController::class, 'getCarritoAuth']);
+Route::get('/carritos/{carrito}/productos', [App\Http\Controllers\API\CarritoController::class, 'getCarritoCompra']);
 
