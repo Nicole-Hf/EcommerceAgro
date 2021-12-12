@@ -25,8 +25,4 @@ class Carrito extends Model
     public function carritoProducto() {
         return $this->hasMany(CarritoProducto::class,'carrito_id');
     }
-
-    public function getCarritoAuth($cliente) {
-        return $this->where(['cliente_id' => $cliente])->get();
-    }
 }
