@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Validator;
-
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
 {
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -32,6 +32,9 @@ class RegisterController extends BaseController
         $user = User::create($input);
         if ($user->role_id == 2) {
             $user->assignRole('Cliente');
+        } else {
+            $user->assignRole('Empresa');
+
 
             $cliente = new Cliente();
             $cliente->nombre = $input['name'];
@@ -92,7 +95,11 @@ class RegisterController extends BaseController
         return response($response, 200);
     }
 
-    public function userInfo() {
+
+
+
+    public function userInfo()
+    {
         $user = auth('api')->user();
         return $user;
     }
