@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCarritosProductosTable extends Migration
+class CreateWishlistProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateCarritosProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('carritos_productos', function (Blueprint $table) {
+        Schema::create('wishlist_product', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('carrito_id');
+            $table->unsignedBigInteger('wishlist_id');
             $table->unsignedBigInteger('producto_id');
             $table->string('nombre',100)->nullable();
-            $table->unsignedBigInteger('cantidad');
-            $table->float('subtotal');
             $table->timestamps();
 
-            $table->softDeletes();
-
-            $table->foreign('carrito_id')->on('carritos')->references('id')
+            $table->foreign('wishlist_id')->on('wishlist')->references('id')
                 ->onDelete('cascade');
             $table->foreign('producto_id')->on('productos')->references('id')
                 ->onDelete('cascade');
@@ -38,6 +34,6 @@ class CreateCarritosProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carritos_productos');
+        Schema::dropIfExists('wishlist_product');
     }
 }

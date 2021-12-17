@@ -15,6 +15,8 @@ class PedidoPago extends Model
         'estado',
         'fechaPago',
         'fechaEnvio',
+        'pais',
+        'ciudad',
         'direccionEnvio',
         'telfCliente',
         'carrito_id',

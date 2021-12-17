@@ -11,6 +11,7 @@ class CarritoProducto extends Model
 
     protected $table = 'carritos_productos';
     protected $fillable = [
+        'nombre',
         'cantidad',
         'subtotal',
         'carrito_id',
@@ -24,4 +25,13 @@ class CarritoProducto extends Model
     public function producto() {
         return $this->belongsTo(Producto::class,'producto_id');
     }
+
+    public function getCarritoUser($cart) {
+        return $this->where(['carrito_id' => $cart])->get();
+    }
+
+    public function getIdCart($cart, $product) {
+        return $this->select('id')->where(['carrito_id' => $cart, 'producto_id' => $product])->get();
+    }
+
 }

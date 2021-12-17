@@ -45,13 +45,16 @@ Route::get('/allsubcateg/',
     [App\Http\Controllers\API\CategoriaController::class, 'getAllSubCat']);
 
 //CARRITO
-Route::get('/carritos/{carrito}/productos',
-    [App\Http\Controllers\API\CarritoController::class, 'getCarritoCompra']);
-Route::post('/cartproduct/store/{carrito}',
+Route::get('/cartproduct/{cart}',
+    [App\Http\Controllers\API\CarritoController::class, 'getCartProduct']);
+Route::post('/cartproduct/store',
     [App\Http\Controllers\API\CarritoController::class, 'addProduct']);
-Route::get('/cart/{cartProd}/destroy/{cart}/product/{product}',
+Route::post('/cartproduct/destroy',
     [App\Http\Controllers\API\CarritoController::class, 'deleteProduct']);
-Route::put('/cart/{cartProd}/add/{cart}/product/{product}',
-    [App\Http\Controllers\API\CarritoController::class, 'moreProduct']);
-Route::put('/cart/{cartProd}/remove/{cart}/product/{product}',
+Route::post('/cartproduct/remove',
     [App\Http\Controllers\API\CarritoController::class, 'removeProduct']);
+
+Route::post('/wishlist/add' , [App\Http\Controllers\API\WishListController::class, 'addProductToList']);
+Route::get('/wishlist/{wishlist}', [App\Http\Controllers\API\WishListController::class, 'index']);
+
+Route::post('/envio/store', [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);

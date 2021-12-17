@@ -11,7 +11,8 @@ class Carrito extends Model
 
     protected $table = 'carritos';
     protected $fillable = [
-        'cliente_id'
+        'cliente_id',
+        'monto',
     ];
 
     public function cliente() {
