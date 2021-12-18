@@ -22,5 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(EmpresaSeeder::class);
         $this->call(ProductoSeeder::class);
         $this->call(OauthClienteSeeder::class);
+        $this->call(ClienteSeeder::class);
+        $this->call(CarritoSeeder::class);
+        $this->call(WishlistSeeder::class);
+        $this->call(TarjetaSeeder::class);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Carrito;
 use App\Models\Cliente;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -96,6 +97,9 @@ class RegisterController extends Controller
             $carrito->cliente_id = $cliente->id;
             $carrito->save();
 
+            $wishlist = new Wishlist();
+            $wishlist->cliente_id = $cliente->id;
+            $wishlist->save();
         }else {
             $user->assignRole('Empresa');
         }

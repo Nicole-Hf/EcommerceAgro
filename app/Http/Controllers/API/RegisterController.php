@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Carrito;
 use App\Models\Cliente;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
@@ -40,21 +41,43 @@ class RegisterController extends BaseController
             $carrito = new Carrito();
             $carrito->cliente_id = $cliente->id;
             $carrito->save();
+
+            $wishlist = new Wishlist();
+            $wishlist->cliente_id = $cliente->id;
+            $wishlist->save();
         }
 
-        $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name'] = $user->name;
+        $response = [
+            'success' => true,
+            'token' => $user->createToken('MyApp')->accessToken,
+            'id' => $user->id,
+            'name' => $user->name,
+            'cliente' => $cliente->id,
+            'carrito' => $carrito->id,
+            'wishlist' => $wishlist->id,
+        ];
 
-        return $this->sendResponse($success, 'User register successfully.');
+        return response()->json($response, 200);
     }
 
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->accessToken;
-            $success['name'] = $user->name;
-            return $this->sendResponse($success, 'User login successfully.');
+            $user->load('cliente');
+            $user->cliente->load('carrito');
+            $user->cliente->load('wishlist');
+            $response = [
+                'success' => true,
+                'token' => $user->createToken('MyApp')->accessToken,
+                'id' => $user->id,
+                'name' => $user->name,
+                'cliente' => $user->cliente->id,
+                'carrito' => $user->cliente->carrito->id,
+                'wishlist' => $user->cliente->wishlist->id,
+            ];
+
+            return response()->json($response, 200);
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
         }

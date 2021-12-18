@@ -15,7 +15,7 @@ class Cliente extends Model
         'nombre',
         'telefono',
         'razonSocial',
-        'user_id'
+        'user_id',
     ];
 
     public function tarjetas() {
@@ -30,4 +30,7 @@ class Cliente extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
+    public function wishlist() {
+        return $this->hasOne(Wishlist::class,'cliente_id');
+    }
 }
