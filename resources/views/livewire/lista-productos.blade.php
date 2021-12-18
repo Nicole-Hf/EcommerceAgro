@@ -11,11 +11,25 @@
             <div class="card">
                 <div class="image-container">
                     <div class="first">
+
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="wishlist">
+                            <?php
+                            $data = array(
+                                "id" => $productoD->id,
+                                "nombre" =>  $productoD->nombre,
+                                "precio" => $productoD->precio,
+                                "imagen" =>  $productoD->imagen,
+                                "quantity" => "1"
+                            );
+                            ?>
+                            <button
+                                wire:click="$emitTo('lista-deseos', 'addToWishList','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
+                                class=" wishlist">
                                 <i class="fa fa-heart-o"></i>
-                            </span>
+                            </button>
+
                         </div>
+
                         {{--<a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
                         <i class="fa fa-chevron-circle-right"></i>
                         <b class="bg-gradient-warning"> LEER MAS</b>

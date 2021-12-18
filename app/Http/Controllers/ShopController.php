@@ -14,10 +14,12 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        $wish_list = app('wishlist');
         $productos = Producto::all();
-     //   dd($productos)
+        //   dd($productos)
         return view('Catalogo.index', ['productos' => $productos]);
     }
 
@@ -28,4 +30,5 @@ class ShopController extends Controller
         return view('Catalogo.detalle', compact('product'));
     }
 
+    
 }

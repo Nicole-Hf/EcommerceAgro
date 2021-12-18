@@ -29,10 +29,19 @@
                         <i class="material-icons">fingerprint</i> {{ __('Inicia Sesión') }}
                     </a>
                 </li>
+
+                <!-- Lista de deseo -->
+                <li>
+                    <livewire:lista-deseos />
+                </li>
+
                 <!-- Añadir carrito -->
                 <li>
                     <livewire:carrito />
                 </li>
+
+
+
 
             </ul>
         </div>

@@ -48,6 +48,13 @@
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
                     </div>
                 </li>
+                 <!-- Lista de deseo -->
+               
+                <li>
+                    <livewire:lista-deseos />
+                </li>
+               
+
                 @can('carrito.add')
                 <li>
                     <livewire:carrito />
