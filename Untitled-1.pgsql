@@ -23,3 +23,5 @@ insert into productotest (nombre,descripcion, precio,imagen, stock, empresa_id, 
 select * from productotest;
  delete from productotest
   where nombre='tomato.sem';
+
+select * from carritos;

@@ -42,6 +42,17 @@ Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'r
 Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])
     ->name('carrito.updateItem');
 
+//WISHLIST
+Route::POST('/wishList', [App\Http\Controllers\WishListController::class, 'addTowishList'])
+    ->name('ListaDeDeseos.add');
+Route::get('/wishList/ListaDeDeseos', [App\Http\Controllers\WishListController::class, 'index'])
+    ->name('Catalogo.ListaDeDeseos');
+Route::POST('/wishList/eliminar', [App\Http\Controllers\WishListController::class, 'remove'])
+    ->name('ListaDeDeseos.eliminar');
+Route::POST('/wishList/updateItem', [App\Http\Controllers\WishListController::class, 'actualizarItemWishList'])
+    ->name('ListaDeDeseos.updateItem');
+
+
 Route::middleware(['auth'])->group(function () {
     //usuarios
     Route::group(['prefix' => 'users'], function () {
@@ -135,22 +146,22 @@ Route::middleware(['auth'])->group(function () {
             ->name('empresas.store');
     });
 
-    Route::group(['prefix'=>'productos'],function () {
-        Route::get('/index',[ProductoController::class, 'index'])
+    Route::group(['prefix' => 'productos'], function () {
+        Route::get('/index', [ProductoController::class, 'index'])
             ->name('productos.index');
-        Route::get('/admin-index',[ProductoController::class, 'indexAdmin'])
+        Route::get('/admin-index', [ProductoController::class, 'indexAdmin'])
             ->name('productos.indexAdmin');
-        Route::get('/create',[ProductoController::class,'create'])
+        Route::get('/create', [ProductoController::class, 'create'])
             ->name('productos.create');
-        Route::post('/store',[ProductoController::class,'store'])
+        Route::post('/store', [ProductoController::class, 'store'])
             ->name('productos.store');
-        Route::get('/edit/{producto}',[ProductoController::class,'edit'])
+        Route::get('/edit/{producto}', [ProductoController::class, 'edit'])
             ->name('productos.edit');
-        Route::post('/update/{producto}',[ProductoController::class,'update'])
+        Route::post('/update/{producto}', [ProductoController::class, 'update'])
             ->name('productos.update');
-        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
+        Route::delete('/delete/{producto}', [ProductoController::class, 'destroy'])
             ->name('productos.delete');
-        Route::get('/{producto}', [ProductoController::class,'show'])
+        Route::get('/{producto}', [ProductoController::class, 'show'])
             ->name('productos.show');
         Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
     });

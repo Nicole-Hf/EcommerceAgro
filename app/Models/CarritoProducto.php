@@ -18,20 +18,23 @@ class CarritoProducto extends Model
         'producto_id'
     ];
 
-    public function carrito() {
-        return $this->belongsTo(Carrito::class,'carrito_id');
+    public function carrito()
+    {
+        return $this->belongsTo(Carrito::class, 'carrito_id');
     }
 
-    public function producto() {
-        return $this->belongsTo(Producto::class,'producto_id');
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
 
-    public function getCarritoUser($cart) {
+    public function getCarritoUser($cart)
+    {
         return $this->where(['carrito_id' => $cart])->get();
     }
 
-    public function getIdCart($cart, $product) {
+    public function getIdCart($cart, $product)
+    {
         return $this->select('id')->where(['carrito_id' => $cart, 'producto_id' => $product])->get();
     }
-
 }
