@@ -11,4 +11,7 @@ class CartController extends Controller
     {
         return view('carrito.estado');
     }
+
+    /* se usa el paquete livewire que permite crear componente
+ir a la ruta livewire CarritoEstado   */
 }
