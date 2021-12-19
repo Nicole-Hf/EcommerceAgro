@@ -12,15 +12,13 @@ class PedidoPago extends Model
     protected $table = 'pedidos_pagos';
     protected $fillable = [
         'monto',
-        'estado',
-        'fechaPago',
         'fechaEnvio',
-        'pais',
+        'departamento',
         'ciudad',
         'direccionEnvio',
         'telfCliente',
         'carrito_id',
-        'tarjeta_id'
+        'tarjeta_id',
     ];
 
     public function carrito() {

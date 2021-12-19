@@ -15,9 +15,10 @@ class CreateTarjetasTable extends Migration
     {
         Schema::create('tarjetas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('numero');
+            $table->string('nombre');
+            $table->string('numero');
             $table->unsignedSmallInteger('cvv');
-            $table->date('fecha')->nullable();
+            $table->string('fecha')->nullable();
             $table->unsignedBigInteger('cliente_id');
             $table->timestamps();
 

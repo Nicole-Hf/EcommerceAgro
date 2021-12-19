@@ -165,6 +165,18 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.show');
         Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
     });
+
+    Route::group(['prefix'=> 'payment'],function(){
+        Route::get('/index',[TarjetaController::class,'index'])->name('tarjeta.index');
+        Route::get('/create',[TarjetaController::class,'create'])->name('tarjeta.create');
+        Route::post('/store',[TarjetaController::class,'store'])->name('tarjeta.store');
+        Route::delete('/delete/{tarjeta}',[TarjetaController::class,'delete'])->name('tarjeta.delete');
+    });
+
+    Route::group(['prefix'=>'pedido'],function(){
+        Route::get('/index/{carrito}',[PedidoController::class,'index'])->name('pedido.index');
+        Route::post('/store/{carrito}',[PedidoController::class,'store'])->name('pedido.store');
+    });
 });
 
 Auth::routes();
