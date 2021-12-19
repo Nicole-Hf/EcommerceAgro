@@ -95,7 +95,7 @@
                         </dd>
                     </dl>
                     <hr>
-                    <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
+                    <a href="{{route('pedido.index',$item->carrito_id)}}" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
                         Realizar Compra
                     </a>
 
