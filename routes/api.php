@@ -56,5 +56,6 @@ Route::post('/cartproduct/remove',
 
 Route::post('/wishlist/add' , [App\Http\Controllers\API\WishListController::class, 'addProductToList']);
 Route::get('/wishlist/{wishlist}', [App\Http\Controllers\API\WishListController::class, 'index']);
+Route::post('/wishlist/exist' , [App\Http\Controllers\API\WishListController::class, 'inList']);
 
 Route::post('/envio/store', [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);

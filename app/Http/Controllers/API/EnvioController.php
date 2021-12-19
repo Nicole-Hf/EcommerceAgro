@@ -33,7 +33,7 @@ class EnvioController extends Controller
         $envio->tarjeta_id = $request->tarjeta_id;
         $envio->save();
 
-        return response()->json($envio, 200);
+        return response()->json($envio);
     }
 
     public function showFactura() {

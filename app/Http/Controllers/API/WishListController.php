@@ -54,7 +54,7 @@ class WishListController extends Controller {
             'wishlist_id' => $wishlist_id])->first();
 
         if($listItem){
-            return response()->json('El producto ya existe', 200);
+            $listItem->delete();
         } else {
             $wishlist = WishlistItem::create([
                 'wishlist_id' => $wishlist_id,
@@ -64,5 +64,28 @@ class WishListController extends Controller {
         }
 
         return response()->json("Se añadió a la lista", 200);
+    }
+
+    public function inList(Request $request) {
+        $request->validate([
+            'producto_id' => 'required',
+            'wishlist_id' => 'required',
+        ]);
+
+        $product_id = $request->producto_id;
+        $wishlist_id = $request->wishlist_id;
+
+        $listItem = WishlistItem::where(['producto_id' => $product_id,
+            'wishlist_id' => $wishlist_id])->first();
+
+        if($listItem) {
+            return response()->json([
+                'success' => 'true'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => 'false'
+            ], 200);
+        }
     }
 }
