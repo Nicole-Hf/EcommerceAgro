@@ -123,7 +123,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'carrito.eliminar',
             'description' => 'Eliminar productos del carrito'])->assignRole($role2);
         Permission::create(['name' => 'carrito.updateItem',
-            'description' => 'Actualizar cantidad del carrito'])->assignRole($role2);
+            'description' => 'Actualizar cantidad del carrito'])->assignRole($role2);     
 
         //CATALOGO
         Permission::create(['name' => 'catalogo',

@@ -5728,6 +5728,7 @@ a.nav-link.cart_trigger.btn-shopping-cart {
 }
 .main-panel > .navbar.navbar-absolute {
     position: relative;
+    background-color: #191919 !important;
 }
 
 /*detalle de carrito*/
@@ -5790,7 +5791,7 @@ a {
     color: #212529;
 }
 .dtl .form-control {
-    width: 50%;
+    width: 30%;
 }
 .dtl .btn.btn-out {
     outline: 1px solid #fff;
@@ -5833,5 +5834,36 @@ a {
 }
 .row.box-search .row.box-search {
     margin: 0;
+}
+
+.quantity {
+    display: table;
+}
+
+.quantity .minus,
+.quantity .plus {
+    background-color: #eee;
+    border: 0;
+    border-radius: 19px;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin: 4px;
+    padding: 0;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+.quantity .qty {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    float: left;
+    height: 36px;
+    margin: 3px;
+    padding: 0;
+    text-align: center;
+    width: 50px;
 }
 /* Custon css end */

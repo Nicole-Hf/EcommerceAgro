@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use App\Models\CarritoProducto;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -41,6 +43,7 @@ class LoginController extends Controller
     public function redirectPath()
     {
         if (auth()->user()->role_id == '2') {
+
             return '/';
         } elseif (auth()->user()->role_id == '3') {
             return '/empresa/home';
