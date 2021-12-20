@@ -7,15 +7,18 @@ use App\Models\Producto;
 use App\Models\WishlistItem;
 use Livewire\WithPagination;
 
+use Illuminate\Support\Collection;
+
 class ListaProductos extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $term;
-    public $items = [];
+    public $items = null;
 
     public function getWishlistCliente()
     {
+        $items = collect([]);
         if (auth()->check()) {
             $idUser = auth()->user()->id;
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
