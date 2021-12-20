@@ -8,7 +8,7 @@ use App\Models\CarritoProducto;
 
 class Carrito extends Component
 {
-    protected $listeners = ['refreshCarrito' =>  '$refresh', 'addTocart' => 'addToCart'];
+    protected $listeners = ['refreshCarrito' =>  '$refresh', 'addTocart' => 'addToCart', 'test' => 'test'];
     public $text = "";
     public $cantidad = 0;
     public $total = 0;

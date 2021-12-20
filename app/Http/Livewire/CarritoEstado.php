@@ -46,7 +46,6 @@ class CarritoEstado extends Component
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
             $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
-                // ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.cantidad');
             $this->cantidad = $resultado;
         }
@@ -74,7 +73,6 @@ class CarritoEstado extends Component
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
             $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
-                // ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.subtotal');
             $this->total = $resultado;
         }

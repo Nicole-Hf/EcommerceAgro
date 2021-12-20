@@ -2,54 +2,66 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\WishlistItem;
 use Livewire\Component;
 
 class ListaDeseos extends Component
 {
-    protected $listeners = ['refreshCarrito' =>  '$refresh', 'addToWishList' => 'addToWishList'];
+
+    protected $listeners = ['refreshWishlist' =>  '$refresh', 'addToWishList' => 'addToWishList'];
+    public $text = "";
+    public $cantidad = 0;
+
     public function addToWishList($id, $nombre, $precio, $imagen, $quantity)
     {
-        /* $idUser = auth()->user()->id;
-        $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-        $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+        if (auth()->check()) {
+            $idUser = auth()->user()->id;
+            $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
+            $wishlist = \App\Models\wishlist::where('cliente_id', $cliente->id)->first();
+
+            $resultado = WishlistItem::join("productos", "productos.id", "=", "wishlist_product.producto_id")
+                ->select("wishlist_product.*", "productos.nombre", "productos.imagen", "productos.precio")
+                ->where("wishlist_product.wishlist_id", $wishlist->id)->where("productos.id", $id)->get();
 
 
-        $detalle = CarritoProducto::create([
-            'carrito_id' => $carrito->id,
-            'cliente_id' => $idUser,
-            'producto_id' => $id,
-            'cantidad' => $quantity,
-            'subtotal' => (float)$quantity * (float)$precio
-        ]);
- */
-
-        $wish_list = app('wishlist');
-
-        $allowed  = ['id',$id ];
-        $filtered = array_filter(
-            $wish_list->getContent()->toArray(),
-            function ($key) use ($allowed) {
-                return in_array($key, $allowed);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
-if( sizeof($filtered)==0){
-        $wish_list->add([
-            /* 'idCarrito' => $carrito->id, */
-            'id' => $id,
-            'name' => $nombre,
-            'price' => $precio,
-            'quantity' => $quantity,
-            'attributes' => array(
-                'image' => $imagen,
-            )
-
-        ]);
-}
+            if ($resultado->count() === 0) {
+                $detalle = WishlistItem::create([
+                    'wishlist_id' => $wishlist->id,
+                    'cliente_id' => $idUser,
+                    'producto_id' => $id,
+                    'nombre' => $nombre,
+                ]);
+            } else {
+                $this->removeItem($resultado->first()->id);
+            }
+        }
+        $this->dispatchBrowserEvent('input-wishlist', ['id' => $id]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
     }
+
+    public function removeItem($id)
+    {
+        $result2 = WishlistItem::where('id', $id)->delete();
+        $this->emitTo('lista-deseos', 'refreshWishlist');
+    }
+
+    public function getCantidad()
+    {
+        if (auth()->check()) {
+            $idUser = auth()->user()->id;
+            $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
+            $wishlist = \App\Models\wishlist::where('cliente_id', $cliente->id)->first();
+            $resultado = WishlistItem::join("productos", "productos.id", "=", "wishlist_product.producto_id")
+
+                ->where("wishlist_product.wishlist_id", $wishlist->id)->count();
+            $this->cantidad = $resultado;
+        }
+    }
+
     public function render()
     {
+
+        $this->getCantidad();
         return view('livewire.lista-deseos');
     }
 }
