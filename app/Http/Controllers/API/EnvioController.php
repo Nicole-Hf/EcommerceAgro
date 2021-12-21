@@ -39,20 +39,13 @@ class EnvioController extends Controller
     public function getTarjetas($cliente) {
         $cards = new Tarjeta();
         $cards = $cards->getTarjetasUser($cliente);
-        $listcards = [];
 
-        foreach ($cards as $card) {
-            $creditcard = new \stdClass();
-            $creditcard->id = $card->id;
-            $creditcard->nombre = $card->nombre;
-            $creditcard->numero = $card->numero;
-            $creditcard->cvv = $card->cvv;
-            $creditcard->fecha = $card->fecha;
-            $creditcard->cliente_id = $card->cliente_id;
-            array_push($listcards, $creditcard);
+        foreach ($cards as $item) {
+            $item['nombre'] = strip_tags($item['nombre']);
+            $item['nombre'] = $Content = preg_replace("/&#?[a-z0-9]+;/i"," ",$item['nombre']);
         }
 
-        return response()->json($listcards);
+        return response()->json($cards);
     }
 
 }
