@@ -16,10 +16,9 @@ class CreatePedidosPagosTable extends Migration
         Schema::create('pedidos_pagos', function (Blueprint $table) {
             $table->id();
             $table->float('monto');
-            $table->string('estado',20);
             $table->dateTime('fechaPago');
             $table->date('fechaEnvio')->nullable();
-            $table->string('pais',100);
+            $table->string('departamento',100);
             $table->string('ciudad',100);
             $table->string('direccionEnvio',200);
             $table->string('telfCliente',15)->nullable();

@@ -15,6 +15,7 @@ class TarjetaSeeder extends Seeder
     public function run()
     {
         Tarjeta::create([
+            'nombre' => 'Credit Card 1',
             'numero' => '2001557896',
             'cvv' => '1234',
             'fecha' => '12/12/22',

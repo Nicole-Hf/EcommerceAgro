@@ -12,10 +12,9 @@ class PedidoPago extends Model
     protected $table = 'pedidos_pagos';
     protected $fillable = [
         'monto',
-        'estado',
         'fechaPago',
         'fechaEnvio',
-        'pais',
+        'departamento',
         'ciudad',
         'direccionEnvio',
         'telfCliente',

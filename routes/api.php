@@ -59,3 +59,4 @@ Route::get('/wishlist/{wishlist}', [App\Http\Controllers\API\WishListController:
 Route::post('/wishlist/exist' , [App\Http\Controllers\API\WishListController::class, 'inList']);
 
 Route::post('/envio/store', [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);
+Route::get('/creditcards/{cliente}', [\App\Http\Controllers\API\EnvioController::class, 'getTarjetas']);

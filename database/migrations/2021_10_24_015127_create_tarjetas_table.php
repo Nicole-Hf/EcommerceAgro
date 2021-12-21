@@ -15,6 +15,7 @@ class CreateTarjetasTable extends Migration
     {
         Schema::create('tarjetas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->unsignedBigInteger('numero');
             $table->unsignedSmallInteger('cvv');
             $table->date('fecha')->nullable();
