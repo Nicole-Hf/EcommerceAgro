@@ -18,7 +18,15 @@ class TarjetaSeeder extends Seeder
             'nombre' => 'Credit Card 1',
             'numero' => '2001557896',
             'cvv' => '1234',
-            'fecha' => '12/12/22',
+            'fecha' => '12/22',
+            'cliente_id' => '1',
+        ]);
+
+        Tarjeta::create([
+            'nombre' => 'Credit Card 2',
+            'numero' => '150427996',
+            'cvv' => '2245',
+            'fecha' => '06/25',
             'cliente_id' => '1',
         ]);
     }

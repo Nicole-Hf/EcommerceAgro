@@ -18,7 +18,7 @@ class CreateTarjetasTable extends Migration
             $table->string('nombre');
             $table->unsignedBigInteger('numero');
             $table->unsignedSmallInteger('cvv');
-            $table->date('fecha')->nullable();
+            $table->string('fecha')->nullable();
             $table->unsignedBigInteger('cliente_id');
             $table->timestamps();
 
