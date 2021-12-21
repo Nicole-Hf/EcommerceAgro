@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -153,6 +154,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{producto}', [ProductoController::class,'show'])
             ->name('productos.show');
         Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
+    });
+
+    //facturas
+    Route::group(['prefix'=>'facturas'],function(){
+        Route::get('/show', [FacturaController::class, 'show'])
+        ->name('facturas.show');
+        Route::get('/pdf', [FacturaController::class, 'pdf'])
+        ->name('facturas.pdf');
     });
 });
 

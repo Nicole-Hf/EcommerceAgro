@@ -106,6 +106,19 @@
                 @endcan
             </li>
 
+                {{--Facturas--}}
+
+                <li class="nav-item{{ $activePage == 'facturas' ? ' active' : '' }}">
+                   @if (auth()->user()->role_id == 2)
+                   <a class="nav-link" href="{{route('facturas.show')}}">
+                    <i class="material-icons">description</i>
+                    <span>{{ __('Facturas') }}</span>
+                </a>
+                   @endif
+                       
+                    
+                </li>
+            
             {{--REPORTES--}}
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
