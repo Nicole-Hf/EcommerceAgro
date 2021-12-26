@@ -21,23 +21,47 @@
                                 "imagen" =>  $productoD->imagen,
                                 "quantity" => "1"
                             );
-                            /* añadir a lista de deseo */
                             ?>
-                            <button id="inputwish-{{$productoD->id}}" value=""
+                            <button
                                 wire:click="$emitTo('lista-deseos', 'addToWishList','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
-                                class=" wishlist {{$wishlistproductos->contains('producto_id',$productoD->id)?'wishlist-visite':''}}">
+                                class=" wishlist">
                                 <i class="fa fa-heart-o"></i>
                             </button>
+
                         </div>
 
+                        {{--<a class="btn btn-warning" href="{{ route('ver', $productoD->id) }}">
+                        <i class="fa fa-chevron-circle-right"></i>
+                        <b class="bg-gradient-warning"> LEER MAS</b>
+                        </a>--}}
                     </div>
                     <img src='{{ asset($productoD->imagen) }}' class="img-fluid rounded thumbnail-image"
                         style="height: 200px; width: 200px;display: block;" alt="{{ $productoD->imagen }}">
                     <div class="product_action_box">
                         <ul class="list_none pr_action_btn">
                             <li class="add-to-cart">
+                                <!--  <form action="{{ route('carrito.add') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="{{ $productoD->id }}" name="id">
+                                    <input type="hidden" value="{{ $productoD->nombre }}" name="nombre">
+                                    <input type="hidden" value="{{ $productoD->precio }}" name="precio">
+                                    <input type="hidden" value="{{ $productoD->imagen }}" name="imagen">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <button class="add-to-cart-button wishlist">
+                                        <i class="icon-basket-loaded"></i>
+                                    </button>
+                                </form> -->
+                                <?php
+                                $data = array(
+                                    "id" => $productoD->id,
+                                    "nombre" =>  $productoD->nombre,
+                                    "precio" => $productoD->precio,
+                                    "imagen" =>  $productoD->imagen,
+                                    "quantity" => "1"
+                                );
+                                ?>
 
-                                <!-- añadir a carrito -->
+
                                 <button
                                     wire:click="$emitTo('carrito', 'addTocart','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
                                     class=" add-to-cart-button wishlist">
@@ -92,11 +116,4 @@
         <div class="row justify-content-center">
             {{ $productos->links() }}
         </div>
-
-        <script>
-        window.addEventListener('input-wishlist', event => {
-            const ele = document.querySelector('#inputwish-' + event.detail.id);
-            ele.classList.toggle("wishlist-visite");
-        });
-        </script>
     </div>
