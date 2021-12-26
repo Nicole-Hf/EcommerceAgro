@@ -5510,9 +5510,7 @@ li.add-to-cart {
     align-items: center;
     border-radius: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border: 1px;
 }
-
 /* cart menu */
 .navbar .navbar-nav li {
     list-style: none;
@@ -5633,7 +5631,7 @@ button.add-to-cart-button.wishlist {
     margin: 0;
     border: 0;
     font-size: 18px;
-    color: #2c2727;
+    color: #333333;
     cursor: pointer;
 }
 
@@ -5819,7 +5817,7 @@ a {
 .dtl .btn-light:hover {
     color: #ffffff;
     background-color: #f44336;
-    border-color: #e6dede;
+    border-color: #f44336;
 }
 
 .dtl .btn-apply {
@@ -5867,10 +5865,5 @@ a {
     padding: 0;
     text-align: center;
     width: 50px;
-}
-.wishlist-visite {
-    background-color: rgba(245, 58, 39, 0.68);
-    color: rgba(249, 242, 242, 0.65);
-    border: 1 solid rgba(249, 242, 242, 0.65);
 }
 /* Custon css end */

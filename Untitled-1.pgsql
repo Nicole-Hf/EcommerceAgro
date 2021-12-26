@@ -25,4 +25,3 @@ select * from productotest;
   where nombre='tomato.sem';
 
 select * from carritos;
-select * from wishlist,wishlist_product;
