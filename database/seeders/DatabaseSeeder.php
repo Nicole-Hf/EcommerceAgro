@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Categoria;
+use Factu;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OauthClienteSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(CarritoSeeder::class);
+        $this->call(FactuSeeder::class);
     }
 }

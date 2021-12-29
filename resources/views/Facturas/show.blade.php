@@ -18,7 +18,7 @@
                             <table class="table">
                                 {{--Cabecera de Tabla--}}
                                 <thead class="text-primary text-success">                                
-                                <th>#</th>
+                              
                                 <th>Nro<i class="fas fa-rockrms    "></i></th>
                                 <th>Detalle</th>
                                 <th>Monto</th>
@@ -30,11 +30,13 @@
                                 @foreach($facturas as $factura)                                
                                     
                                     <tr>
-                                        <td>{{ $factura->id }}</td>
-                                       <td>{{ $factura->nroFactura}}</td>
-                                       <td>{{ $producto->pluck('nombre')->first()}}</td>                                       
+                                        
+                                       <td>{{ $factura->id}}</td>
+                                       <td>{{ $factura->id}}</td>
                                        <td>{{ $factura->PedidoPago()->pluck('monto')->first()}}</td>
-                                       <td>{{ $factura->fecha }}</td>
+                                       <td>{{ $factura->fecha}}</td>
+                                      
+                                       
                                         <td class="td-actions">
                                             <a href="{{ route('facturas.pdf') }}"
                                                 class="btn btn-info text-center">
