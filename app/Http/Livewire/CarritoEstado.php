@@ -74,6 +74,9 @@ class CarritoEstado extends Component
             $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.subtotal');
+            $carrito->update([
+                'monto' => $resultado
+            ]);
             $this->total = $resultado;
         }
     }

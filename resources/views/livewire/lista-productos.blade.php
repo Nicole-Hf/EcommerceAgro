@@ -25,7 +25,7 @@
                             ?>
                             <button id="inputwish-{{$productoD->id}}" value=""
                                 wire:click="$emitTo('lista-deseos', 'addToWishList','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
-                                class=" wishlist {{$wishlistproductos?->contains('producto_id',$productoD->id)?'wishlist-visite':''}}">
+                                class=" wishlist {{ empty( $wishlistproductos)? '': ($wishlistproductos->contains('producto_id',$productoD->id)?'wishlist-visite':'')}}">
                                 <i class="fa fa-heart-o"></i>
                             </button>
                         </div>
