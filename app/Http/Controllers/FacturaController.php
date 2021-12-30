@@ -26,9 +26,8 @@ class FacturaController extends Controller
             ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
             ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
             ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
-            ->select("*")->get(); //->where("cliente_id", $cliente->id)->get();
-        dump($cliente);
-        dump($resulPago);
+            ->select("*")->where("cliente_id", $cliente->id)->get(); //->get();
+
 
         $facturas = Factura::all();
         /* $carrito = CarritoProducto::all();
@@ -43,7 +42,7 @@ class FacturaController extends Controller
             echo $prod->nombre;
         }*/
 
-        return view('facturas.show', compact('facturas', 'resulPago'));
+        return view('facturas.show', compact('resulPago'));
     }
 
     public function pdf()

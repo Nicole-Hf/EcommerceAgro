@@ -22,19 +22,23 @@
                                     <th>Nro<i class="fas fa-rockrms    "></i></th>
                                     <th>Nombre</th>
                                     <th>Detalle</th>
-                                    <th>Monto</th>
+                                    <th>cantidad</th>
+                                    <th>SubTotal</th>
                                     <th>Fecha</th>
                                     <th>Accion</th>
                                 </thead>
                                 <tbody>
 
-                                    @foreach($facturas as $factura)
-
+                                    @foreach($resulPago as $factura)
+                                    <!-- si quieres sacar algo solo llama a os atributos ya no necesitas hacer consultas aqui-->
                                     <tr>
                                         <td>{{ $factura->id }}</td>
                                         <td>{{ $factura->nroFactura}}</td>
-                                        <td></td>
-                                        <td>{{ $factura->PedidoPago()->pluck('monto')->first()}}</td>
+                                        <td>{{ $factura->nombre}}</td>
+                                        <td>{{ $factura->descripcion}}</td>
+                                        <td>{{ $factura->cantidad}}</td>
+                                        <td>{{ $factura->subtotal}}</td>
+                                        <!--  <td>{{ $factura->monto}}</td> -->
                                         <td>{{ $factura->fecha }}</td>
                                         <td class="td-actions">
                                             <a href="{{ route('facturas.pdf') }}" class="btn btn-info text-center">
