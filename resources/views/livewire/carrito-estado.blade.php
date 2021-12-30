@@ -20,7 +20,7 @@
                                 <td>
                                     <figure class="itemside align-items-center">
                                         <div class="aside">
-                                            <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->imagen ) }}"
+                                            <img src="{{ asset('/storage/'.$item->imagen ) }}"
                                                 class="img-sm">
                                         </div>
                                         <figcaption class="info">
@@ -95,7 +95,7 @@
                         </dd>
                     </dl>
                     <hr>
-                    <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
+                    <a href="{{route('pedido.index')}}" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
                         Realizar Compra
                     </a>
 

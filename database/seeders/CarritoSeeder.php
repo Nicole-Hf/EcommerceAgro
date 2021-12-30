@@ -29,7 +29,7 @@ class CarritoSeeder extends Seeder
             'carrito_id' => '1',
             'producto_id' => '1',
             'nombre' => 'super macollo',
-            'cantidad' => '4',
+            'cantidad' => '3',
             'subtotal' => '180'
         ]);
 

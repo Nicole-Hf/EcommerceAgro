@@ -59,14 +59,14 @@ class ProductoController extends Controller
         }
 
         if ($request->hasFile('imagen')) {
-            //$data['imagen'] = Storage::disk('public')->put('imagenes', $request->imagen);
-            $nombre = Str::random(10) . $request->file('imagen')->getClientOriginalName();
+            $data['imagen'] = Storage::disk('public')->put('imagenes', $request->imagen);
+            /*$nombre = Str::random(10) . $request->file('imagen')->getClientOriginalName();
             $ruta = storage_path() . '\app\public\imagenes/' . $nombre;
             Image::make($request->file('imagen'))
                 ->resize(150, 150)->save($ruta);
 
             $url = '/storage/imagenes/' . $nombre;
-            $data['imagen'] = $url;
+            $data['imagen'] = $url;*/
         }
 
         $producto = Producto::create($data);

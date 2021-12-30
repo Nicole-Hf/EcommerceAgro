@@ -62,7 +62,15 @@
                     @endif
                 @endif
             </li>
-
+             {{--TARJETAS--}}
+             <li class="nav-item{{ $activePage == 'tarjetas' ? ' active' : '' }}">
+                @if (auth()->user()->role_id == '2')
+                    <a class="nav-link" href="{{route('tarjeta.index')}}">
+                        <i class="material-icons">shoping_card</i>
+                        <span>{{ __('Tarjetas') }}</span>
+                    </a>
+                @endif
+            </li>
             {{--CATEGORIAS--}}
             <li class="nav-item{{ ($activePage == 'categoria' || $activePage == 'subcategoria') ? ' active' : '' }}">
                 @can('categorias.index')

@@ -1,5 +1,4 @@
-@extends('layouts.main', ['activePage'=>'productos', 'titlePage'=>'Productos'])
-
+@extends('layouts.main', ['activePage'=>'tarjetas', 'titlePage'=>'Tarjeta'])
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -15,17 +14,16 @@
             {{--Botón agregar--}}
             <div class="row">
                 <div class="col-12 text-left">
-                    <a href="{{route('productos.create')}}" class="btn btn-outline-success btn-success">
-                        Agregar Producto
-                    </a>
+                    <a href="{{ route('tarjeta.create')}}"
+                       class="btn btn-outline-success btn-success"> Agregar Tarjeta </a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="card">
                         {{--Header--}}
                         <div class="card-header card-header-success">
-                            <h4 class="card-title"> Listado de Productos </h4>
+                            <h4 class="card-title"> Listado de Tarjetas </h4>
                         </div>
                         {{--Body--}}
                         <div class="card-body">
@@ -34,41 +32,22 @@
                                 <table class="table">
                                     {{--Cabecera de Tabla--}}
                                     <thead class="text-primary text-success">
-                                    <th>Imagen</th>
-                                    <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Precio</th>
-                                    <th>Stock</th>
-                                    <th>Subcategoria</th>
+                                    <th>Numero Tarjeta</th>
+                                    <th>Cvv</th>
+                                    <th>Fecha</th>
                                     <th>Acciones</th>
                                     </thead>
                                     <tbody>
-                                    @foreach($productos as $producto)
+                                    @foreach($tarjetas as $tarjeta)
                                         <tr>
-                                            <td>
-                                                <div class="img-container">
-                                                    <img style="width: 25%" src="{{ asset('/storage/' . $producto->imagen) }}"
-                                                        alt="...">
-                                                </div>
-                                            </td>
-                                            <td>{{ $producto->id }}</td>
-                                            <td>{{ $producto->nombre }}</td>
-                                            <td>{{ $producto->precio }}</td>
-                                            <td>{{ $producto->stock }}</td>
-                                            <td>{{ $producto->subcategoria_id }}</td>
+                                            <td>{{ $tarjeta->nombre }}</td>
+                                            <td>{{ $tarjeta->numero }}</td>
+                                            <td>{{ $tarjeta->fecha }}</td>
+                                            <td>{{ $tarjeta->cvv }}</td>
                                             <td class="td-actions">
-                                                {{--Ver--}}
-                                                <a href="{{ route('productos.show',$producto->id) }}"
-                                                   class="btn btn-info text-center">
-                                                    <i class="material-icons">search</i>
-                                                </a>
-                                                {{--Editar--}}
-                                                <a href="{{route('productos.edit',$producto->id)}}"
-                                                   class="btn btn-warning">
-                                                    <i class="material-icons">edit</i>
-                                                </a>
                                                 {{--Eliminar--}}
-                                                <form action="{{route('productos.delete',$producto->id)}}" method="POST"
+                                                <form action="{{route('tarjeta.delete',$tarjeta->id)}}" method="POST"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('¿Está seguro?')">
                                                     {{ csrf_field() }}
