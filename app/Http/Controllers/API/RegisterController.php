@@ -65,15 +65,18 @@ class RegisterController extends BaseController
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $user->load('cliente');
-            $user->cliente->load('carrito');
+            //$user->cliente->load('carrito');
             $user->cliente->load('wishlist');
+            $carrito = new Carrito();
+            $carrito = $carrito->getCartEmpty($user->cliente->id);
             $response = [
                 'success' => true,
                 'token' => $user->createToken('MyApp')->accessToken,
                 'id' => $user->id,
                 'name' => $user->name,
                 'cliente' => $user->cliente->id,
-                'carrito' => $user->cliente->carrito->id,
+                //'carrito' => $user->cliente->carrito->id, $carrito[0]['id']
+                'carrito' => $carrito->id,
                 'wishlist' => $user->cliente->wishlist->id,
             ];
 

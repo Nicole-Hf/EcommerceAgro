@@ -88,4 +88,25 @@ class WishListController extends Controller {
             ], 200);
         }
     }
+
+    public function deleteProduct(Request $request) {
+        $request->validate([
+            'producto_id' => 'required',
+            'wishlist_id'  => 'required',
+        ]);
+
+        $wishlist = $request->wishlist_id;
+        $producto = $request->producto_id;
+
+        $wishProduct = WishlistItem::where(['wishlist_id' => $wishlist,
+            'producto_id' => $producto])->first();
+
+        $wishProduct = WishlistItem::findOrFail($wishProduct->id);
+        $wishProduct->producto_id = $producto;
+        $wishProduct->carrito_id = $wishlist;
+
+        $wishProduct->delete();
+
+        return response()->json('Product delete', 200);
+    }
 }

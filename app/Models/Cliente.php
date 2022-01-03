@@ -22,8 +22,8 @@ class Cliente extends Model
         return $this->hasMany(Tarjeta::class,'cliente_id');
     }
 
-    public function carrito() {
-        return $this->hasOne(Carrito::class,'cliente_id');
+    public function carritos() {
+        return $this->hasMany(Carrito::class,'cliente_id');
     }
 
     public function users() {

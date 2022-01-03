@@ -8,7 +8,6 @@ use App\Models\CarritoProducto;
 use App\Models\PedidoPago;
 use App\Models\Producto;
 use App\Models\Tarjeta;
-use http\Env\Response;
 use Illuminate\Http\Request;
 
 class EnvioController extends Controller
@@ -25,17 +24,6 @@ class EnvioController extends Controller
 
         $carrito = Carrito::findOrFail($request->carrito_id);
 
-        $envio = new PedidoPago();
-        $envio->monto = $carrito->monto;
-        $envio->fechaPago = $request->fechaPago;
-        $envio->departamento = $request->departamento;
-        $envio->ciudad = $request->ciudad;
-        $envio->direccionEnvio = $request->direccionEnvio;
-        $envio->telfCliente = $request->telfCliente;
-        $envio->carrito_id = $request->carrito_id;
-        $envio->tarjeta_id = $request->tarjeta_id;
-        $envio->save();
-
         $cartItems = CarritoProducto::where(['carrito_id' => $request->carrito_id])->get();
         $products = Producto::all();
 
@@ -48,14 +36,44 @@ class EnvioController extends Controller
                         $product->stock = $product->stock - $cartitem->cantidad;
                         $product->save();
                     } else {
+                        $carrito->monto = $carrito->monto - $cartitem->subtotal;
+                        $carrito->save();
                         $cartitem->delete();
-                        return response()->json("Stock insuficiente");
+                        //return response()->json("Stock insuficiente");
                     }
                 }
             }
         }
 
+        $envio = new PedidoPago();
+        $envio->monto = $carrito->monto;
+        $envio->fechaPago = $request->fechaPago;
+        $envio->departamento = $request->departamento;
+        $envio->ciudad = $request->ciudad;
+        $envio->direccionEnvio = $request->direccionEnvio;
+        $envio->telfCliente = $request->telfCliente;
+        $envio->carrito_id = $request->carrito_id;
+        $envio->tarjeta_id = $request->tarjeta_id;
+        $envio->save();
+
+        $carrito->estado = 'Cancelado';
+        $carrito->save();
+
         return response()->json($envio);
+    }
+
+    public function createCart(Request $request) {
+        $request->validate([
+            'cliente_id' => 'required',
+        ]);
+
+        $newCart = new Carrito();
+        $newCart->cliente_id = $request->cliente_id;
+        $newCart->monto = null;
+        $newCart->estado = null;
+        $newCart->save();
+
+        return response()->json($newCart);
     }
 
     public function getTarjetas($cliente) {
