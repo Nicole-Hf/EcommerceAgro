@@ -4,9 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\PedidoPago;
 use App\Models\WishlistItem;
-use Livewire\WithPagination;
 
+use Livewire\WithPagination;
 use Illuminate\Support\Collection;
 
 class ListaProductos extends Component

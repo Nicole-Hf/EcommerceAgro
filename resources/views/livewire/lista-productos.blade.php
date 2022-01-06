@@ -38,6 +38,7 @@
                             <li class="add-to-cart">
 
                                 <!-- añadir a carrito -->
+
                                 <button
                                     wire:click="$emitTo('carrito', 'addTocart','{{$productoD->id}}','{{$productoD->nombre}}','{{$productoD->precio}}','{{$productoD->imagen}}','{{1}}')"
                                     class=" add-to-cart-button wishlist">

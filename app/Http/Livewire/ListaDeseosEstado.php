@@ -3,12 +3,28 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\PedidoPago;
 use App\Models\WishlistItem;
 
 class ListaDeseosEstado extends Component
 {
     protected $listeners = ['refreshWishlist' =>  '$refresh', 'addToWishList' => 'addToWishList'];
     public $items = [];
+
+    public function verificarCarrito()
+    {
+        if (auth()->check()) {
+            $idUser = auth()->user()->id;
+            $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
+            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+
+            $res = PedidoPago::join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+                ->select("*")
+                ->where("carritos.id", $carrito->id)->exists();
+            $this->vCarrito = $res;
+        }
+    }
+
     public function getItems()
     {
         if (auth()->check()) {
