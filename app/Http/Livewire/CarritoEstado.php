@@ -11,34 +11,6 @@ class CarritoEstado extends Component
     public $total = 0;
     public $items;
 
-    public function carritoCliente()
-    {
-        $idUser = auth()->user()->id;
-        $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-        $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
-
-        $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
-            ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
-            ->get();
-
-
-        $items = array();
-        $resultado->each(function ($item) use (&$items) {
-            $items[] = $item;
-            \Cart::add([
-                'idCarrito' => $item->carrito_id,
-                'id' => $item->id,
-                'name' => $item->nombre,
-                'price' => $item->precio,
-                'quantity' => $item->cantidad,
-                'attributes' => array(
-                    'image' => $item->imagen,
-                )
-
-            ]);
-        });
-    }
-
     public function getCantidad()
     {
         if (auth()->check()) {
@@ -76,6 +48,9 @@ class CarritoEstado extends Component
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 // ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.subtotal');
+            $carrito->update([
+                'monto' => $resultado
+            ]);
             $this->total = $resultado;
         }
     }
