@@ -45,7 +45,7 @@ class Producto extends Model
         return $this->orderBy('id', 'DESC')->limit(4)->get();
     }
 
-    public function orderByCategory($value) {
-        return $this->where(['categoria' => $value])->orderBy('id', 'DESC')->limit(3)->get();
+    public function getByCategory($value) {
+        return $this->where(['categoria' => $value])->get();
     }
 }

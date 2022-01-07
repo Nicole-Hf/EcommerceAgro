@@ -23,12 +23,10 @@ Route::middleware('auth:api')
         [App\Http\Controllers\API\RegisterController::class, 'logout']);
 
 //PRODUCTOS
-Route::get('/allproducts/',
+Route::get('/allproducts/{wishlist}',
     [App\Http\Controllers\API\ProductoController::class, 'allArticles']);
-Route::get('/someproducts/',
+Route::get('/someproducts/{wishlist}',
     [App\Http\Controllers\API\ProductoController::class, 'someArticles']);
-Route::get('/image/',
-    [App\Http\Controllers\API\ProductoController::class, 'getImage']);
 Route::get('/category/products/{id}',
     [App\Http\Controllers\API\ProductoController::class, 'getByCategories']);
 
@@ -53,10 +51,25 @@ Route::post('/cartproduct/destroy',
     [App\Http\Controllers\API\CarritoController::class, 'deleteProduct']);
 Route::post('/cartproduct/remove',
     [App\Http\Controllers\API\CarritoController::class, 'removeProduct']);
+Route::get('/getTotalCart/{cart}',
+    [App\Http\Controllers\API\CarritoController::class, 'getTotal']);
+Route::post('/create/cart',
+    [App\Http\Controllers\API\EnvioController::class, 'createCart']);
 
-Route::post('/wishlist/add' , [App\Http\Controllers\API\WishListController::class, 'addProductToList']);
-Route::get('/wishlist/{wishlist}', [App\Http\Controllers\API\WishListController::class, 'index']);
-Route::post('/wishlist/exist' , [App\Http\Controllers\API\WishListController::class, 'inList']);
+//LISTA DE DESEOS
+Route::post('/wishlist/add' ,
+    [App\Http\Controllers\API\WishListController::class, 'addProductToList']);
+Route::get('/wishlist/{wishlist}',
+    [App\Http\Controllers\API\WishListController::class, 'index']);
+Route::post('/wishlist/exist' ,
+    [App\Http\Controllers\API\WishListController::class, 'inList']);
+Route::post('/wishlist/destroy',
+    [App\Http\Controllers\API\WishListController::class, 'deleteProduct']);
 
-Route::post('/envio/store', [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);
-Route::get('/creditcards/{cliente}', [App\Http\Controllers\API\EnvioController::class, 'getTarjetas']);
+//PEDIDO
+Route::post('/envio/store',
+    [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);
+Route::get('/creditcards/{cliente}',
+    [App\Http\Controllers\API\EnvioController::class, 'getTarjetas']);
+Route::post('/factura/store',
+    [App\Http\Controllers\API\EnvioController::class, 'createFactura']);

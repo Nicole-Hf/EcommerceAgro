@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller as Controller;
+use App\Models\Carrito;
 use App\Models\CarritoProducto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -31,7 +32,6 @@ class CarritoController extends Controller
             $cartitem->cantidad = $item->cantidad;
             $cartitem->subtotal = $item->subtotal;
             array_push($cartitems, $cartitem);
-
         }
         return response()->json($cartitems);
     }
@@ -44,7 +44,6 @@ class CarritoController extends Controller
 
         $carritoid = $request->carrito_id;
         $productoid = $request->producto_id;
-        $cart = new CarritoProducto();
 
         $producto = Producto::findOrFail($productoid);
 
@@ -73,6 +72,11 @@ class CarritoController extends Controller
                 'subtotal' => $subtotal,
             ]);
         }
+
+        $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("carritos_productos.carrito_id", $carritoid)->sum('carritos_productos.subtotal');
+
+        Carrito::where(['id' => $carritoid])->update(['monto' => $resultado]);
 
         return response()->json($cart, 200);
     }
@@ -104,6 +108,11 @@ class CarritoController extends Controller
                 ]);
         }
 
+        $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("carritos_productos.carrito_id", $cartId)->sum('carritos_productos.subtotal');
+
+        Carrito::where(['id' => $cartId])->update(['monto' => $resultado]);
+
         return response()->json($cart, 200);
     }
 
@@ -125,8 +134,19 @@ class CarritoController extends Controller
 
         $cartProduct->delete();
 
+        $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("carritos_productos.carrito_id", $cart)->sum('carritos_productos.subtotal');
+
+        Carrito::where(['id' => $cart])->update(['monto' => $resultado]);
+
         return response()->json('Product delete', 200);
     }
 
+    public function getTotal($carrito)
+    {
+        $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("carritos_productos.carrito_id", $carrito)->sum('carritos_productos.subtotal');
 
+        return response()->json($resultado);
+    }
 }

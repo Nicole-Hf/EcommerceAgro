@@ -17,12 +17,12 @@ class CarritoSeeder extends Seeder
     {
         Carrito::create([
             'cliente_id' => '1',
-            'monto' => '355',
+            //'monto' => '355',
         ]);
 
         Carrito::create([
             'cliente_id' => '2',
-            'monto' => '180',
+            //'monto' => '180',
         ]);
 
         CarritoProducto::create([

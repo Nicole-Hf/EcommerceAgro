@@ -13,6 +13,7 @@ class Carrito extends Model
     protected $fillable = [
         'cliente_id',
         'monto',
+        'estado'
     ];
 
     public function cliente() {
@@ -25,5 +26,9 @@ class Carrito extends Model
 
     public function carritoProducto() {
         return $this->hasMany(CarritoProducto::class,'carrito_id');
+    }
+
+    public function getCartEmpty($client) {
+        return $this->where(['cliente_id' => $client, 'estado' => null])->first();
     }
 }

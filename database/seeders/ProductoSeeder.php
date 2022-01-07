@@ -21,7 +21,8 @@ class ProductoSeeder extends Seeder
             'imagen'=>'/storage/imagenes/vABS8hrtJvsupermacollo.jpg',
             'stock'=>'10',
             'empresa_id'=>'1',
-            'subcategoria_id'=>'1'
+            'subcategoria_id'=>'1',
+            'categoria'=>'1'
         ]);
 
         Producto::create([
@@ -31,7 +32,8 @@ class ProductoSeeder extends Seeder
             'imagen'=>'/storage/imagenes/EiRq8Fvw2Gmamba.jpg',
             'stock'=>'20',
             'empresa_id'=>'2',
-            'subcategoria_id'=>'2'
+            'subcategoria_id'=>'2',
+            'categoria'=>'1'
         ]);
 
         Producto::create([
@@ -41,7 +43,8 @@ class ProductoSeeder extends Seeder
             'imagen'=>'/storage/imagenes/l3bB5PNRBbsuperfoliar.jpg',
             'stock'=>'40',
             'empresa_id'=>'1',
-            'subcategoria_id'=>'3'
+            'subcategoria_id'=>'3',
+            'categoria'=>'2'
         ]);
 
         Producto::create([
@@ -51,7 +54,8 @@ class ProductoSeeder extends Seeder
             'imagen'=>'/storage/imagenes/ZSGdNjBMRGclorpirifos.jpg',
             'stock'=>'25',
             'empresa_id'=>'1',
-            'subcategoria_id'=>'1'
+            'subcategoria_id'=>'1',
+            'categoria'=>'3'
         ]);
 
         Producto::create([
@@ -61,7 +65,8 @@ class ProductoSeeder extends Seeder
             'imagen'=>'/storage/imagenes/Wrby6u2MtScipermetrina.jpg',
             'stock'=>'30',
             'empresa_id'=>'1',
-            'subcategoria_id'=>'4'
+            'subcategoria_id'=>'4',
+            'categoria'=>'2'
         ]);
     }
 }

@@ -17,6 +17,7 @@ class CreateCarritosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cliente_id');
             $table->float('monto')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
