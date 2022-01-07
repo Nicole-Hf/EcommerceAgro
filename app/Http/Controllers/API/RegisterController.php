@@ -75,6 +75,7 @@ class RegisterController extends BaseController
                 'id' => $user->id,
                 'name' => $user->name,
                 'cliente' => $user->cliente->id,
+                'ci' => $user->cliente->razonSocial,
                 //'carrito' => $user->cliente->carrito->id, $carrito[0]['id']
                 'carrito' => $carrito->id,
                 'wishlist' => $user->cliente->wishlist->id,

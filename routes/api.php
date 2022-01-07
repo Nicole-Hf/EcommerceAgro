@@ -71,3 +71,5 @@ Route::post('/envio/store',
     [App\Http\Controllers\API\EnvioController::class, 'createEnvio']);
 Route::get('/creditcards/{cliente}',
     [App\Http\Controllers\API\EnvioController::class, 'getTarjetas']);
+Route::post('/factura/store',
+    [App\Http\Controllers\API\EnvioController::class, 'createFactura']);
