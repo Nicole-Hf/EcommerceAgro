@@ -179,7 +179,7 @@
             {{--BITACORA--}}
             <li class="nav-item{{ $activePage == 'bitacora' ? ' active' : '' }}">
                 @can('bitacora.index')
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('Bitacora.index') }}">
                         <i class="material-icons">language</i>
                         <span>{{ __('Bitácora') }}</span>
                     </a>

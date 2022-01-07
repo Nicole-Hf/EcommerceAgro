@@ -3,6 +3,8 @@
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TarjetaController;
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\DetalleBitacoraController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -195,3 +197,5 @@ Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
     ->name('ver');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
+Route::get('/index',[BitacoraController::class,'index'])->name('Bitacora.index');
+Route::get('/show/{correo}',[DetalleBitacoraController::class,'show'])->name('detallebitacora.show'); 
