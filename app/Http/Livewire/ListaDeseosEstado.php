@@ -8,6 +8,7 @@ use App\Models\WishlistItem;
 
 class ListaDeseosEstado extends Component
 {
+
     protected $listeners = ['refreshWishlist' =>  '$refresh', 'addToWishList' => 'addToWishList'];
     public $items = [];
 

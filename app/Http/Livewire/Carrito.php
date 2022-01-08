@@ -15,20 +15,7 @@ class Carrito extends Component
     public $total = 0;
     public $items = [];
     public $vCarrito = true;
-    /* 
-    public function verificarCarrito()
-    {
-        if (auth()->check()) {
-            $idUser = auth()->user()->id;
-            $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
 
-            $res = PedidoPago::join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
-                ->select("*")
-                ->where("carritos.id", $carrito->id)->exists();
-            $this->vCarrito = $res;
-        }
-    } */
 
     public function addToCart($id, $nombre, $precio, $imagen, $quantity)
     {
@@ -36,13 +23,7 @@ class Carrito extends Component
         if (auth()->check()) {
             $idUser = auth()->user()->id;
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
-
-            /* if ($this->vCarrito === true) {
-                $carrito = PedidoPago::join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
-                    ->select("*")
-                    ->where("carritos.id", $carrito->id)->notExists();
-            } */
+            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->where('estado', null)->first();
 
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
@@ -54,6 +35,7 @@ class Carrito extends Component
                     'carrito_id' => $carrito->id,
                     'cliente_id' => $idUser,
                     'producto_id' => $id,
+                    'nombre' => $nombre,
                     'cantidad' => $quantity,
                     'subtotal' => (float)$quantity * (float)$precio
                 ]);
@@ -76,7 +58,7 @@ class Carrito extends Component
         if (auth()->check()) {
             $idUser = auth()->user()->id;
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->where('estado', null)->first();
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.cantidad');
             $this->cantidad = $resultado;
@@ -88,7 +70,7 @@ class Carrito extends Component
         if (auth()->check()) {
             $idUser = auth()->user()->id;
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->where('estado', null)->first();
 
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
@@ -103,7 +85,7 @@ class Carrito extends Component
         if (auth()->check()) {
             $idUser = auth()->user()->id;
             $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+            $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->where('estado', null)->first();
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->where("carritos_productos.carrito_id", $carrito->id)->sum('carritos_productos.subtotal');
 
@@ -122,7 +104,7 @@ class Carrito extends Component
         $this->getCantidad();
         $this->getItems();
         $this->getTotal();
-       /*  $this->verificarCarrito(); */
+
         return view('livewire.carrito');
     }
 }

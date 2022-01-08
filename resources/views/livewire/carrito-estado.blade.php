@@ -20,7 +20,7 @@
                                 <td>
                                     <figure class="itemside align-items-center">
                                         <div class="aside">
-                                            <img src="{{ asset('/storage/'.$item->imagen ) }}"
+                                            <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->imagen ) }}"
                                                 class="img-sm">
                                         </div>
                                         <figcaption class="info">
@@ -43,7 +43,7 @@
                                 <td>
                                     <div
                                         class="quantity d-grid gap-2 d-md-flex justify-content-md-center align-items-md-center">
-
+                                        <!-- DECREMENTAR PRODUCTO AL CARRITO -->
                                         <button value="-" class="minus"
                                             wire:click="removeItemProd({{$item->id}},{{-1}},{{$item->precio}})">
                                             <span>-</span> </button>
@@ -51,7 +51,7 @@
                                         <input type="text" id="input-{{$item->id}}" value=" {{$item->cantidad}}"
                                             title="Qty" class="form-control" size="4"
                                             name="items[e2aab0e2b7e45be057e0c70f299bace9][values][qty]" readonly>
-
+                                        <!-- INCREMENTAR PRODUCTO AL CARRITO -->
                                         <button value="+" class="plus"
                                             wire:click="addItem({{$item->id}},{{1}},{{$item->precio}})">
                                             <span>+</span> </button>
@@ -72,7 +72,7 @@
 
 
                                     <button class="btn btn-light" wire:click="removeItem({{ $item->id }})">
-                                        remove
+                                        x
                                     </button>
                                 </td>
                             </tr>
@@ -95,7 +95,8 @@
                         </dd>
                     </dl>
                     <hr>
-                    <a href="{{route('pedido.index')}}" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
+                    <a href="{{route('pedido.index',$item->carrito_id)}}"
+                        class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
                         Realizar Compra
                     </a>
 
@@ -106,18 +107,11 @@
     <script>
     window.addEventListener('input-cantidad', event => {
         const ele = document.querySelector('#input-' + event.detail.id);
-
-        //ele.setAttribute("value", event.detail.cantidad);
         ele.value = event.detail.cantidad;
-        console.log(ele);
-
     });
-
     window.addEventListener('inputDec-cantidad', event => {
         const ele = document.querySelector('#input-' + event.detail.id);
-        // ele.setAttribute("value", event.detail.cantidad);
         ele.value = event.detail.cantidad;
-        console.log(ele);
     });
     </script>
 </div>
