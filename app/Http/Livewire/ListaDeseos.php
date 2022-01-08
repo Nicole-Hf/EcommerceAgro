@@ -33,7 +33,10 @@ class ListaDeseos extends Component
             } else {
                 $this->removeItem($resultado->first()->id);
             }
+        } else {
+            return redirect()->route('login');
         }
+
         $this->dispatchBrowserEvent('input-wishlist', ['id' => $id]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
     }

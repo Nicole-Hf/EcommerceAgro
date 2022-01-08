@@ -47,7 +47,10 @@ class Carrito extends Component
                     'subtotal' => (float)$ac * (float)$precio
                 ]);
             }
+        } else {
+            return redirect()->route('login');
         }
+
 
         session()->flash('success', 'Product is Added to Cart Successfully !');
     }
