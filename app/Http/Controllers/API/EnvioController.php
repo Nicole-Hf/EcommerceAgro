@@ -125,7 +125,7 @@ class EnvioController extends Controller
         $factura = Factura::where(['id' => $facturaID])->first();
 
         $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
-        $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->first();
+        $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->get();
         $items = [];
 
         foreach ($cartItems as $cartItem) {
@@ -142,7 +142,7 @@ class EnvioController extends Controller
         $invoice->codControl = $factura->codControl;
         $invoice->nit = $factura->nit;
         $invoice->fecha = $factura->fecha;
-        $invoice->totalImp = $factura->totalImp;
+        $invoice->totalImp = $factura->totalImpuesto;
         $invoice->items = $items;
 
         return response()->json($invoice);
