@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Factura</title>
-    <link href="{{ asset('css/custom_pdf.css') }}" rel="stylesheet" />
-    <link href="{{asset('css/custom_page.css') }}" rel="stylesheet">
+
 </head>
 <body>
     
@@ -19,7 +18,7 @@
         </tr>
         <tr>
             <td width="30%" style="vertical-aling: top; padding-top: 5px; position: relative;">
-            <img src="{{ asset('img/logo.png') }}" alt="" class="invoice-logo">
+           
             </td>
 
             <td width="70%" class="text-left text-company" style="vertical-align: top; padding-top:10px">
@@ -44,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($factura as $facturas)
+                @foreach ($resulPago as $facturas)
                     <tr>
                         <td>{{$facturas->id}}</td>
                         <td>{{$carriP}}</td>
