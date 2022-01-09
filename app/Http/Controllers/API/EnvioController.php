@@ -15,7 +15,7 @@ class EnvioController extends Controller
 {
     public function createEnvio(Request $request) {
         $request->validate([
-            'fechaPago' => 'required',
+            'fechaEnvio' => 'required',
             'departamento' => 'required',
             'ciudad' => 'required',
             'direccionEnvio' => 'required',
@@ -48,13 +48,16 @@ class EnvioController extends Controller
 
         $envio = new PedidoPago();
         $envio->monto = $carrito->monto;
-        $envio->fechaPago = $request->fechaPago;
+        $envio->fechaEnvio = $request->fechaEnvio;
         $envio->departamento = $request->departamento;
         $envio->ciudad = $request->ciudad;
         $envio->direccionEnvio = $request->direccionEnvio;
         $envio->telfCliente = $request->telfCliente;
         $envio->carrito_id = $request->carrito_id;
         $envio->tarjeta_id = $request->tarjeta_id;
+        $envio->save();
+
+        $envio->fechaPago = $envio->created_at;
         $envio->save();
 
         $carrito->estado = 'Cancelado';
@@ -108,14 +111,14 @@ class EnvioController extends Controller
         $envio = PedidoPago::where(['id' => $request->input('pago_id')])->first();
 
         $factura = new Factura();
-        $factura->codControl = 4567567123;
         $factura->nit = $request->input('nit');
-        $factura->fecha = $envio->fechaPago;
+        //$factura->fecha = $request->input('fecha');;
         $factura->pago_id = $request->input('pago_id');
         $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
         $factura->save();
 
         $factura->nroFactura = $factura->id;
+        $factura->fecha = $factura->created_at;
         $factura->save();
 
         return response()->json($factura);
@@ -139,7 +142,6 @@ class EnvioController extends Controller
         $invoice = new \stdClass();
         $invoice->id = $factura->id;
         $invoice->nroFactura = $factura->nroFactura;
-        $invoice->codControl = $factura->codControl;
         $invoice->nit = $factura->nit;
         $invoice->fecha = $factura->fecha;
         $invoice->totalImp = $factura->totalImpuesto;
