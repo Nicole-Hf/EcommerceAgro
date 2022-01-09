@@ -170,17 +170,17 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //tarjetas
-    Route::group(['prefix'=> 'payment'],function(){
-        Route::get('/index',[TarjetaController::class,'index'])->name('tarjeta.index');
-        Route::get('/create',[TarjetaController::class,'create'])->name('tarjeta.create');
-        Route::post('/store',[TarjetaController::class,'store'])->name('tarjeta.store');
-        Route::delete('/delete/{tarjeta}',[TarjetaController::class,'delete'])->name('tarjeta.delete');
+    Route::group(['prefix' => 'payment'], function () {
+        Route::get('/index', [TarjetaController::class, 'index'])->name('tarjeta.index');
+        Route::get('/create', [TarjetaController::class, 'create'])->name('tarjeta.create');
+        Route::post('/store', [TarjetaController::class, 'store'])->name('tarjeta.store');
+        Route::delete('/delete/{tarjeta}', [TarjetaController::class, 'delete'])->name('tarjeta.delete');
     });
 
     //pedido
-    Route::group(['prefix'=>'pedido'],function(){
-        Route::get('/index',[PedidoController::class,'index'])->name('pedido.index');
-        Route::post('/store/{carrito}',[PedidoController::class,'store'])->name('pedido.store');
+    Route::group(['prefix' => 'pedido'], function () {
+        Route::get('/index', [PedidoController::class, 'index'])->name('pedido.index');
+        Route::post('/store/{carrito}', [PedidoController::class, 'store'])->name('pedido.store');
     });
 });
 
