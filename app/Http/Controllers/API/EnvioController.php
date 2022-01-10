@@ -53,6 +53,7 @@ class EnvioController extends Controller
         $envio->ciudad = $request->ciudad;
         $envio->direccionEnvio = $request->direccionEnvio;
         $envio->telfCliente = $request->telfCliente;
+        $envio->nit = $request->nit;
         $envio->carrito_id = $request->carrito_id;
         $envio->tarjeta_id = $request->tarjeta_id;
         $envio->save();
@@ -62,6 +63,13 @@ class EnvioController extends Controller
 
         $carrito->estado = 'Cancelado';
         $carrito->save();
+
+        $factura = new Factura();
+        $factura->nit = $envio->nit;
+        $factura->fecha = $envio->fechaPago;
+        $factura->pago_id = $envio->id;
+        $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        $factura->save();
 
         return response()->json($envio);
     }
@@ -104,21 +112,16 @@ class EnvioController extends Controller
 
     public function createFactura(Request $request){
         $request->validate([
-            'nit'  => 'required',
             'pago_id' => 'required',
         ]);
 
         $envio = PedidoPago::where(['id' => $request->input('pago_id')])->first();
 
         $factura = new Factura();
-        $factura->nit = $request->input('nit');
-        //$factura->fecha = $request->input('fecha');;
+        $factura->nit = $envio->nit;
+        $factura->fecha = $envio->fechaPago;
         $factura->pago_id = $request->input('pago_id');
         $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
-        $factura->save();
-
-        $factura->nroFactura = $factura->id;
-        $factura->fecha = $factura->created_at;
         $factura->save();
 
         return response()->json($factura);

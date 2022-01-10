@@ -15,7 +15,6 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nroFactura')->nullable();
             $table->date('fecha');
             $table->unsignedBigInteger('nit')->nullable();
             $table->float('totalImpuesto');

@@ -18,6 +18,7 @@ class CreatePedidosPagosTable extends Migration
             $table->float('monto');
             $table->date('fechaEnvio')->nullable();
             $table->date('fechaPago')->nullable();
+            $table->string('nit')->nullable();
             $table->string('departamento',100);
             $table->string('ciudad',100);
             $table->string('direccionEnvio',200);
