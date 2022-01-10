@@ -127,7 +127,7 @@ class EnvioController extends Controller
         return response()->json($factura);
     }
 
-    public function getFactura($facturaID) {
+    /*public function getFactura($facturaID) {
         $factura = Factura::where(['id' => $facturaID])->first();
 
         $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
@@ -151,5 +151,5 @@ class EnvioController extends Controller
         $invoice->items = $items;
 
         return response()->json($invoice);
-    }
+    }*/
 }
