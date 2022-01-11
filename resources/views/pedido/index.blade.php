@@ -65,6 +65,14 @@
                                 </div>
                             </div>
                             <br>
+                            <br>
+                            <div class="row">
+                                <label for="nit" class="col-sm-2 col-form-label">NIT/CI</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="nit" class="form-control">
+                                </div>
+                            </div>
+                            <br>
                             <div class="row">
                                 <label for="nombre" class="col-sm-2 col-form-label">Forma de Pago</label>
                                 <div class="col-sm-7">

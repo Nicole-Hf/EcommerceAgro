@@ -15,7 +15,7 @@ class EnvioController extends Controller
 {
     public function createEnvio(Request $request) {
         $request->validate([
-            'fechaPago' => 'required',
+            'fechaEnvio' => 'required',
             'departamento' => 'required',
             'ciudad' => 'required',
             'direccionEnvio' => 'required',
@@ -48,17 +48,28 @@ class EnvioController extends Controller
 
         $envio = new PedidoPago();
         $envio->monto = $carrito->monto;
-        $envio->fechaPago = $request->fechaPago;
+        $envio->fechaEnvio = $request->fechaEnvio;
         $envio->departamento = $request->departamento;
         $envio->ciudad = $request->ciudad;
         $envio->direccionEnvio = $request->direccionEnvio;
         $envio->telfCliente = $request->telfCliente;
+        $envio->nit = $request->nit;
         $envio->carrito_id = $request->carrito_id;
         $envio->tarjeta_id = $request->tarjeta_id;
         $envio->save();
 
+        $envio->fechaPago = $envio->created_at;
+        $envio->save();
+
         $carrito->estado = 'Cancelado';
         $carrito->save();
+
+        $factura = new Factura();
+        $factura->nit = $envio->nit;
+        $factura->fecha = $envio->fechaPago;
+        $factura->pago_id = $envio->id;
+        $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        $factura->save();
 
         return response()->json($envio);
     }
@@ -101,50 +112,36 @@ class EnvioController extends Controller
 
     public function createFactura(Request $request){
         $request->validate([
-            'nit'  => 'required',
             'pago_id' => 'required',
         ]);
 
         $envio = PedidoPago::where(['id' => $request->input('pago_id')])->first();
 
         $factura = new Factura();
-        $factura->codControl = 4567567123;
-        $factura->nit = $request->input('nit');
+        $factura->nit = $envio->nit;
         $factura->fecha = $envio->fechaPago;
         $factura->pago_id = $request->input('pago_id');
         $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
         $factura->save();
 
-        $factura->nroFactura = $factura->id;
-        $factura->save();
+        return response()->json($factura);
+    }
+
+    public function getFacturasItems($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
 
         return response()->json($factura);
     }
 
-    public function getFactura($facturaID) {
-        $factura = Factura::where(['id' => $facturaID])->first();
+    public function getFacturas($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
 
-        $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
-        $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->first();
-        $items = [];
-
-        foreach ($cartItems as $cartItem) {
-            $item = new \stdClass();
-            $item->nombre = $cartItem->nombre;
-            $item->cantidad = $cartItem->cantidad;
-            $item->subtotal = $cartItem->subtotal;
-            array_push($items, $item);
-        }
-
-        $invoice = new \stdClass();
-        $invoice->id = $factura->id;
-        $invoice->nroFactura = $factura->nroFactura;
-        $invoice->codControl = $factura->codControl;
-        $invoice->nit = $factura->nit;
-        $invoice->fecha = $factura->fecha;
-        $invoice->totalImp = $factura->totalImp;
-        $invoice->items = $items;
-
-        return response()->json($invoice);
+        return response()->json($factura);
     }
 }

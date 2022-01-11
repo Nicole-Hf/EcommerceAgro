@@ -11,9 +11,7 @@ class Factura extends Model
 
     protected $table = 'facturas';
     protected $fillable = [
-        'nroFactura',
         'fecha',
-        'codControl',
         'nit',
         'totalImpuesto',
         'pago_id'

@@ -34,12 +34,14 @@ class PedidoController extends Controller
 
         $data = $request->validate([
 
+
             'fechaEnvio' => 'required',
             'departamento' => 'required',
             'ciudad' => 'required',
             'direccionEnvio' => 'required',
             'telfCliente' => 'required',
             'tarjeta_id' => 'required',
+            'nit' => 'required',
         ]);
 
         $productos = DB::table('carritos_productos')
@@ -73,13 +75,13 @@ class PedidoController extends Controller
         $data['fechaPago'] = date("F j, Y, g:i a");
 
         $data['carrito_id'] = $carro->id;
-        // dd($data);
         $pedido = PedidoPago::create($data);
 
         //creando carrito
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
         $pedi = PedidoPago::where('carrito_id', $carrito->id)->first();
+        dd($pedi);
         $data = Factura::create([
 
             'fecha' => date("F j, Y, g:i a"),
@@ -97,5 +99,6 @@ class PedidoController extends Controller
         ]);
 
         return redirect()->route('factura.show'); //revisar ruta gg
+
     }
 }
