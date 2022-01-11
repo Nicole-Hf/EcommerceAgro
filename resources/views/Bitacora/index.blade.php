@@ -21,7 +21,6 @@
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
-                                    <th>Acciones</th>
                                     <th>Fecha y hora de registro</th>
                                     
                                     </thead>
