@@ -16,7 +16,6 @@
             <div class="card-header p-4">
                 <h2 class="mb-0">Factura</h2>
                 <h3 class="mb-0">NIT: {{$monto->nit}}</h3>
-                <h3 class="mb-0">NroFactura: {{$monto->nroFactura}}</h3>
 
                 <div class="float-right">
                     <h3 class=" mb-0">{{auth()->user()->name}}</h3>

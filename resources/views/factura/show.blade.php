@@ -23,15 +23,17 @@
                                         <th>Nro Factura<i class="fas fa-rockrms    "></i></th>
                                         <th>Nit<i class="fas fa-rockrms    "></i></th>
                                         <th>Fecha</th>
+                                        <th>total</th>
                                         <th>Accion</th>
                                     </thead>
 
                                     <tbody>
                                         @foreach($resulPago as $factura)
                                         <tr>
-                                            <td>{{ $factura->nroFactura }}</td>
+                                            <td>{{ $factura->id }}</td>
                                             <td>{{ $factura->nit }}</td>
-                                            <td>{{ $factura->fecha}}</td>
+                                            <td>{{ $factura->fecha }}</td>
+                                            <th>{{ $factura->totalImpuesto }}</th>
                                             <td class="td-actions">
 
                                                 <a href="{{ route('factura.pdf',$factura->id)}}"

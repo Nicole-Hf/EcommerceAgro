@@ -10,7 +10,6 @@
             <div class="card-header p-4">
                 <h2 class="mb-0">Factura</h2>
                 <h3 class="mb-0">NIT: {{$mont->nit}}</h3>
-                <h3 class="mb-0">NroFactura: {{$mont->nroFactura}}</h3>
 
                 <div style="text-align:center">
                     <h3 class="mb-0">{{auth()->user()->name}}</h3>

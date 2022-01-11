@@ -81,7 +81,6 @@ class PedidoController extends Controller
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
         $pedi = PedidoPago::where('carrito_id', $carrito->id)->first();
-        dd($pedi);
         $data = Factura::create([
 
             'fecha' => date("F j, Y, g:i a"),
