@@ -127,29 +127,21 @@ class EnvioController extends Controller
         return response()->json($factura);
     }
 
-    /*public function getFactura($facturaID) {
-        $factura = Factura::where(['id' => $facturaID])->first();
+    public function getFacturasItems($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
 
-        $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
-        $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->get();
-        $items = [];
+        return response()->json($factura);
+    }
 
-        foreach ($cartItems as $cartItem) {
-            $item = new \stdClass();
-            $item->nombre = $cartItem->nombre;
-            $item->cantidad = $cartItem->cantidad;
-            $item->subtotal = $cartItem->subtotal;
-            array_push($items, $item);
-        }
+    public function getFacturas($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
 
-        $invoice = new \stdClass();
-        $invoice->id = $factura->id;
-        $invoice->nroFactura = $factura->nroFactura;
-        $invoice->nit = $factura->nit;
-        $invoice->fecha = $factura->fecha;
-        $invoice->totalImp = $factura->totalImpuesto;
-        $invoice->items = $items;
-
-        return response()->json($invoice);
-    }*/
+        return response()->json($factura);
+    }
 }
