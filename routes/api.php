@@ -77,3 +77,5 @@ Route::get('/factura/{idcliente}',
     [App\Http\Controllers\API\EnvioController::class, 'getFacturas']);
 Route::get('/facturaItems/{idcliente}',
     [App\Http\Controllers\API\EnvioController::class, 'getFacturasItems']);
+Route::get('/getinvoice/{cliente}',
+    [App\Http\Controllers\API\EnvioController::class, 'facturaItems']);
