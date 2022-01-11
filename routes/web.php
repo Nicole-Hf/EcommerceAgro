@@ -4,7 +4,9 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TarjetaController;
 use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\DetalleBitacoraController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -193,9 +195,11 @@ Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexE
     ->name('home');
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
     ->name('catalogo');
+Route::get('/mostrar/{id}', 'App\Http\Controllers\ShopController@mostrar')
+    ->name('mostrar');
 Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
     ->name('ver');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
 Route::get('/index',[BitacoraController::class,'index'])->name('Bitacora.index');
-Route::get('/show/{correo}',[DetalleBitacoraController::class,'show'])->name('detallebitacora.show'); 
+Route::get('/show/{correo}',[DetalleBitacoraController::class,'show'])->name('detallebitacora.show');

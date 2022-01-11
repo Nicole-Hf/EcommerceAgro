@@ -1,3 +1,7 @@
+@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('AgroShop')])
+
+@section('content')
+<div class="container mt-5 ctl-bg ctl">
 <div>
     <div class="row box-search">
      <input type="search" style="width:200px;" wire:model="term" class="form-control rounded" placeholder="Search"
@@ -112,7 +116,6 @@
 
         </div>
         <div class="row justify-content-center">
-            {{ $productos->links() }}
         </div>
 
         <script>
@@ -123,3 +126,5 @@
         </script>
        
     </div>
+
+@endsection
