@@ -22,7 +22,7 @@
                             <i class="ion-close"></i>
                         </a>
                         <a href="#">
-                            <img src="{{ asset('/storage/'.$item->imagen ) }}">
+                            <img src="{{ asset($item->imagen ) }}">
                             {{$item->nombre}}
                         </a>
                         <span class=" cart_quantity"> {{$item->cantidad}} x
@@ -35,10 +35,7 @@
                 </ul>
 
                 <div class="cart_footer">
-                    <!--  <p class="cart_total sub_total">
-                        <strong>Sub Total:</strong>
-                        <span class="cart_price">{{\Cart::getSubTotal()}}</span>
-                    </p> -->
+
                     <p class="cart_total">
                         <strong>Total:</strong>
                         <span class="cart_price">{{$total}}</span>
