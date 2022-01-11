@@ -83,9 +83,8 @@ class PedidoController extends Controller
         $data = Factura::create([
 
             'fecha' => date("F j, Y, g:i a"),
-            'codControl' => 1,
-            'nit' => 1111111, // sacar de la tabla pedido
-            'totalImpuesto' => 15.00,
+            'nit' => $pedi->nit, // sacar de la tabla pedido
+            'totalImpuesto' => $pedi->monto,
             'pago_id' => $pedi->id,
         ]);
 
