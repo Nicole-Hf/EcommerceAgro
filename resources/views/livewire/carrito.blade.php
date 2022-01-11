@@ -22,7 +22,7 @@
                             <i class="ion-close"></i>
                         </a>
                         <a href="#">
-                            <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->imagen ) }}">
+                            <img src="{{ asset($item->imagen ) }}">
                             {{$item->nombre}}
                         </a>
                         <span class=" cart_quantity"> {{$item->cantidad}} x
@@ -45,8 +45,7 @@
                         <a href="{{ route('carrito.estado') }}" class="btn btn-fill-line view-cart">
                             Ver Carrito
                         </a>
-
-                        <a href="#" class="btn btn-fill-out checkout">Comprar</a>
+                        <a href="{{route('pedido.index')}}" class="btn btn-fill-out checkout">Comprar</a>
                     </p>
                 </div>
             </div>

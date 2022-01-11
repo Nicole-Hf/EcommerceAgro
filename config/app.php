@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -178,7 +179,8 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        App\Providers\WishListProvider::class
+        App\Providers\WishListProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -234,7 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

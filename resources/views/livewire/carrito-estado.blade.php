@@ -20,8 +20,7 @@
                                 <td>
                                     <figure class="itemside align-items-center">
                                         <div class="aside">
-                                            <img src="{{ asset($_ENV['IMAGEN_PROD_AGRO'].$item->imagen ) }}"
-                                                class="img-sm">
+                                            <img src="{{ asset($item->imagen ) }}" class="img-sm">
                                         </div>
                                         <figcaption class="info">
                                             <a href="#" class="title text-dark" data-abc="true">
@@ -99,7 +98,7 @@
                         class="btn btn-out btn-primary btn-square btn-main" data-abc="true">
                         Realizar Compra
                     </a>
-
+                    </hr>
                 </div>
             </div>
         </aside>

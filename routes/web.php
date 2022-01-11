@@ -182,6 +182,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/index', [PedidoController::class, 'index'])->name('pedido.index');
         Route::post('/store/{carrito}', [PedidoController::class, 'store'])->name('pedido.store');
     });
+
+    //facturas
+    Route::group(['prefix' => 'facturas'], function () {
+        Route::get('/show', [App\Http\Controllers\FacturaController::class, 'show'])
+            ->name('factura.show');
+        Route::get('/pdf/{pedi}', [App\Http\Controllers\FacturaController::class, 'pdf'])
+            ->name('factura.pdf');
+        Route::get('/imprimir/{resulP}', [App\Http\Controllers\FacturaController::class, 'imprimir'])
+            ->name('factura.imprimir');
+    });
 });
 
 Auth::routes();

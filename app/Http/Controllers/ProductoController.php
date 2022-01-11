@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use App\Models\Empresa;
-use App\Models\Producto;
-use App\Models\Subcategoria;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Empresa;
+use App\Models\Factura;
+use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Support\Str;
+use App\Models\Subcategoria;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -140,10 +141,10 @@ class ProductoController extends Controller
         $empresa = Empresa::all();
         $user = User::all();
         return view('Productos.indexAdmin', compact('productos'), compact('user'));
-
     }
 
-    public function subcategorias(Request $request) {
+    public function subcategorias(Request $request)
+    {
         if (isset($request->texto)) {
             $subcategorias = Subcategoria::where('categoria_id', $request->texto)->get();
             return response()->json(
@@ -160,5 +161,4 @@ class ProductoController extends Controller
             );
         }
     }
-
 }

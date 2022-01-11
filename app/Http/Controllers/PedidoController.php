@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrito;
-use App\Models\CarritoProducto;
 use App\Models\Cliente;
-use App\Models\PedidoPago;
+use App\Models\Factura;
 use App\Models\Producto;
+use App\Models\PedidoPago;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\CarritoProducto;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
@@ -78,15 +79,24 @@ class PedidoController extends Controller
         //creando carrito
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-        $cambio = carrito::where('cliente_id', $cliente->id)->update([
+        $pedi = PedidoPago::where('carrito_id', $carrito->id)->first();
+        $data = Factura::create([
+
+            'fecha' => date("F j, Y, g:i a"),
+            'codControl' => 1,
+            'nit' => 1111111, // sacar de la tabla pedido
+            'totalImpuesto' => 15.00,
+            'pago_id' => $pedi->id,
+        ]);
+
+        $cambio = \App\Models\carrito::where('cliente_id', $cliente->id)->update([
             'estado' => "cancelado"
         ]);
-        $carritoN = Carrito::create([
+        $carritoN = \App\Models\Carrito::create([
             'cliente_id' => $cliente->id
 
         ]);
 
-
-        return redirect()->route('catalogo'); //revisar ruta gg
+        return redirect()->route('factura.show'); //revisar ruta gg
     }
 }
