@@ -18,6 +18,7 @@ class PedidoPago extends Model
         'ciudad',
         'direccionEnvio',
         'telfCliente',
+        'nit',
         'carrito_id',
         'tarjeta_id'
     ];
@@ -31,7 +32,7 @@ class PedidoPago extends Model
     }
 
     public function factura() {
-        return $this->hasOne(Factura::class,'pago_id');
+        return $this->hasMany(Factura::class,'pago_id');
     }
 
     public function comision() {

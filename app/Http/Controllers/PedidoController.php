@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
-    public function index(){ 
+    public function index(){
         $id_user= Auth::user()->id;
         $id_cliente=Cliente::where('user_id',$id_user)->first();
-    
+
         $tarjetas=DB::table('tarjetas')
         ->where('cliente_id','=',$id_cliente->id)
         ->get();
@@ -28,7 +28,7 @@ class PedidoController extends Controller
     }
 
     public function store(Carrito $carrito,Request $request){
-        
+
         $data=$request->validate([
 
             'fechaEnvio' => 'required',
@@ -37,6 +37,7 @@ class PedidoController extends Controller
             'direccionEnvio' => 'required',
             'telfCliente' => 'required',
             'tarjeta_id' => 'required',
+            'nit' => 'required',
         ]);
 
         $productos=DB::table('carritos_productos')
@@ -56,12 +57,12 @@ class PedidoController extends Controller
             }else{
                 //actualizando stock
                $productos2=Producto::where('id',$productos[$c]->producto_id)->first();
-               
+
                 $nuevoStock=$stockC[0]->stock - $productos[$c]->cantidad;
                 $productos2->stock=$nuevoStock;
                 $productos2->save();
             }
-            
+
          $c=$c+1;
 
         }
@@ -74,6 +75,6 @@ class PedidoController extends Controller
        // dd($data);
         $pedido=PedidoPago::create($data);
 
-        return redirect()->route('index');//revisar ruta gg
+        return redirect()->route('catalogo');//revisar ruta gg
     }
 }
