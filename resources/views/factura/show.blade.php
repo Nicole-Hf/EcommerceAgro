@@ -36,7 +36,7 @@
                                             <th>{{ $factura->totalImpuesto }}</th>
                                             <td class="td-actions">
 
-                                                <a href="{{ route('factura.pdf',$factura->id)}}"
+                                                <a href="{{ route('factura.pdf',$factura->pago_id)}}"
                                                     class="btn btn-info text-center">
 
                                                     <i class="material-icons">description</i>
