@@ -45,6 +45,6 @@ class HomeController extends Controller
         'cantempresa' => $cantempresa,
         'usuarios' => $usuario,
         'clientes' => $cliente,
-        'empresas' => $empresa]);
+        'empresas' => $empresa]); 
     }
 }

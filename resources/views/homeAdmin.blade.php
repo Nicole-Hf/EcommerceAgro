@@ -41,7 +41,7 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
-              <div class="inner">
+              <div class="inner"> 
                 <h3>{{$cantuser}}</h3>
 
                 <p>Usuarios</p>
