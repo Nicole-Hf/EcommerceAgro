@@ -9,6 +9,7 @@ use App\Models\Factura;
 use App\Models\PedidoPago;
 use App\Models\Producto;
 use App\Models\Tarjeta;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class EnvioController extends Controller
@@ -68,7 +69,8 @@ class EnvioController extends Controller
         $factura->nit = $envio->nit;
         $factura->fecha = $envio->fechaPago;
         $factura->pago_id = $envio->id;
-        $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        //$factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        $factura->totalImpuesto = $envio->monto;
         $factura->save();
 
         return response()->json($envio);
@@ -121,35 +123,57 @@ class EnvioController extends Controller
         $factura->nit = $envio->nit;
         $factura->fecha = $envio->fechaPago;
         $factura->pago_id = $request->input('pago_id');
-        $factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        //$factura->totalImpuesto = ($envio->monto * 0.15) + $envio->monto;
+        $factura->totalImpuesto = $envio->monto;
         $factura->save();
 
         return response()->json($factura);
     }
 
-    /*public function getFactura($facturaID) {
-        $factura = Factura::where(['id' => $facturaID])->first();
+    public function getFacturasItems($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
 
-        $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
-        $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->get();
-        $items = [];
+        return response()->json($factura);
+    }
 
-        foreach ($cartItems as $cartItem) {
-            $item = new \stdClass();
-            $item->nombre = $cartItem->nombre;
-            $item->cantidad = $cartItem->cantidad;
-            $item->subtotal = $cartItem->subtotal;
-            array_push($items, $item);
+    public function getFacturas($idCliente) {
+        $factura = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->select("*")->where("cliente_id", $idCliente)->get();
+
+        return response()->json($factura);
+    }
+
+    public function facturaItems($cliente) {
+        $facturas = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->select("*")->where("cliente_id", $cliente)->get();
+
+        $invoices = [];
+        foreach ($facturas as $factura) {
+            $envio = PedidoPago::where(['id' => $factura->pago_id])->first();
+            $cartItems = CarritoProducto::where(['carrito_id' => $envio->carrito_id])->get();
+            $items = [];
+            foreach ($cartItems as $cartItem) {
+                $item = new \stdClass();
+                $item->nombre = $cartItem->nombre;
+                $item->cantidad = $cartItem->cantidad;
+                $item->subtotal = $cartItem->subtotal;
+                array_push($items, $item);
+            }
+            $invoice = new \stdClass();
+            $invoice->id = $factura->id;
+            $invoice->nit = $factura->nit;
+            $invoice->fecha = $factura->fecha;
+            $invoice->totalImp = $factura->totalImpuesto;
+            $invoice->items = $items;
+            array_push($invoices, $invoice);
         }
 
-        $invoice = new \stdClass();
-        $invoice->id = $factura->id;
-        $invoice->nroFactura = $factura->nroFactura;
-        $invoice->nit = $factura->nit;
-        $invoice->fecha = $factura->fecha;
-        $invoice->totalImp = $factura->totalImpuesto;
-        $invoice->items = $items;
-
-        return response()->json($invoice);
-    }*/
+        return response()->json($invoices);
+    }
 }

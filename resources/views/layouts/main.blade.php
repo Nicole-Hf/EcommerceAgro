@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css"
         integrity="sha384-GzaBcW6yPIfhF+6VpKMjxbTx6tvR/yRd/yJub90CqoIn2Tz4rRXlSpTFYMKHCifX" crossorigin="anonymous" />
     <link href="{{ asset('css/shop.css') }}" rel="stylesheet" />
+
     <link href="{{ asset('css/icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/linearicons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet" />

@@ -25,7 +25,7 @@ class CarritoSeeder extends Seeder
             //'monto' => '180',
         ]);
 
-        CarritoProducto::create([
+        /*CarritoProducto::create([
             'carrito_id' => '1',
             'producto_id' => '1',
             'nombre' => 'super macollo',
@@ -63,6 +63,6 @@ class CarritoSeeder extends Seeder
             'nombre' => 'super foliar',
             'cantidad' => '3',
             'subtotal' => '135'
-        ]);
+        ]);*/
     }
 }

@@ -121,5 +121,4 @@
             ele.classList.toggle("wishlist-visite");
         });
         </script>
-       
     </div>
