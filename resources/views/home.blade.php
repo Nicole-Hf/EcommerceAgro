@@ -41,7 +41,7 @@
                             <p>Ingreso promedio</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="ion ion-pie-graph"></i>
                         </div>
                     </div>
                 </div>

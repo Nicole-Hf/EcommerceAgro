@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Factura;
+use App\Models\PedidoPago;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,42 +61,22 @@ class ClienteController extends Controller
      */
     public function show()
     {
-        $productos = Producto::paginate();     
-        $empresa = Empresa::all();   
+        $productos = Producto::paginate();
+        $empresa = Empresa::all();
         return view('Clientes.show', compact('productos'), compact('empresa')) ;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function getClientes()
     {
-        //
-    }
+        $userId = auth()->user()->id;
+        $empresa = Empresa::where(['user_id' => $userId])->first();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $clientes = PedidoPago::join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("clientes", "clientes.id", "=", "carritos.cliente_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->select("clientes.*")->where("empresa_id", $empresa->id)->get();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('Clientes.indexEmpresa', compact('clientes'));
     }
 }

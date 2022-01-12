@@ -65,7 +65,6 @@
                     <i class="material-icons">shoping_card</i>
                     <span>{{ __('Tarjetas') }}</span>
                 </a>
-
                 @endif
             </li>
             {{--CATEGORIAS--}}
@@ -100,20 +99,17 @@
                     </ul>
                 </div>
             </li>
-
-            {{--PEDIDOS--}}
+            {{--PEDIDOS
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
                 @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
                     <span>{{ __('Pedidos') }}</span>
                 </a>
-
                 @endcan
-            </li>
+            </li>--}}
 
             {{--Facturas--}}
-
             <li class="nav-item{{ $activePage == 'facturas' ? ' active' : '' }}">
                 @if (auth()->user()->role_id == 2)
                 <a class="nav-link" href="{{route('factura.show')}}">
@@ -121,8 +117,6 @@
                     <span>{{ __('Facturas') }}</span>
                 </a>
                 @endif
-
-
             </li>
 
             {{--REPORTES--}}
@@ -132,6 +126,16 @@
                     <i class="material-icons">query_stats</i>
                     <span>{{ __('Reportes') }}</span>
                 </a>
+                @endcan
+            </li>
+
+            {{--CLIENTES--}}
+            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+                @can('reportes.index')
+                    <a class="nav-link" href="{{ route('clientes.indexEmpresa') }}">
+                        <i class="material-icons">person</i>
+                        <span>{{ __('Clientes') }}</span>
+                    </a>
                 @endcan
             </li>
 
