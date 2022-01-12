@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\CarritoProducto;
 use App\Http\Controllers\Controller;
-use App\Models\Bitacora;
-use App\Models\DetalleBitacora;
 use App\Providers\RouteServiceProvider;
-use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -41,42 +37,18 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-
-        
         $this->middleware('guest')->except('logout');
-        
     }
 
     public function redirectPath()
     {
         if (auth()->user()->role_id == '2') {
-            $log = new DetalleBitacora();
-            $log->event = "Inicio sesion";
-            $log->nombre = auth()->user()->name;
-            $log->correo = auth()->user()->email;
-            $log->fecha_accion = Carbon::now();
-            $log->bitacora_id= Auth::user()->id;
-            $log->save();
+
             return '/';
         } elseif (auth()->user()->role_id == '3') {
-            $log = new DetalleBitacora();
-            $log->event = "Inicio sesion";
-            $log->nombre = auth()->user()->name;
-            $log->correo = auth()->user()->email;
-            $log->fecha_accion = Carbon::now(); 
-            $log->bitacora_id= Auth::user()->id;
-            
-            $log->save();
             return '/empresa/home';
         }
-        $log = new DetalleBitacora();
-        $log->event = "Inicio sesion";
-            $log->nombre = auth()->user()->name;
-            $log->correo = auth()->user()->email;
-            $log->fecha_accion = Carbon::now(); 
-            $log->bitacora_id= Auth::user()->id;
-            
-            $log->save();
+
         return '/admin/home';
     }
 }

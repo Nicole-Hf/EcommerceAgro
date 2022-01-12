@@ -4,9 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\CarritoProducto;
-use App\Models\DetalleBitacora;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class CarritoEstado extends Component
 {
@@ -59,14 +56,6 @@ class CarritoEstado extends Component
 
     public function removeItem($id)
     {
-        $resl = CarritoProducto::where('id', $id)->first();
-        $log = new DetalleBitacora();
-            $log->nombre = auth()->user()->name;
-            $log->correo = auth()->user()->email;
-            $log->event = "Producto"." ".$resl->nombre." "."eliminado del carrito";
-            $log->fecha_accion = Carbon::now();
-            $log->bitacora_id = Auth::user()->id;
-            $log->save();
         $result2 = CarritoProducto::where('id', $id)->delete();
         $this->emitTo('carrito', 'refreshCarrito');
     }

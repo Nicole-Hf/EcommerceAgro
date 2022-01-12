@@ -26,12 +26,6 @@
     <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/themify-icons.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/main.css')}}">
-
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css')}}">
-  
     @livewireStyles
 </head>
 
@@ -96,7 +90,6 @@
     @stack('js')
 
     @livewireScripts
-    
 </body>
 
 </html>

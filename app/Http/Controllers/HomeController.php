@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
-use App\Models\Empresa;
-use App\Models\Producto;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,20 +27,7 @@ class HomeController extends Controller
     }
 
     public function indexAdmin()
-    { 
-        $cantuser = User::count();
-        $cantproduct = Producto::count();
-        $cantcliente = Cliente::count();
-        $cantempresa = Empresa::count();
-        $usuario = User::all();
-        $cliente = Cliente::all();
-        $empresa = Empresa::all();
-        return view('homeAdmin', ['cantuser' => $cantuser, 
-        'cantproduct' => $cantproduct, 
-        'cantcliente' => $cantcliente,
-        'cantempresa' => $cantempresa,
-        'usuarios' => $usuario,
-        'clientes' => $cliente,
-        'empresas' => $empresa]);
+    {
+        return view('homeAdmin');
     }
 }
