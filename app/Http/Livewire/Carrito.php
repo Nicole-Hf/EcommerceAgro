@@ -6,6 +6,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\PedidoPago;
 use App\Models\CarritoProducto;
+use App\Models\DetalleBitacora;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Carrito extends Component
 {
@@ -28,7 +31,14 @@ class Carrito extends Component
             $resultado = CarritoProducto::join("productos", "productos.id", "=", "carritos_productos.producto_id")
                 ->select("carritos_productos.*", "productos.nombre", "productos.imagen", "productos.precio")
                 ->where("carritos_productos.carrito_id", $carrito->id)->where("productos.id", $id)->get();
-
+            
+            $log = new DetalleBitacora();
+            $log->nombre = auth()->user()->name;
+            $log->correo = auth()->user()->email;
+            $log->event = "Producto"." ".$nombre." "."añadido al carrito";
+            $log->fecha_accion = Carbon::now();
+            $log->bitacora_id = Auth::user()->id;
+            $log->save();
 
             if ($resultado->count() === 0) {
                 $detalle = CarritoProducto::create([
