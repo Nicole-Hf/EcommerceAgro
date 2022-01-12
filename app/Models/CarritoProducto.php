@@ -29,7 +29,5 @@ class CarritoProducto extends Model
         return $this->where(['carrito_id' => $carrito])->get();
     }
 
-    public function factu() {
-        return $this->belongsTo(Factu::class,'carrito_producto_id');
-    }
+    
 }

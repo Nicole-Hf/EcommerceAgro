@@ -33,6 +33,9 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
+Route::get('/backup',function(){
+    return view('backup.index');
+})->name('backup.index');
 //CARRITO
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
     ->name('carrito.add');

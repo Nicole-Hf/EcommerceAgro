@@ -235,6 +235,7 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        Spatie\Backup\BackupServiceProvider::class,
 
     ],
 

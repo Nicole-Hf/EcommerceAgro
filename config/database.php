@@ -35,6 +35,8 @@ return [
 
     'connections' => [
 
+
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -65,6 +67,9 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
+            'dump' => [
+                'dump_binary_path' => 'C:\Program Files\PostgreSQL\10\bin', // only the path, so without `mysqldump` or `pg_dump`
+            ],
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),

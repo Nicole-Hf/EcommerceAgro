@@ -119,12 +119,12 @@
                     
                 </li>
             
-            {{--REPORTES--}}
+            {{--backup--}}
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
-                    <a class="nav-link" href="#">
-                        <i class="material-icons">query_stats</i>
-                        <span>{{ __('Reportes') }}</span>
+                    <a class="nav-link" href="{{route('backup.index')}}">
+                        <i class="material-icons">backup</i>
+                        <span>{{ __('Backup') }}</span>
                     </a>
                 @endcan
             </li>
