@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrito;
 use App\Models\Cliente;
 use App\Models\DetalleBitacora;
+use App\Models\Factura;
 use App\Models\PedidoPago;
 use App\Models\Producto;
 use Carbon\Carbon;
