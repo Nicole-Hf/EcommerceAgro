@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Empresa;
+use App\Models\Factura;
 use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,11 +28,36 @@ class HomeController extends Controller
      */
     public function indexEmp()
     {
-        return view('home');
+        $userId = auth()->user()->id;
+        $empresa = Empresa::where(['user_id' => $userId])->first();
+        $cantproduct = Producto::where(['empresa_id' => $empresa->id])->count();
+
+        $productos = Producto::where(['empresa_id' => $empresa->id])->get();
+
+        $totalVentas = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("empresa_id", $empresa->id)->sum('carritos_productos.subtotal');
+
+        $promVentas = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("empresa_id", $empresa->id)->avg('carritos_productos.subtotal');
+
+        $cantCliente = Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
+            ->where("empresa_id", $empresa->id)->count();
+
+        return view('home', compact('cantproduct',
+            'productos', 'totalVentas', 'promVentas', 'cantCliente'));
     }
 
     public function indexAdmin()
-    { 
+    {
         $cantuser = User::count();
         $cantproduct = Producto::count();
         $cantcliente = Cliente::count();
@@ -39,8 +65,8 @@ class HomeController extends Controller
         $usuario = User::all();
         $cliente = Cliente::all();
         $empresa = Empresa::all();
-        return view('homeAdmin', ['cantuser' => $cantuser, 
-        'cantproduct' => $cantproduct, 
+        return view('homeAdmin', ['cantuser' => $cantuser,
+        'cantproduct' => $cantproduct,
         'cantcliente' => $cantcliente,
         'cantempresa' => $cantempresa,
         'usuarios' => $usuario,
