@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use App\Models\Cliente;
-use App\Models\DetalleBitacora;
-use App\Models\PedidoPago;
+use App\Models\Factura;
 use App\Models\Producto;
-use Carbon\Carbon;
+use App\Models\PedidoPago;
 use Illuminate\Http\Request;
 use App\Models\CarritoProducto;
 use Illuminate\Support\Facades\DB;
@@ -100,13 +99,5 @@ class PedidoController extends Controller
 
         return redirect()->route('factura.show'); //revisar ruta gg
 
-        $log = new DetalleBitacora();
-            $log->nombre = auth()->user()->name;
-            $log->correo = auth()->user()->email;
-            $log->event = "Realizo pedido";
-            $log->fecha_accion = Carbon::now();
-            $log->bitacora_id = Auth::user()->id;
-            $log->save();
-        return redirect()->route('catalogo');//revisar ruta gg
     }
 }

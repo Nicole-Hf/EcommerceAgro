@@ -1,31 +1,10 @@
 <div>
     <div class="row box-search">
-     <input type="search" style="width:200px;" wire:model="term" class="form-control rounded" placeholder="Search"
+        <input type="search" style="width:200px;" wire:model="term" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
-     <button type="button" style="margin:0;" class="btn btn-outline-primary">search</button> 
-     <div class="mx-auto" style="width: 750px;">
-        
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <div class="btn-group" role="group">
-              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                CATEGORIAS
-              </button>
-             
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                
-                <div>
-                <a class="dropdown-item" href="{{ route('mostrar', '1') }}">Nutricion Animal</a>
-                <a class="dropdown-item" href="{{ route('mostrar', '2') }}">Semillas de Sorgo</a>
-                <a class="dropdown-item" href="{{ route('mostrar', '3') }}">Sanidad Animal</a>
-                <a class="dropdown-item" href="{{ route('mostrar', '4') }}">Semillas de Pasto</a>
-                <a class="dropdown-item" href="{{ route('mostrar', '5') }}">Semillas de Maiz</a>
-                </div>
-                  
-              </div>
-            </div>
-          </div>
-   </div>
+        <button type="button" style="margin:0;" class="btn btn-outline-primary">search</button>
     </div>
+
     <div class="row">
         @foreach ($productos as $productoD)
         <div class="col-md-3">
