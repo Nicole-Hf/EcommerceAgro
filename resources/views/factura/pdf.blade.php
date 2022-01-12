@@ -72,7 +72,7 @@
                 <p class="mb-0">Agroshop.com, AMAMOS A NUESTROS CLIENTES
 
                 </p>
-                <a class=" btn btn-dark float-right" href="{{ route('factura.imprimir',$fact_id->id)}}"
+                <a class=" btn btn-dark float-right" href="{{ route('factura.imprimir',$fact_id->pago_id)}}"
                     role="button">descargar</a>
             </div>
         </div>
