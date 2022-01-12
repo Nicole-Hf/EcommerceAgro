@@ -30,5 +30,12 @@ class ShopController extends Controller
         return view('Catalogo.detalle', compact('product'));
     }
 
+    public function mostrar($id)
+    {
+        $productos = Producto::where('categoria', $id)->get();
+        //dd($product);
+        return view('Catalogo.categori', ['productos' => $productos]);
+    }
+
     
 }
