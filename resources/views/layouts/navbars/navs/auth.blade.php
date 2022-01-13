@@ -49,12 +49,12 @@
                     </div>
                 </li>
                 <!-- Lista de deseo -->
-
+                @can('carrito.add')
                 <li>
                     <livewire:lista-deseos />
                 </li>
 
-
+                @endcan
                 @can('carrito.add')
                 <li>
                     <livewire:carrito />

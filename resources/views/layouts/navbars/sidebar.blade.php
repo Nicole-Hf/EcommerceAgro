@@ -132,7 +132,7 @@
             {{--REPORTES--}}
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('reportes.index')}}">
                     <i class="material-icons">query_stats</i>
                     <span>{{ __('Reportes') }}</span>
                 </a>
