@@ -1,15 +1,7 @@
 @extends('layouts.main', ['activePage'=>'facturas', 'titlePage'=>'Facturas'])
 
 @section('content')
-<form action="url(reportes/importar)" method="post" enctype="multipart/form-data">
-    @csrf
-    <div class="clo-md-6">
-        <input type="file" name="documento">
-        <button class="btn btn-primary" type="submit">
-            importar
-        </button>
-    </div>
-</form>
+
 <div class="col-md-4">
     <a class="btn btn-success" href="{{ route('reportes.expUsers') }}">por usuarios usuarios</a>
     <a class="btn btn-success" href="{{ route('reportes.expCompraCliente') }}">por compras de clientes</a>

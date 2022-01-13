@@ -196,7 +196,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'reporte'], function () {
         Route::get('/index', [App\Http\Controllers\ReporteController::class, 'index'])
             ->name('reportes.index');
-        Route::post('/reportes/importar', [App\Http\Controllers\ReporteController::class, 'importar']);
         Route::get('/reportes/e', [App\Http\Controllers\ReporteController::class, 'expUsers'])
             ->name('reportes.expUsers');;
         Route::get('/reportes/exportar', [App\Http\Controllers\ReporteController::class, 'expCompraCliente'])
