@@ -131,7 +131,7 @@
 
             {{--CLIENTES--}}
             <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
-                @can('reportes.index')
+                @can('empresas.store')
                     <a class="nav-link" href="{{ route('clientes.indexEmpresa') }}">
                         <i class="material-icons">person</i>
                         <span>{{ __('Clientes') }}</span>
