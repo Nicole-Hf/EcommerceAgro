@@ -19,6 +19,7 @@ class ReporteController extends Controller
     public function index()
     {
         $usuarios = User::all();
+
         return view('reportes.index', compact('usuarios'));
     }
 
