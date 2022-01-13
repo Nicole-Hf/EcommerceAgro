@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TarjetaController;
@@ -38,6 +40,9 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
+Route::get('/backup',function(){
+    return view('backup.index');
+})->name('backup.index');
 //CARRITO
 Route::POST('/carrito', [App\Http\Controllers\CartController::class, 'addToCart'])
     ->name('carrito.add');
@@ -174,7 +179,6 @@ Route::middleware(['auth'])->group(function () {
             ->name('productos.show');
         Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
     });
-
     //tarjetas
     Route::group(['prefix' => 'payment'], function () {
         Route::get('/index', [TarjetaController::class, 'index'])->name('tarjeta.index');

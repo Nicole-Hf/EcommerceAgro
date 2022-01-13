@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Categoria;
+use Factu;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

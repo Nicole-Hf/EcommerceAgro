@@ -38,3 +38,4 @@ class CarritoProducto extends Model
         return $this->select('id')->where(['carrito_id' => $cart, 'producto_id' => $product])->get();
     }
 }
+

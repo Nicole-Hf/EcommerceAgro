@@ -8,8 +8,6 @@ use App\Models\Factura;
 use App\Models\PedidoPago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-
 use PDF;
 
 class FacturaController extends Controller
