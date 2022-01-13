@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Empresa;
 use App\Models\Factura;
+use App\Models\PedidoPago;
 use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -51,6 +53,12 @@ class HomeController extends Controller
             ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
             ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
             ->where("empresa_id", $empresa->id)->count();
+
+        /*$ventasmes = DB::select("SELECT date_part('month',v.fechaPago) as mes, sum(v.monto) as totalmes
+                               from pedidos_pagos v
+                               group by date_part('month',v.fechaPago)
+                               order by date_part('month',v.fechaPago)
+                               desc limit 12");*/
 
         return view('home', compact('cantproduct',
             'productos', 'totalVentas', 'promVentas', 'cantCliente'));

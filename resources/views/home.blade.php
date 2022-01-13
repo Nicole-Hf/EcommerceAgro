@@ -1,4 +1,17 @@
 @extends('layouts.main', ['activePage'=>'home', 'titlePage'=>'Dashboard'])
+@section('styles')
+    <style type="text/css">
+        .unstyled-button {
+            border: none;
+            padding: 0;
+            background: none;
+        }
+    </style>
+@endsection
+@section('options')
+@endsection
+@section('preference')
+@endsection
 @section('content')
     <div class="container">
         <div class="content-header">
@@ -98,7 +111,55 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Ventas - Meses
+                        </h4>
+                        <canvas id="ventas"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
+
+{{--@section('scripts')
+
+    <script>
+        $(function () {
+            var varVenta=document.getElementById('ventas').getContext('2d');
+            var charVenta = new Chart(varVenta, {
+                type: 'line',
+                data: {
+                    labels: [<?php foreach ($ventasmes as $reg)
+                    {
+                        setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
+                        $mes_traducido=strftime('%B',strtotime($reg->mes));
+
+                        echo '"'. $mes_traducido.'",';} ?>],
+                    datasets: [{
+                        label: 'Ventas',
+                        data: [<?php foreach ($ventasmes as $reg)
+                        {echo ''. $reg->totalmes.',';} ?>],
+                        backgroundColor: 'rgba(20, 204, 20, 1)',
+                        borderColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+@endsection--}}
 
