@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use App\Models\Cliente;
+use App\Models\DetalleBitacora;
 use App\Models\Factura;
-use App\Models\Producto;
 use App\Models\PedidoPago;
+use App\Models\Producto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\CarritoProducto;
 use Illuminate\Support\Facades\DB;
@@ -31,10 +33,7 @@ class PedidoController extends Controller
 
     public function store(Carrito $carrito, Request $request)
     {
-
         $data = $request->validate([
-
-
             'fechaEnvio' => 'required',
             'departamento' => 'required',
             'ciudad' => 'required',
@@ -57,16 +56,14 @@ class PedidoController extends Controller
                 ->get();
 
             if (($productos[$c]->cantidad) > ($stockC[0]->stock)) {
-                return 'no hay stock';
+                return 'no hay stock'.$productos[$c]->nombre;
             } else {
                 //actualizando stock
                 $productos2 = Producto::where('id', $productos[$c]->producto_id)->first();
-
                 $nuevoStock = $stockC[0]->stock - $productos[$c]->cantidad;
                 $productos2->stock = $nuevoStock;
                 $productos2->save();
             }
-
             $c = $c + 1;
         }
 
@@ -82,7 +79,6 @@ class PedidoController extends Controller
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
         $pedi = PedidoPago::where('carrito_id', $carrito->id)->first();
         $data = Factura::create([
-
             'fecha' => date("F j, Y, g:i a"),
             'nit' => $pedi->nit, // sacar de la tabla pedido
             'totalImpuesto' => $pedi->monto,
@@ -99,5 +95,14 @@ class PedidoController extends Controller
 
         return redirect()->route('factura.show'); //revisar ruta gg
 
+        $log = new DetalleBitacora();
+            $log->nombre = auth()->user()->name;
+            $log->correo = auth()->user()->email;
+            $log->event = "Realizo pedido";
+            $log->fecha_accion = Carbon::now();
+            $log->bitacora_id = Auth::user()->id;
+            $log->save();
+
+        return redirect()->route('catalogo');//revisar ruta gg
     }
 }

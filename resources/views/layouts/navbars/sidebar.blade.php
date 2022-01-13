@@ -12,10 +12,6 @@
             {{ __('AgroShop') }}
         </a>
         @endcan
-        {{--<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
-            <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
-            <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
-        </button>--}}
     </div>
 
     <div class="sidebar-wrapper ps-container ps-active-y">
@@ -69,7 +65,6 @@
                     <i class="material-icons">shoping_card</i>
                     <span>{{ __('Tarjetas') }}</span>
                 </a>
-
                 @endif
             </li>
             {{--CATEGORIAS--}}
@@ -104,20 +99,17 @@
                     </ul>
                 </div>
             </li>
-
-            {{--PEDIDOS--}}
+            {{--PEDIDOS
             <li class="nav-item{{ $activePage == 'pedidos' ? ' active' : '' }}">
                 @can('pedidos.index')
                 <a class="nav-link" href="#">
                     <i class="material-icons">shopping_cart</i>
                     <span>{{ __('Pedidos') }}</span>
                 </a>
-
                 @endcan
-            </li>
+            </li>--}}
 
             {{--Facturas--}}
-
             <li class="nav-item{{ $activePage == 'facturas' ? ' active' : '' }}">
                 @if (auth()->user()->role_id == 2)
                 <a class="nav-link" href="{{route('factura.show')}}">
@@ -125,8 +117,6 @@
                     <span>{{ __('Facturas') }}</span>
                 </a>
                 @endif
-
-
             </li>
 
             {{--REPORTES--}}
@@ -136,6 +126,16 @@
                     <i class="material-icons">query_stats</i>
                     <span>{{ __('Reportes') }}</span>
                 </a>
+                @endcan
+            </li>
+
+            {{--CLIENTES--}}
+            <li class="nav-item{{ $activePage == 'clientes' ? ' active' : '' }}">
+                @can('reportes.index')
+                    <a class="nav-link" href="{{ route('clientes.indexEmpresa') }}">
+                        <i class="material-icons">person</i>
+                        <span>{{ __('Clientes') }}</span>
+                    </a>
                 @endcan
             </li>
 
@@ -193,10 +193,10 @@
             {{--BITACORA--}}
             <li class="nav-item{{ $activePage == 'bitacora' ? ' active' : '' }}">
                 @can('bitacora.index')
-                <a class="nav-link" href="#">
-                    <i class="material-icons">language</i>
-                    <span>{{ __('Bitácora') }}</span>
-                </a>
+                    <a class="nav-link" href="{{ route('Bitacora.index') }}">
+                        <i class="material-icons">language</i>
+                        <span>{{ __('Bitácora') }}</span>
+                    </a>
                 @endcan
             </li>
 

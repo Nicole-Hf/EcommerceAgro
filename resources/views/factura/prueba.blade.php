@@ -32,8 +32,6 @@
                         <tbody>
                             @foreach ($resulP as $facturas)
                             <tr>
-
-
                                 <td>{{$facturas->nombre}}</td>
                                 <td>{{$facturas->cantidad}}</td>
                                 <td>{{$facturas->subtotal}}</td>

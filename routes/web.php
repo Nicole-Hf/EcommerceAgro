@@ -3,6 +3,10 @@
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TarjetaController;
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\DetalleBitacoraController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -92,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'clientes'], function () {
         Route::get('/index', [App\Http\Controllers\ClienteController::class, 'index'])
             ->name('clientes.index');
+        Route::get('/index/empresa', [App\Http\Controllers\ClienteController::class, 'getClientes'])
+            ->name('clientes.indexEmpresa');
         Route::get('/create', [App\Http\Controllers\ClienteController::class, 'create'])
             ->name('clientes.create');
         Route::get('/show', [App\Http\Controllers\ClienteController::class, 'show'])
@@ -210,7 +216,11 @@ Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexE
     ->name('home');
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
     ->name('catalogo');
+Route::get('/mostrar/{id}', 'App\Http\Controllers\ShopController@mostrar')
+    ->name('mostrar');
 Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
     ->name('ver');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
+Route::get('/index',[BitacoraController::class,'index'])->name('Bitacora.index');
+Route::get('/show/{correo}',[DetalleBitacoraController::class,'show'])->name('detallebitacora.show');
