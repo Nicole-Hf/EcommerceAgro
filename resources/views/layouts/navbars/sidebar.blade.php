@@ -119,7 +119,7 @@
                 @endif
             </li>
 
-                {{--Facturas--}}
+                {{--Facturas
 
                 <li class="nav-item{{ $activePage == 'facturas' ? ' active' : '' }}">
                    @if (auth()->user()->role_id == 2)
@@ -128,10 +128,10 @@
                     <span>{{ __('Facturas') }}</span>
                 </a>
                    @endif
-                       
-                    
-                </li>
-            
+
+
+                </li>--}}
+
             {{--backup--}}
             <li class="nav-item{{ $activePage == 'reportes' ? ' active' : '' }}">
                 @can('reportes.index')
