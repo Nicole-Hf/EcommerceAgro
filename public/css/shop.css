@@ -5510,7 +5510,9 @@ li.add-to-cart {
     align-items: center;
     border-radius: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px;
 }
+
 /* cart menu */
 .navbar .navbar-nav li {
     list-style: none;
@@ -5631,7 +5633,7 @@ button.add-to-cart-button.wishlist {
     margin: 0;
     border: 0;
     font-size: 18px;
-    color: #333333;
+    color: #2c2727;
     cursor: pointer;
 }
 
@@ -5726,8 +5728,14 @@ a.nav-link.cart_trigger.btn-shopping-cart {
     min-width: auto;
     overflow: initial;
 }
+/* panel de arriba cuenta,carrito,whislist */
 .main-panel > .navbar.navbar-absolute {
     position: relative;
+    background-color: #191919 !important;
+}
+
+.material-icons {
+    color: white;
 }
 
 /*detalle de carrito*/
@@ -5790,7 +5798,7 @@ a {
     color: #212529;
 }
 .dtl .form-control {
-    width: 50%;
+    width: 30%;
 }
 .dtl .btn.btn-out {
     outline: 1px solid #fff;
@@ -5816,7 +5824,7 @@ a {
 .dtl .btn-light:hover {
     color: #ffffff;
     background-color: #f44336;
-    border-color: #f44336;
+    border-color: #e6dede;
 }
 
 .dtl .btn-apply {
@@ -5834,4 +5842,41 @@ a {
 .row.box-search .row.box-search {
     margin: 0;
 }
+
+.quantity {
+    display: table;
+}
+
+.quantity .minus,
+.quantity .plus {
+    background-color: #eee;
+    border: 0;
+    border-radius: 19px;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin: 4px;
+    padding: 0;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+.quantity .qty {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    float: left;
+    height: 36px;
+    margin: 3px;
+    padding: 0;
+    text-align: center;
+    width: 50px;
+}
+.wishlist-visite {
+    background-color: rgba(245, 58, 39, 0.68);
+    color: rgba(249, 242, 242, 0.65);
+    border: 1 solid rgba(249, 242, 242, 0.65);
+}
+
 /* Custon css end */

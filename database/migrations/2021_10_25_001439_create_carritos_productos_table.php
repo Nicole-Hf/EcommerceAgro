@@ -17,7 +17,7 @@ class CreateCarritosProductosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('carrito_id');
             $table->unsignedBigInteger('producto_id');
-            $table->float('precio');
+            $table->string('nombre',100)->nullable();
             $table->unsignedBigInteger('cantidad');
             $table->float('subtotal');
             $table->timestamps();

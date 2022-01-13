@@ -140,6 +140,6 @@ class RoleSeeder extends Seeder
             'description' => 'Listado de Pagos'])->syncRoles($role2);
 
         Permission::create(['name' => 'reportes.index',
-            'description' => 'Reportes de Ventas'])->syncRoles([$role1,$role3]);
+            'description' => 'Reportes de Ventas'])->syncRoles([$role1]);
     }
 }

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OauthClienteSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(CarritoSeeder::class);
-        $this->call(FactuSeeder::class);
+        $this->call(WishlistSeeder::class);
+        $this->call(TarjetaSeeder::class);
     }
 }

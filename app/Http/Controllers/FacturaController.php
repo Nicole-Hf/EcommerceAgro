@@ -2,50 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CarritoProducto;
+use App\Models\Carrito;
 use App\Models\Factura;
+
 use App\Models\PedidoPago;
-use App\Models\Producto;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class FacturaController extends Controller
 {
+    public  $items = [];
+    //
+
     public function show()
     {
-        
+
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-        $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
         $resulPago = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
             ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
-            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
-            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
-            ->select("*")->where("cliente_id", $cliente->id)->get(); //->get();
+            ->select("facturas.*", "pedidos_pagos.monto")->where("cliente_id", $cliente->id)->where('carritos.estado', 'cancelado')->get();
 
 
-        $facturas = Factura::all();
-        return view('facturas.show', compact('resulPago'));
+        return view('factura.show', compact('resulPago'));
     }
 
-    public function pdf(){
-        
+    public function pdf($pedi)
+    {
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
         $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+
         $resulPago = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
             ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
             ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
-            ->join("productos", "productos.id", "=", "carritos_productos.producto_id")
-            ->select("*")->where("cliente_id", $cliente->id)->get(); //->get();
+            ->select("facturas.*", "*")->where("cliente_id", $cliente->id)->where('facturas.pago_id', $pedi)
+            ->get();
 
-        $facturas = Factura::all();
-        //$pdf = PDF::loadView('facturas.pdf',compact('resulPago'));       
-        
-        return view('facturas.pdf',compact('resulPago'));
-        //return $pdf->stream('facturas.pdf');
-       
-        
+        $monto = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->select("facturas.id", "*")->where('facturas.pago_id', $pedi)->first();
+
+        $fact_id = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->select("facturas.*")->where('facturas.pago_id', $pedi)->first();
+
+        return view('factura.pdf', compact('resulPago', 'monto', 'fact_id'));
+    }
+
+    public function imprimir($pedido)
+    {
+
+        $idUser = auth()->user()->id;
+        $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
+        $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
+
+        $resulP = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
+            ->join("carritos_productos", "carritos_productos.carrito_id", "=", "carritos.id")
+            ->select("facturas.*", "*")->where("cliente_id", $cliente->id)->where('facturas.pago_id', $pedido)
+            ->get();
+
+        $mont = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
+            ->select("facturas.id", "*")->where('facturas.pago_id', $pedido)->first();
+
+        $pdf = PDF::loadView('factura.prueba', compact('resulP', 'mont'));
+        return  $pdf->download('factura' . $pedido . '-pdf.pdf');
     }
 }

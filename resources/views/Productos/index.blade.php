@@ -47,9 +47,8 @@
                                         <tr>
                                             <td>
                                                 <div class="img-container">
-                                                    <img {{--style="width: 20%"--}}
-                                                         src="{{ asset($producto->imagen) }}"
-                                                         alt="...">
+                                                    <img style="width: 25%" src="{{ asset('/storage/' . $producto->imagen) }}"
+                                                        alt="...">
                                                 </div>
                                             </td>
                                             <td>{{ $producto->id }}</td>

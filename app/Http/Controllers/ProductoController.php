@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use App\Models\Empresa;
-use App\Models\Producto;
-use App\Models\Subcategoria;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Empresa;
+use App\Models\Factura;
+use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Support\Str;
+use App\Models\Subcategoria;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -59,14 +60,14 @@ class ProductoController extends Controller
         }
 
         if ($request->hasFile('imagen')) {
-            //$data['imagen'] = Storage::disk('public')->put('imagenes', $request->imagen);
-            $nombre = Str::random(10) . $request->file('imagen')->getClientOriginalName();
+            $data['imagen'] = Storage::disk('public')->put('imagenes', $request->imagen);
+            /*$nombre = Str::random(10) . $request->file('imagen')->getClientOriginalName();
             $ruta = storage_path() . '\app\public\imagenes/' . $nombre;
             Image::make($request->file('imagen'))
                 ->resize(150, 150)->save($ruta);
 
             $url = '/storage/imagenes/' . $nombre;
-            $data['imagen'] = $url;
+            $data['imagen'] = $url;*/
         }
 
         $producto = Producto::create($data);
@@ -140,10 +141,10 @@ class ProductoController extends Controller
         $empresa = Empresa::all();
         $user = User::all();
         return view('Productos.indexAdmin', compact('productos'), compact('user'));
-
     }
 
-    public function subcategorias(Request $request) {
+    public function subcategorias(Request $request)
+    {
         if (isset($request->texto)) {
             $subcategorias = Subcategoria::where('categoria_id', $request->texto)->get();
             return response()->json(
@@ -160,5 +161,4 @@ class ProductoController extends Controller
             );
         }
     }
-
 }

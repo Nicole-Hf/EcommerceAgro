@@ -12,11 +12,13 @@ class PedidoPago extends Model
     protected $table = 'pedidos_pagos';
     protected $fillable = [
         'monto',
-        'estado',
         'fechaPago',
         'fechaEnvio',
+        'departamento',
+        'ciudad',
         'direccionEnvio',
         'telfCliente',
+        'nit',
         'carrito_id',
         'tarjeta_id'
     ];
@@ -30,7 +32,7 @@ class PedidoPago extends Model
     }
 
     public function factura() {
-        return $this->hasOne(Factura::class,'pago_id');
+        return $this->hasMany(Factura::class,'pago_id');
     }
 
     public function comision() {

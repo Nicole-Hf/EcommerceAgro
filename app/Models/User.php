@@ -30,6 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'wishlist_id',
     ];
 
     /**
@@ -65,8 +66,14 @@ class User extends Authenticatable
     public function empresa() {
         return $this->hasMany(Empresa::class, 'user_id');
     }
-
+    public function bitacoras() {
+        return $this->hasMany(Bitacora::class, 'user_id');
+    }
     public function cliente() {
         return $this->hasOne(Cliente::class, 'user_id');
+    }
+
+    public function wishlist(){
+        return $this->hasOne(WishList::class);
     }
 }

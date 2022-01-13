@@ -1,7 +1,14 @@
 <?php
 
+
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\TarjetaController;
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\DetalleBitacoraController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -46,6 +53,17 @@ Route::POST('/carrito/eliminar', [App\Http\Controllers\CartController::class, 'r
 Route::POST('/carrito/updateItem', [App\Http\Controllers\CartController::class, 'actualizarItemCarrito'])
     ->name('carrito.updateItem');
 
+//WISHLIST
+Route::POST('/wishList', [App\Http\Controllers\WishListController::class, 'addTowishList'])
+    ->name('ListaDeDeseos.add');
+Route::get('/wishList/ListaDeDeseos', [App\Http\Controllers\WishListController::class, 'index'])
+    ->name('Catalogo.ListaDeDeseos');
+Route::POST('/wishList/eliminar', [App\Http\Controllers\WishListController::class, 'remove'])
+    ->name('ListaDeDeseos.eliminar');
+Route::POST('/wishList/updateItem', [App\Http\Controllers\WishListController::class, 'actualizarItemWishList'])
+    ->name('ListaDeDeseos.updateItem');
+
+
 Route::middleware(['auth'])->group(function () {
     //usuarios
     Route::group(['prefix' => 'users'], function () {
@@ -83,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'clientes'], function () {
         Route::get('/index', [App\Http\Controllers\ClienteController::class, 'index'])
             ->name('clientes.index');
+        Route::get('/index/empresa', [App\Http\Controllers\ClienteController::class, 'getClientes'])
+            ->name('clientes.indexEmpresa');
         Route::get('/create', [App\Http\Controllers\ClienteController::class, 'create'])
             ->name('clientes.create');
         Route::get('/show', [App\Http\Controllers\ClienteController::class, 'show'])
@@ -139,32 +159,57 @@ Route::middleware(['auth'])->group(function () {
             ->name('empresas.store');
     });
 
-    Route::group(['prefix'=>'productos'],function () {
-        Route::get('/index',[ProductoController::class, 'index'])
+    //productos
+    Route::group(['prefix' => 'productos'], function () {
+        Route::get('/index', [ProductoController::class, 'index'])
             ->name('productos.index');
-        Route::get('/admin-index',[ProductoController::class, 'indexAdmin'])
+        Route::get('/admin-index', [ProductoController::class, 'indexAdmin'])
             ->name('productos.indexAdmin');
-        Route::get('/create',[ProductoController::class,'create'])
+        Route::get('/create', [ProductoController::class, 'create'])
             ->name('productos.create');
-        Route::post('/store',[ProductoController::class,'store'])
+        Route::post('/store', [ProductoController::class, 'store'])
             ->name('productos.store');
-        Route::get('/edit/{producto}',[ProductoController::class,'edit'])
+        Route::get('/edit/{producto}', [ProductoController::class, 'edit'])
             ->name('productos.edit');
-        Route::post('/update/{producto}',[ProductoController::class,'update'])
+        Route::post('/update/{producto}', [ProductoController::class, 'update'])
             ->name('productos.update');
-        Route::delete('/delete/{producto}',[ProductoController::class,'destroy'])
+        Route::delete('/delete/{producto}', [ProductoController::class, 'destroy'])
             ->name('productos.delete');
-        Route::get('/{producto}', [ProductoController::class,'show'])
+        Route::get('/{producto}', [ProductoController::class, 'show'])
             ->name('productos.show');
         Route::post('/subcategorias', [ProductoController::class, 'subcategorias']);
     });
+    //tarjetas
+    Route::group(['prefix' => 'payment'], function () {
+        Route::get('/index', [TarjetaController::class, 'index'])->name('tarjeta.index');
+        Route::get('/create', [TarjetaController::class, 'create'])->name('tarjeta.create');
+        Route::post('/store', [TarjetaController::class, 'store'])->name('tarjeta.store');
+        Route::delete('/delete/{tarjeta}', [TarjetaController::class, 'delete'])->name('tarjeta.delete');
+    });
+
+    //pedido
+    Route::group(['prefix' => 'pedido'], function () {
+        Route::get('/index', [PedidoController::class, 'index'])->name('pedido.index');
+        Route::post('/store/{carrito}', [PedidoController::class, 'store'])->name('pedido.store');
+    });
 
     //facturas
-    Route::group(['prefix'=>'facturas'],function(){
-        Route::get('/show', [FacturaController::class, 'show'])
-        ->name('facturas.show');
-        Route::get('/pdf', [FacturaController::class, 'pdf'])
-        ->name('facturas.pdf');
+    Route::group(['prefix' => 'facturas'], function () {
+        Route::get('/show', [App\Http\Controllers\FacturaController::class, 'show'])
+            ->name('factura.show');
+        Route::get('/pdf/{pedi}', [App\Http\Controllers\FacturaController::class, 'pdf'])
+            ->name('factura.pdf');
+        Route::get('/imprimir/{resulP}', [App\Http\Controllers\FacturaController::class, 'imprimir'])
+            ->name('factura.imprimir');
+    });
+    //reporte
+    Route::group(['prefix' => 'reporte'], function () {
+        Route::get('/index', [App\Http\Controllers\ReporteController::class, 'index'])
+            ->name('reportes.index');
+        Route::get('/reportes/e', [App\Http\Controllers\ReporteController::class, 'expUsers'])
+            ->name('reportes.expUsers');;
+        Route::get('/reportes/exportar', [App\Http\Controllers\ReporteController::class, 'expCompraCliente'])
+            ->name('reportes.expCompraCliente');;
     });
 });
 
@@ -175,7 +220,11 @@ Route::get('/empresa/home', [App\Http\Controllers\HomeController::class, 'indexE
     ->name('home');
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])
     ->name('catalogo');
+Route::get('/mostrar/{id}', 'App\Http\Controllers\ShopController@mostrar')
+    ->name('mostrar');
 Route::get('/product/{id}', 'App\Http\Controllers\ShopController@ver')
     ->name('ver');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'indexAdmin'])
     ->name('home.admin');
+Route::get('/index',[BitacoraController::class,'index'])->name('Bitacora.index');
+Route::get('/show/{correo}',[DetalleBitacoraController::class,'show'])->name('detallebitacora.show');

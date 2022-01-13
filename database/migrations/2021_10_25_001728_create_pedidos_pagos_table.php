@@ -16,11 +16,13 @@ class CreatePedidosPagosTable extends Migration
         Schema::create('pedidos_pagos', function (Blueprint $table) {
             $table->id();
             $table->float('monto');
-            $table->string('estado',20);
-            $table->date('fechaPago');
-            $table->date('fechaEnvio');
+            $table->date('fechaEnvio')->nullable();
+            $table->date('fechaPago')->nullable();
+            $table->string('nit')->nullable();
+            $table->string('departamento',100);
+            $table->string('ciudad',100);
             $table->string('direccionEnvio',200);
-            $table->string('telfCliente',15);
+            $table->string('telfCliente',15)->nullable();
             $table->unsignedBigInteger('carrito_id');
             $table->unsignedBigInteger('tarjeta_id');
             $table->timestamps();

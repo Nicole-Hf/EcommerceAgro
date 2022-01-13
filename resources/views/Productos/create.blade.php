@@ -79,7 +79,7 @@
                                 <div class="row">
                                     <label for="nombre" class="col-sm-2 col-form-label"> Categoría: </label>
                                     <div class="col-sm-7">
-                                        {{--<select class="form-control" name="subcategoria_id"
+                                       {{--  <select class="form-control" name="subcategoria_id"
                                                 aria-label="Default select example">
                                             <option selected>Seleccione una categoria</option>
                                             @foreach ($subcategorias as $subcategoria)
@@ -91,7 +91,7 @@
                                             <option disabled selected>Seleccione una categoria</option>
                                             @foreach($categorias as $categoria)
                                                 <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                            @endforeach
+                                            @endforeach--}}
                                         </select>
                                         <br>
                                         <select class="form-control" name="subcategoria" id="_subcategoria"></select>

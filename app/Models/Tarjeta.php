@@ -11,6 +11,7 @@ class Tarjeta extends Model
 
     protected $table = 'tarjetas';
     protected $fillable = [
+        'nombre',
         'numero',
         'cvv',
         'fecha',
@@ -23,5 +24,9 @@ class Tarjeta extends Model
 
     public function pedidosPagos() {
         return $this->hasMany(PedidoPago::class,'tarjeta_id');
+    }
+
+    public function getTarjetasUser($value) {
+        return $this->where(['cliente_id' => $value])->get();
     }
 }
