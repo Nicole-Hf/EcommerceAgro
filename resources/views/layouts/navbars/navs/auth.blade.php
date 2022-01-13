@@ -27,7 +27,6 @@
                     <livewire:lista-deseos />
                 </li>
                 @endcan
-
                 @can('carrito.add')
                 <li>
                     <livewire:carrito />

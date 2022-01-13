@@ -5728,9 +5728,14 @@ a.nav-link.cart_trigger.btn-shopping-cart {
     min-width: auto;
     overflow: initial;
 }
+/* panel de arriba cuenta,carrito,whislist */
 .main-panel > .navbar.navbar-absolute {
     position: relative;
     background-color: #191919 !important;
+}
+
+.material-icons {
+    color: white;
 }
 
 /*detalle de carrito*/

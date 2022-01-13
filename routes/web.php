@@ -198,6 +198,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/imprimir/{resulP}', [App\Http\Controllers\FacturaController::class, 'imprimir'])
             ->name('factura.imprimir');
     });
+    //reporte
+    Route::group(['prefix' => 'reporte'], function () {
+        Route::get('/index', [App\Http\Controllers\ReporteController::class, 'index'])
+            ->name('reportes.index');
+        Route::get('/reportes/e', [App\Http\Controllers\ReporteController::class, 'expUsers'])
+            ->name('reportes.expUsers');;
+        Route::get('/reportes/exportar', [App\Http\Controllers\ReporteController::class, 'expCompraCliente'])
+            ->name('reportes.expCompraCliente');;
+    });
 });
 
 Auth::routes();

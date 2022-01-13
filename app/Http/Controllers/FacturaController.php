@@ -19,14 +19,9 @@ class FacturaController extends Controller
 
     public function show()
     {
-        /*   $resulPago = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
-            ->get(); */
+
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
-        //  $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->where('estado', 'cancelado')->get();
-
-        /* 
-        $resulPago =  Factura::orderBy('id', 'desc')->get(); */
         $resulPago = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
             ->join("carritos", "carritos.id", "=", "pedidos_pagos.carrito_id")
             ->select("facturas.*", "pedidos_pagos.monto")->where("cliente_id", $cliente->id)->where('carritos.estado', 'cancelado')->get();
@@ -37,8 +32,6 @@ class FacturaController extends Controller
 
     public function pdf($pedi)
     {
-        // dd($pedi);
-
         $idUser = auth()->user()->id;
         $cliente = \App\Models\Cliente::where('user_id', $idUser)->first();
         $carrito = \App\Models\Carrito::where('cliente_id', $cliente->id)->first();
@@ -74,7 +67,6 @@ class FacturaController extends Controller
         $mont = \App\Models\Factura::join("pedidos_pagos", "pedidos_pagos.id", "=", "facturas.pago_id")
             ->select("facturas.id", "*")->where('facturas.pago_id', $pedido)->first();
 
-        // return view('factura.prueba', compact('resulP', 'mont'));
         $pdf = PDF::loadView('factura.prueba', compact('resulP', 'mont'));
         return  $pdf->download('factura' . $pedido . '-pdf.pdf');
     }
